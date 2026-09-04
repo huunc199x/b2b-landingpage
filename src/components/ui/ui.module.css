@@ -1,0 +1,118 @@
+/* Thư viện UI dùng chung — CHỈ token semantic/component (không hardcode hex). */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-2);
+  border-radius: var(--btn-radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 700;
+  /* Touch target ≥44px (WCAG §10.3) */
+  min-height: 44px;
+  padding: var(--mt-space-3) var(--mt-space-6);
+  transition: background-color 180ms ease-out, border-color 180ms ease-out;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Primary: chữ ≥18px/700 để đạt ngưỡng contrast text lớn trên nền cam (WCAG §10.2). */
+.primary {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  font-size: 18px;
+}
+.primary:hover:not(:disabled) {
+  background: var(--btn-primary-bg-hover);
+}
+
+.secondary {
+  background: var(--btn-secondary-bg);
+  color: var(--btn-secondary-fg);
+  border-color: var(--btn-secondary-border);
+  font-size: 16px;
+}
+.secondary:hover:not(:disabled) {
+  border-color: var(--color-brand);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+.ghost:hover:not(:disabled) {
+  color: var(--text-primary);
+}
+
+/* ---- Input ---- */
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-2);
+}
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  padding: var(--mt-space-3) var(--mt-space-4);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-primary);
+  min-height: 44px;
+}
+.input:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+.inputError {
+  border-color: var(--input-border-error);
+}
+.errorText {
+  font-size: 13px;
+  color: var(--color-danger);
+}
+
+/* ---- Card ---- */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--mt-space-6);
+  box-shadow: var(--mt-shadow-card);
+}
+
+/* ---- Badge ---- */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-1);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 2px var(--mt-space-3);
+  border-radius: var(--mt-radius-pill);
+  color: var(--surface-page);
+}
+.badgeVisible {
+  background: var(--badge-visible);
+}
+.badgeDraft {
+  background: var(--badge-draft);
+}
+.badgeHidden {
+  background: var(--badge-hidden);
+}
+.badgeDanger {
+  background: var(--color-danger);
+}

@@ -1,0 +1,86 @@
+/* Khung header/footer — chỉ token. */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--mt-z-sticky);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: var(--mt-blur-header);
+  box-shadow: var(--mt-shadow-header);
+}
+.headerInner {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-6);
+  min-height: 64px;
+}
+.brand {
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--mt-space-2);
+  text-decoration: none;
+  font-weight: 700;
+}
+.brandMark {
+  color: var(--color-brand);
+  font-size: 22px;
+  text-transform: lowercase;
+}
+.brandTag {
+  color: var(--text-secondary);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+.nav {
+  display: flex;
+  gap: var(--mt-space-6);
+  margin-left: auto;
+}
+.nav a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 15px;
+}
+.nav a:hover {
+  color: var(--text-primary);
+}
+.cta {
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-fg);
+  font-size: 18px;
+  font-weight: 700;
+  padding: var(--mt-space-2) var(--mt-space-6);
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .nav {
+    display: none;
+  }
+}
+
+.footer {
+  background: var(--surface-footer);
+  color: var(--text-subtle);
+  margin-top: var(--mt-space-24);
+}
+.footerInner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mt-space-4);
+  align-items: center;
+  justify-content: space-between;
+  padding-block: var(--mt-space-16);
+}
+.footerBrand {
+  color: var(--surface-page);
+  font-weight: 700;
+  font-size: 17px;
+}
+.footerMeta {
+  font-size: 13px;
+}

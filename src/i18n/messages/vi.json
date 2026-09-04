@@ -1,0 +1,44 @@
+{
+  "common": {
+    "brand": "Mytel B2B",
+    "loading": "Đang tải…",
+    "retry": "Thử lại",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "talkToExpert": "Nói chuyện với chuyên gia"
+  },
+  "nav": {
+    "solutions": "Giải pháp",
+    "industries": "Theo ngành",
+    "why": "Vì sao Mytel",
+    "register": "Đăng ký tư vấn"
+  },
+  "hero": {
+    "title": "DẪN ĐẦU TƯƠNG LAI SỐ CÙNG MYTEL",
+    "subtitle": "Một đối tác. Một hệ sinh thái. Khả năng không giới hạn.",
+    "ctaExplore": "Khám phá giải pháp",
+    "ctaExpert": "Nói chuyện với chuyên gia"
+  },
+  "form": {
+    "contactName": "Họ tên",
+    "email": "Email công việc",
+    "phone": "Số điện thoại",
+    "companyName": "Tên doanh nghiệp",
+    "serviceInterest": "Dịch vụ quan tâm",
+    "message": "Lời nhắn / nhu cầu",
+    "consent": "Tôi đồng ý cho phép xử lý dữ liệu cá nhân",
+    "send": "Gửi yêu cầu",
+    "thanks": "Cảm ơn, chúng tôi sẽ liên hệ với bạn sớm.",
+    "errors": {
+      "LEAD-001": "Vui lòng kiểm tra lại thông tin đã nhập",
+      "LEAD-010": "Vui lòng đồng ý cho phép xử lý dữ liệu cá nhân trước khi gửi",
+      "LEAD-021": "Bạn đã gửi quá số lần cho phép, vui lòng thử lại sau 1 giờ",
+      "LEAD-030": "Hệ thống đang bận, vui lòng thử lại"
+    }
+  },
+  "footer": {
+    "privacy": "Chính sách bảo mật",
+    "terms": "Điều khoản",
+    "rights": "Bảo lưu mọi quyền."
+  }
+}

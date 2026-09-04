@@ -1,0 +1,24 @@
+.hero {
+  background: var(--surface-hero);
+  color: var(--text-on-brand);
+  padding-block: var(--mt-space-24);
+}
+.heroTitle {
+  font-size: clamp(38px, 4.9vw, 68px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.035em;
+  line-height: 1.04;
+  margin: 0 0 var(--mt-space-6);
+}
+.heroSubtitle {
+  font-size: 22px;
+  color: var(--text-subtle);
+  margin: 0;
+}
+.placeholder {
+  color: var(--text-muted);
+  font-family: var(--mt-font-mono);
+  font-size: 13px;
+  padding-block: var(--mt-space-16);
+}

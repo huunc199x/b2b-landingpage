@@ -1,0 +1,164 @@
+// Prisma schema — Landing page dịch vụ B2B Mytel (+ Admin CMS-lite)
+// Nguồn sự thật: docs/sa/LLD.md §1–§2 (tên bảng/cột/enum canonical).
+// ULID sinh ở tầng ứng dụng (import { ulid } from 'ulid') — KHÔNG dùng @default(dbgenerated).
+// Thời gian: TIMESTAMPTZ, lưu UTC. Soft-delete: deleted_at IS NOT NULL bị loại khỏi truy vấn.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Enum canonical (khớp LLD §2) ----------
+enum BlockType {
+  highlight
+  partner
+  stat
+}
+
+enum BlockStatus {
+  draft
+  visible
+  hidden
+  deleted
+}
+
+enum Locale {
+  en
+  vi
+  // 'my' — khung, thêm sau (NFR-05)
+}
+
+enum LeadStatus {
+  new
+  viewed
+}
+
+enum EmailStatus {
+  pending
+  sent
+  failed
+}
+
+enum AdminStatus {
+  active
+  locked
+}
+
+// ---------- 1.6 admin_account (E-03) ----------
+model AdminAccount {
+  id             String      @id @db.Char(26)
+  email          String      @unique(map: "uq_admin_email") @db.VarChar(150)
+  passwordHash   String      @map("password_hash") @db.VarChar(255) // argon2id
+  status         AdminStatus @default(active)
+  failedAttempts Int         @default(0) @map("failed_attempts") @db.SmallInt
+  lockedUntil    DateTime?   @map("locked_until") @db.Timestamptz
+  lastLoginAt    DateTime?   @map("last_login_at") @db.Timestamptz
+  createdAt      DateTime    @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime    @updatedAt @map("updated_at") @db.Timestamptz
+
+  createdBlocks ContentBlock[] @relation("cb_created_by")
+  updatedBlocks ContentBlock[] @relation("cb_updated_by")
+  viewedLeads   Lead[]
+  auditLogs     AuditLog[]
+
+  @@map("admin_account")
+}
+
+// ---------- 1.2 content_block (E-02) ----------
+model ContentBlock {
+  id        String      @id @db.Char(26)
+  blockType BlockType   @map("block_type")
+  status    BlockStatus @default(draft)
+  sortOrder Int         @default(0) @map("sort_order")
+  payload   Json        @default("{}") // JSONB: imageUrl/logoUrl/link/value (không dịch)
+  createdBy String      @map("created_by") @db.Char(26)
+  creator   AdminAccount @relation("cb_created_by", fields: [createdBy], references: [id])
+  createdAt DateTime    @default(now()) @map("created_at") @db.Timestamptz
+  updatedBy String?     @map("updated_by") @db.Char(26)
+  updater   AdminAccount? @relation("cb_updated_by", fields: [updatedBy], references: [id])
+  updatedAt DateTime    @updatedAt @map("updated_at") @db.Timestamptz
+  deletedAt DateTime?   @map("deleted_at") @db.Timestamptz
+
+  i18n ContentBlockI18n[]
+
+  @@index([blockType, status, sortOrder], map: "idx_cb_type_status_sort")
+  @@map("content_block")
+}
+
+// ---------- 1.3 content_block_i18n ----------
+model ContentBlockI18n {
+  id          String   @id @db.Char(26)
+  blockId     String   @map("block_id") @db.Char(26)
+  block       ContentBlock @relation(fields: [blockId], references: [id], onDelete: Cascade)
+  locale      Locale
+  title       String?  @db.VarChar(120) // Highlight title / Partner name / Stat label
+  description String?  @db.VarChar(300) // Highlight desc / Stat unit
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  @@unique([blockId, locale], map: "uq_cbi_block_locale")
+  @@map("content_block_i18n")
+}
+
+// ---------- 1.4 lead (E-01, PII) ----------
+model Lead {
+  id              String      @id @db.Char(26)
+  contactName     String      @map("contact_name") @db.VarChar(100) // PII
+  email           String      @db.VarChar(150) // PII
+  phone           String      @db.VarChar(16) // PII
+  companyName     String      @map("company_name") @db.VarChar(150) // PII
+  serviceInterest String      @map("service_interest") @db.VarChar(60)
+  message         String?     @db.VarChar(1000)
+  source          String?     @default("landing") @db.VarChar(80)
+  status          LeadStatus  @default(new)
+  emailStatus     EmailStatus @default(pending) @map("email_status")
+  emailAttempts   Int         @default(0) @map("email_attempts") @db.SmallInt
+  createdAt       DateTime    @default(now()) @map("created_at") @db.Timestamptz
+  viewedAt        DateTime?   @map("viewed_at") @db.Timestamptz
+  viewedBy        String?     @map("viewed_by") @db.Char(26)
+  viewer          AdminAccount? @relation(fields: [viewedBy], references: [id])
+
+  consent LeadConsent?
+
+  @@index([status, createdAt(sort: Desc)], map: "idx_lead_status_created")
+  @@index([serviceInterest], map: "idx_lead_service")
+  @@index([emailStatus], map: "idx_lead_emailstatus")
+  @@map("lead")
+}
+
+// ---------- 1.5 lead_consent (bản ghi PDPL bất biến, 1-1) ----------
+model LeadConsent {
+  id                 String   @id @db.Char(26)
+  leadId             String   @unique(map: "uq_consent_lead") @map("lead_id") @db.Char(26)
+  lead               Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  given              Boolean
+  consentTextVersion String   @map("consent_text_version") @db.VarChar(20)
+  consentTextHash    String?  @map("consent_text_hash") @db.Char(64)
+  givenAt            DateTime @default(now()) @map("given_at") @db.Timestamptz
+  ip                 String?  @db.VarChar(64)
+  userAgent          String?  @map("user_agent") @db.VarChar(255)
+
+  @@map("lead_consent")
+}
+
+// ---------- 1.7 audit_log (append-only) ----------
+model AuditLog {
+  id         String   @id @db.Char(26)
+  adminId    String?  @map("admin_id") @db.Char(26)
+  admin      AdminAccount? @relation(fields: [adminId], references: [id])
+  action     String   @db.VarChar(40)
+  entityType String?  @map("entity_type") @db.VarChar(20)
+  entityId   String?  @map("entity_id") @db.Char(26)
+  result     String   @default("success") @db.VarChar(10)
+  ip         String?  @db.VarChar(64)
+  at         DateTime @default(now()) @db.Timestamptz
+  detail     Json?    @default("{}")
+
+  @@index([adminId, at(sort: Desc)], map: "idx_audit_admin_at")
+  @@index([action], map: "idx_audit_action")
+  @@map("audit_log")
+}

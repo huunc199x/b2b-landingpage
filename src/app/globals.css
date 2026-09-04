@@ -1,0 +1,207 @@
+/* ==========================================================================
+   globals.css — Design tokens 3 lớp (primitive → semantic → component)
+   Nguồn: docs/design/design.md §2 (bóc 1:1 từ "B2B Landing v2" của anh Bryan).
+   Quy ước: component CHỈ dùng semantic/component token; CẤM hardcode hex trong component.
+   Đổi nhận diện thương hiệu = chỉ sửa lớp PRIMITIVE dưới đây.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---------- LỚP 1 · PRIMITIVE (chỉ dùng trong file token) ---------- */
+  /* Màu thương hiệu (cam) */
+  --mt-orange-500: #f26b21;
+  --mt-orange-700: #c9541f;
+  --mt-orange-800: #c35120; /* link cam đạt 4.5:1 trên trắng (WCAG) */
+  --mt-orange-grad-a: #f26b21;
+  --mt-orange-grad-b: #f58a3c;
+  --mt-orange-grad-c: #ffa765;
+  --mt-tint-100: #fff1e8;
+  --mt-tint-200: #ffd9c2;
+  --mt-tint-border: #f9c3a0;
+
+  /* Nền tối cục bộ */
+  --mt-hero-900: #26140a;
+  --mt-hero-overlay: #180a02;
+  --mt-footer-900: #1a1a1c;
+  --mt-footer-border: #2c2c2e;
+
+  /* Mực (ink) */
+  --mt-ink-900: #1d1d1f;
+  --mt-ink-700: #3a3a3c;
+  --mt-ink-500: #6e6e73;
+  --mt-ink-400: #8e8e93;
+  --mt-ink-300: #aeaeb2;
+
+  /* Bề mặt (surface) */
+  --mt-white: #ffffff;
+  --mt-gray-50: #fafafb;
+  --mt-gray-100: #f7f7f8;
+  --mt-gray-chip: #f5f5f7;
+  --mt-border-100: #ededef;
+  --mt-border-200: #e1e1e4;
+
+  /* Trạng thái (admin) — chọn tối thiểu, đạt contrast ≥4.5:1 trên trắng */
+  --mt-green-600: #1e8e5a;
+  --mt-red-600: #c0392b;
+  --mt-amber-600: #b7791f;
+
+  /* Typography */
+  --mt-font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mt-font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Spacing (thang 4/8) */
+  --mt-space-1: 4px;
+  --mt-space-2: 8px;
+  --mt-space-3: 12px;
+  --mt-space-4: 16px;
+  --mt-space-6: 24px;
+  --mt-space-8: 32px;
+  --mt-space-12: 48px;
+  --mt-space-16: 64px;
+  --mt-space-24: 96px;
+  --mt-container-max: 1280px;
+
+  /* Radius */
+  --mt-radius-pill: 999px;
+  --mt-radius-card: 18px;
+  --mt-radius-icon: 13px;
+  --mt-radius-input: 10px;
+
+  /* Shadow */
+  --mt-shadow-none: none;
+  --mt-shadow-card: 0 1px 2px rgba(29, 29, 31, 0.04);
+  --mt-shadow-card-hover: 0 12px 28px rgba(242, 107, 33, 0.14);
+  --mt-shadow-header: 0 1px 0 #efefef;
+  --mt-blur-header: blur(14px);
+
+  /* Z-index */
+  --mt-z-base: 0;
+  --mt-z-sticky: 100;
+  --mt-z-dropdown: 200;
+  --mt-z-overlay: 900;
+  --mt-z-toast: 1000;
+
+  /* ---------- LỚP 2 · SEMANTIC (dùng trong mọi component) ---------- */
+  --color-brand: var(--mt-orange-500);
+  --color-brand-hover: var(--mt-orange-700);
+  --color-brand-gradient: linear-gradient(
+    90deg,
+    var(--mt-orange-grad-a),
+    var(--mt-orange-grad-b),
+    var(--mt-orange-grad-c)
+  );
+  --text-primary: var(--mt-ink-900);
+  --text-secondary: var(--mt-ink-700);
+  --text-muted: var(--mt-ink-500);
+  --text-subtle: var(--mt-ink-400);
+  --text-placeholder: var(--mt-ink-300);
+  --text-on-brand: var(--mt-white);
+  --text-link: var(--mt-orange-800);
+  --surface-page: var(--mt-white);
+  --surface-alt: var(--mt-gray-50);
+  --surface-card: var(--mt-gray-100);
+  --surface-chip: var(--mt-gray-chip);
+  --surface-hero: var(--mt-hero-900);
+  --surface-footer: var(--mt-footer-900);
+  --surface-tint: var(--mt-tint-100);
+  --border-default: var(--mt-border-100);
+  --border-strong: var(--mt-border-200);
+  --border-brand: var(--mt-tint-border);
+  --focus-ring: var(--mt-orange-500);
+  --selection-bg: var(--mt-tint-200);
+  --color-success: var(--mt-green-600);
+  --color-danger: var(--mt-red-600);
+  --color-warning: var(--mt-amber-600);
+
+  /* ---------- LỚP 3 · COMPONENT ---------- */
+  --btn-primary-bg: var(--color-brand);
+  --btn-primary-fg: var(--text-on-brand); /* chỉ dùng với chữ ≥18px/700 (WCAG) */
+  --btn-primary-bg-hover: var(--color-brand-hover);
+  --btn-secondary-bg: var(--surface-page);
+  --btn-secondary-fg: var(--text-link);
+  --btn-secondary-border: var(--border-brand);
+  --btn-radius: var(--mt-radius-pill);
+  --card-bg: var(--surface-card);
+  --card-radius: var(--mt-radius-card);
+  --card-border: var(--border-default);
+  --card-border-hover: var(--border-brand);
+  --icon-box-bg: var(--surface-tint);
+  --icon-box-radius: var(--mt-radius-icon);
+  --input-bg: var(--surface-card);
+  --input-border: var(--border-default);
+  --input-border-focus: var(--color-brand);
+  --input-border-error: var(--color-danger);
+  --input-radius: var(--mt-radius-input);
+  --chip-bg: var(--surface-chip);
+  --badge-visible: var(--color-success);
+  --badge-draft: var(--color-warning);
+  --badge-hidden: var(--text-muted);
+}
+
+/* Cấu trúc sẵn sàng dark mode (MVP chưa bật — chỉ cần thêm bộ giá trị semantic ở đây). */
+/* :root[data-theme='dark'] { --surface-page: ...; ... } */
+
+/* ---------- Reset tối giản ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--mt-font-sans);
+  color: var(--text-primary);
+  background: var(--surface-page);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--selection-bg);
+}
+
+a {
+  color: var(--text-link);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Focus nhìn thấy trên mọi element tương tác (WCAG §10). */
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.mt-container {
+  max-width: var(--mt-container-max);
+  margin-inline: auto;
+  padding-inline: var(--mt-space-12);
+}
+
+@media (max-width: 767px) {
+  .mt-container {
+    padding-inline: 20px;
+  }
+}
+
+/* Tôn trọng prefers-reduced-motion — tắt toàn bộ chuyển động (WCAG §10). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

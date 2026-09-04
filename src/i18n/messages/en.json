@@ -1,0 +1,44 @@
+{
+  "common": {
+    "brand": "Mytel B2B",
+    "loading": "Loading…",
+    "retry": "Try again",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "talkToExpert": "Talk to an Expert"
+  },
+  "nav": {
+    "solutions": "Solutions",
+    "industries": "By Industry",
+    "why": "Why Mytel",
+    "register": "Get a consultation"
+  },
+  "hero": {
+    "title": "LEAD THE DIGITAL FUTURE WITH MYTEL",
+    "subtitle": "One partner. One ecosystem. Limitless possibilities.",
+    "ctaExplore": "Explore solutions",
+    "ctaExpert": "Talk to an Expert"
+  },
+  "form": {
+    "contactName": "Full name",
+    "email": "Work email",
+    "phone": "Phone number",
+    "companyName": "Company name",
+    "serviceInterest": "Service of interest",
+    "message": "Message / needs",
+    "consent": "I agree to the processing of my personal data",
+    "send": "Send request",
+    "thanks": "Thank you, we will contact you shortly.",
+    "errors": {
+      "LEAD-001": "Please check the information you entered",
+      "LEAD-010": "Please agree to the processing of personal data before sending",
+      "LEAD-021": "You have sent too many requests, please try again in 1 hour",
+      "LEAD-030": "The system is busy, please try again"
+    }
+  },
+  "footer": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "rights": "All rights reserved."
+  }
+}
