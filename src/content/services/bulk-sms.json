@@ -1,0 +1,24 @@
+{
+  "slug": "bulk-sms",
+  "group": "mobile_ict",
+  "order": 2,
+  "i18n": {
+    "en": {
+      "name": "Bulk SMS",
+      "whatIs": "Send high volumes of SMS to customers through a web platform or API.",
+      "advantage": "High-throughput delivery, API and web console, branded sender and delivery reports.",
+      "targetCustomer": "Banks, retailers and service providers running OTP, alerts and marketing campaigns.",
+      "targetSale": "OTP and transaction alerts, appointment reminders and promotional broadcasts.",
+      "deliveryTimeline": "About 2 weeks.",
+      "pricePolicy": "INTERNAL — per-message tiered."
+    },
+    "vi": {
+      "name": "Bulk SMS",
+      "whatIs": "Gửi SMS số lượng lớn tới khách hàng qua nền tảng web hoặc API.",
+      "advantage": "Tốc độ gửi cao, hỗ trợ API và bảng điều khiển web, tên người gửi thương hiệu và báo cáo gửi.",
+      "targetCustomer": "Ngân hàng, nhà bán lẻ và nhà cung cấp dịch vụ chạy OTP, cảnh báo và chiến dịch marketing.",
+      "targetSale": "OTP và cảnh báo giao dịch, nhắc lịch hẹn và quảng bá khuyến mãi.",
+      "deliveryTimeline": "Khoảng 2 tuần."
+    }
+  }
+}

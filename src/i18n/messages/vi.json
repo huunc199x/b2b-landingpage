@@ -5,7 +5,9 @@
     "retry": "Thử lại",
     "submit": "Gửi",
     "cancel": "Hủy",
-    "talkToExpert": "Nói chuyện với chuyên gia"
+    "save": "Lưu",
+    "talkToExpert": "Nói chuyện với chuyên gia",
+    "backHome": "Về trang chủ"
   },
   "nav": {
     "solutions": "Giải pháp",
@@ -19,6 +21,64 @@
     "ctaExplore": "Khám phá giải pháp",
     "ctaExpert": "Nói chuyện với chuyên gia"
   },
+  "solutions": {
+    "eyebrow": "Giải pháp của chúng tôi",
+    "heading": "Mọi thứ doanh nghiệp cần để chuyển đổi số",
+    "explore": "Khám phá"
+  },
+  "groups": {
+    "connectivity": "Kết nối",
+    "ict_service": "Giải pháp ICT",
+    "mobile_ict": "Di động",
+    "connectivityTagline": "Kết nối chuyên biệt, riêng tư và quốc tế cho doanh nghiệp.",
+    "ict_serviceTagline": "Đám mây, trung tâm dữ liệu và an ninh để vận hành và bảo vệ doanh nghiệp.",
+    "mobile_ictTagline": "Nền tảng ưu tiên di động cho tin nhắn, IoT và tổng đài đám mây."
+  },
+  "industries": {
+    "eyebrow": "Giải pháp theo ngành",
+    "heading": "Thiết kế cho cách vận hành của ngành bạn",
+    "items": {
+      "carrier": "Nhà mạng & ISP",
+      "banking": "Ngân hàng & Tài chính",
+      "enterprise": "Doanh nghiệp",
+      "manufacturing": "Sản xuất",
+      "hospitality": "Khách sạn & F&B",
+      "retail": "Bán lẻ"
+    }
+  },
+  "why": {
+    "eyebrow": "Vì sao Mytel",
+    "heading": "Đối tác số đáng tin cậy",
+    "stats": {
+      "services": "Dịch vụ B2B",
+      "customers": "Khách hàng doanh nghiệp",
+      "reliability": "Độ tin cậy mạng",
+      "datacenters": "Trung tâm dữ liệu",
+      "support": "Hỗ trợ doanh nghiệp"
+    }
+  },
+  "ctaBand": {
+    "heading": "Sẵn sàng chuyển đổi doanh nghiệp của bạn?",
+    "button": "Nói chuyện với chuyên gia"
+  },
+  "register": {
+    "eyebrow": "Đăng ký tư vấn",
+    "heading": "Cho chúng tôi biết nhu cầu của bạn",
+    "subtitle": "Để lại thông tin, đội Sale sẽ liên hệ trong vòng một giờ."
+  },
+  "servicesPage": {
+    "title": "Dịch vụ B2B của chúng tôi",
+    "subtitle": "18 dịch vụ thuộc Kết nối, Giải pháp ICT và Di động."
+  },
+  "serviceDetail": {
+    "whatIs": "Dịch vụ là gì",
+    "advantage": "Lợi thế chính",
+    "targetCustomer": "Dành cho ai",
+    "targetSale": "Phù hợp ở đâu",
+    "deliveryTimeline": "Thời gian triển khai",
+    "ctaConsult": "Đăng ký tư vấn dịch vụ này",
+    "breadcrumbServices": "Dịch vụ"
+  },
   "form": {
     "contactName": "Họ tên",
     "email": "Email công việc",
@@ -27,18 +87,118 @@
     "serviceInterest": "Dịch vụ quan tâm",
     "message": "Lời nhắn / nhu cầu",
     "consent": "Tôi đồng ý cho phép xử lý dữ liệu cá nhân",
+    "consentLink": "Đọc chính sách xử lý dữ liệu",
     "send": "Gửi yêu cầu",
+    "sending": "Đang gửi…",
     "thanks": "Cảm ơn, chúng tôi sẽ liên hệ với bạn sớm.",
+    "thanksTitle": "Đã nhận yêu cầu",
+    "optional": "không bắt buộc",
+    "general": "Tư vấn chung",
     "errors": {
       "LEAD-001": "Vui lòng kiểm tra lại thông tin đã nhập",
       "LEAD-010": "Vui lòng đồng ý cho phép xử lý dữ liệu cá nhân trước khi gửi",
       "LEAD-021": "Bạn đã gửi quá số lần cho phép, vui lòng thử lại sau 1 giờ",
-      "LEAD-030": "Hệ thống đang bận, vui lòng thử lại"
+      "LEAD-030": "Hệ thống đang bận, vui lòng thử lại",
+      "network": "Lỗi kết nối, vui lòng thử lại"
     }
   },
   "footer": {
+    "tagline": "Hệ sinh thái số cho doanh nghiệp Myanmar.",
+    "colSolutions": "Giải pháp",
+    "colIndustries": "Ngành",
+    "colResources": "Tài nguyên",
+    "colSupport": "Hỗ trợ",
     "privacy": "Chính sách bảo mật",
     "terms": "Điều khoản",
     "rights": "Bảo lưu mọi quyền."
+  },
+  "admin": {
+    "brand": "Mytel B2B Admin",
+    "login": {
+      "title": "Đăng nhập",
+      "email": "Email",
+      "password": "Mật khẩu",
+      "submit": "Đăng nhập",
+      "errorGeneric": "Email hoặc mật khẩu không đúng",
+      "errorLocked": "Tài khoản tạm khóa, thử lại sau 15 phút"
+    },
+    "nav": {
+      "content": "Khối nội dung",
+      "leads": "Lead",
+      "logout": "Đăng xuất"
+    },
+    "content": {
+      "title": "Khối nội dung",
+      "create": "Tạo khối",
+      "filterType": "Loại",
+      "filterStatus": "Trạng thái",
+      "all": "Tất cả",
+      "colType": "Loại",
+      "colTitle": "Tiêu đề / tên",
+      "colStatus": "Trạng thái",
+      "colOrder": "Thứ tự",
+      "colUpdated": "Cập nhật",
+      "colActions": "Thao tác",
+      "edit": "Sửa",
+      "show": "Bật hiển thị",
+      "hide": "Tắt hiển thị",
+      "delete": "Xóa",
+      "empty": "Chưa có khối nội dung nào",
+      "emptyHint": "Tạo một khối để hiển thị trên trang chủ.",
+      "confirmDelete": "Xóa khối này?",
+      "types": { "highlight": "Sản phẩm/dịch vụ mới", "partner": "Đối tác", "stat": "Con số nổi bật" },
+      "statuses": { "draft": "Nháp", "visible": "Hiển thị", "hidden": "Ẩn", "deleted": "Đã xóa" }
+    },
+    "editor": {
+      "createTitle": "Tạo khối",
+      "editTitle": "Sửa khối",
+      "type": "Loại khối",
+      "en": "Tiếng Anh",
+      "vi": "Tiếng Việt",
+      "titleField": "Tiêu đề",
+      "description": "Mô tả",
+      "partnerName": "Tên đối tác",
+      "logoUrl": "URL logo",
+      "label": "Nhãn",
+      "value": "Giá trị",
+      "unit": "Đơn vị",
+      "imageUrl": "URL ảnh",
+      "link": "Link",
+      "sortOrder": "Thứ tự",
+      "saveDraft": "Lưu nháp",
+      "savePublish": "Lưu & Bật hiển thị",
+      "cancel": "Hủy",
+      "saved": "Đã lưu",
+      "requiredEn": "Cần đủ trường tiếng Anh bắt buộc trước khi hiển thị"
+    },
+    "leads": {
+      "title": "Lead",
+      "filterStatus": "Trạng thái",
+      "filterService": "Dịch vụ",
+      "colDate": "Thời điểm gửi",
+      "colName": "Họ tên",
+      "colCompany": "Doanh nghiệp",
+      "colService": "Dịch vụ",
+      "colStatus": "Trạng thái",
+      "colEmail": "Trạng thái email",
+      "empty": "Chưa có lead nào",
+      "emptyHint": "Lead từ form sẽ hiện ở đây.",
+      "emptyFilter": "Không có lead khớp bộ lọc",
+      "clearFilter": "Xóa lọc",
+      "statuses": { "new": "Mới", "viewed": "Đã xem" },
+      "detail": {
+        "title": "Chi tiết lead",
+        "contactName": "Họ tên",
+        "email": "Email",
+        "phone": "Điện thoại",
+        "company": "Doanh nghiệp",
+        "service": "Dịch vụ",
+        "message": "Lời nhắn",
+        "consent": "Đồng ý",
+        "createdAt": "Thời điểm gửi",
+        "consentGiven": "Đã đồng ý",
+        "close": "Đóng"
+      }
+    }
   }
 }

@@ -1,0 +1,24 @@
+{
+  "slug": "restaurant-management",
+  "group": "ict_service",
+  "order": 4,
+  "i18n": {
+    "en": {
+      "name": "Restaurant Management System (MISA CukCuk)",
+      "whatIs": "Restaurant management software covering orders, tables, inventory and reporting.",
+      "advantage": "End-to-end F&B operations, real-time reporting, works across counter and mobile.",
+      "targetCustomer": "Restaurants, cafes and F&B chains of any size.",
+      "targetSale": "F&B digitalization, multi-outlet management and sales reporting.",
+      "deliveryTimeline": "Project-based.",
+      "pricePolicy": "INTERNAL — subscription tiers."
+    },
+    "vi": {
+      "name": "Phần mềm quản lý nhà hàng (MISA CukCuk)",
+      "whatIs": "Phần mềm quản lý nhà hàng gồm gọi món, bàn, kho và báo cáo.",
+      "advantage": "Vận hành F&B đầu-cuối, báo cáo thời gian thực, dùng trên quầy và di động.",
+      "targetCustomer": "Nhà hàng, quán cà phê và chuỗi F&B mọi quy mô.",
+      "targetSale": "Số hóa F&B, quản lý nhiều điểm bán và báo cáo doanh số.",
+      "deliveryTimeline": "Theo dự án."
+    }
+  }
+}

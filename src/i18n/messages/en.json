@@ -5,7 +5,9 @@
     "retry": "Try again",
     "submit": "Submit",
     "cancel": "Cancel",
-    "talkToExpert": "Talk to an Expert"
+    "save": "Save",
+    "talkToExpert": "Talk to an Expert",
+    "backHome": "Back to home"
   },
   "nav": {
     "solutions": "Solutions",
@@ -19,6 +21,64 @@
     "ctaExplore": "Explore solutions",
     "ctaExpert": "Talk to an Expert"
   },
+  "solutions": {
+    "eyebrow": "Our solutions",
+    "heading": "Everything your business needs to go digital",
+    "explore": "Explore"
+  },
+  "groups": {
+    "connectivity": "Connectivity",
+    "ict_service": "ICT Solutions",
+    "mobile_ict": "Mobile",
+    "connectivityTagline": "Dedicated, private and international connectivity built for the enterprise.",
+    "ict_serviceTagline": "Cloud, data centre and security services to run and protect your business.",
+    "mobile_ictTagline": "Mobile-first platforms for messaging, IoT and cloud contact centres."
+  },
+  "industries": {
+    "eyebrow": "Solutions by industry",
+    "heading": "Built for the way your industry works",
+    "items": {
+      "carrier": "Carrier & ISP",
+      "banking": "Banking & Finance",
+      "enterprise": "Enterprise",
+      "manufacturing": "Manufacturing",
+      "hospitality": "Hospitality & F&B",
+      "retail": "Retail"
+    }
+  },
+  "why": {
+    "eyebrow": "Why Mytel",
+    "heading": "A digital partner you can trust",
+    "stats": {
+      "services": "B2B services",
+      "customers": "Enterprise customers",
+      "reliability": "Network reliability",
+      "datacenters": "Data centres",
+      "support": "Business support"
+    }
+  },
+  "ctaBand": {
+    "heading": "Ready to transform your business?",
+    "button": "Talk to an Expert"
+  },
+  "register": {
+    "eyebrow": "Get a consultation",
+    "heading": "Tell us what you need",
+    "subtitle": "Leave your details and our Sales team will contact you within an hour."
+  },
+  "servicesPage": {
+    "title": "Our B2B services",
+    "subtitle": "18 services across Connectivity, ICT Solutions and Mobile."
+  },
+  "serviceDetail": {
+    "whatIs": "What is it",
+    "advantage": "Key advantages",
+    "targetCustomer": "Who is it for",
+    "targetSale": "Where it fits",
+    "deliveryTimeline": "Delivery timeline",
+    "ctaConsult": "Get a consultation for this service",
+    "breadcrumbServices": "Services"
+  },
   "form": {
     "contactName": "Full name",
     "email": "Work email",
@@ -27,18 +87,118 @@
     "serviceInterest": "Service of interest",
     "message": "Message / needs",
     "consent": "I agree to the processing of my personal data",
+    "consentLink": "Read the privacy notice",
     "send": "Send request",
+    "sending": "Sending…",
     "thanks": "Thank you, we will contact you shortly.",
+    "thanksTitle": "Request received",
+    "optional": "optional",
+    "general": "General consultation",
     "errors": {
       "LEAD-001": "Please check the information you entered",
       "LEAD-010": "Please agree to the processing of personal data before sending",
       "LEAD-021": "You have sent too many requests, please try again in 1 hour",
-      "LEAD-030": "The system is busy, please try again"
+      "LEAD-030": "The system is busy, please try again",
+      "network": "Network error, please try again"
     }
   },
   "footer": {
+    "tagline": "The digital ecosystem for Myanmar enterprises.",
+    "colSolutions": "Solutions",
+    "colIndustries": "Industries",
+    "colResources": "Resources",
+    "colSupport": "Support",
     "privacy": "Privacy",
     "terms": "Terms",
     "rights": "All rights reserved."
+  },
+  "admin": {
+    "brand": "Mytel B2B Admin",
+    "login": {
+      "title": "Sign in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Sign in",
+      "errorGeneric": "Incorrect email or password",
+      "errorLocked": "Account temporarily locked, try again in 15 minutes"
+    },
+    "nav": {
+      "content": "Content blocks",
+      "leads": "Leads",
+      "logout": "Sign out"
+    },
+    "content": {
+      "title": "Content blocks",
+      "create": "Create block",
+      "filterType": "Type",
+      "filterStatus": "Status",
+      "all": "All",
+      "colType": "Type",
+      "colTitle": "Title / name",
+      "colStatus": "Status",
+      "colOrder": "Order",
+      "colUpdated": "Updated",
+      "colActions": "Actions",
+      "edit": "Edit",
+      "show": "Show",
+      "hide": "Hide",
+      "delete": "Delete",
+      "empty": "No content blocks yet",
+      "emptyHint": "Create a block to show it on the landing page.",
+      "confirmDelete": "Delete this block?",
+      "types": { "highlight": "Highlight", "partner": "Partner", "stat": "Stat" },
+      "statuses": { "draft": "Draft", "visible": "Visible", "hidden": "Hidden", "deleted": "Deleted" }
+    },
+    "editor": {
+      "createTitle": "Create block",
+      "editTitle": "Edit block",
+      "type": "Block type",
+      "en": "English",
+      "vi": "Vietnamese",
+      "titleField": "Title",
+      "description": "Description",
+      "partnerName": "Partner name",
+      "logoUrl": "Logo URL",
+      "label": "Label",
+      "value": "Value",
+      "unit": "Unit",
+      "imageUrl": "Image URL",
+      "link": "Link",
+      "sortOrder": "Order",
+      "saveDraft": "Save draft",
+      "savePublish": "Save & show",
+      "cancel": "Cancel",
+      "saved": "Saved",
+      "requiredEn": "English fields are required before showing"
+    },
+    "leads": {
+      "title": "Leads",
+      "filterStatus": "Status",
+      "filterService": "Service",
+      "colDate": "Received",
+      "colName": "Name",
+      "colCompany": "Company",
+      "colService": "Service",
+      "colStatus": "Status",
+      "colEmail": "Email status",
+      "empty": "No leads yet",
+      "emptyHint": "Leads from the form will appear here.",
+      "emptyFilter": "No leads match the filter",
+      "clearFilter": "Clear filter",
+      "statuses": { "new": "New", "viewed": "Viewed" },
+      "detail": {
+        "title": "Lead detail",
+        "contactName": "Full name",
+        "email": "Email",
+        "phone": "Phone",
+        "company": "Company",
+        "service": "Service",
+        "message": "Message",
+        "consent": "Consent",
+        "createdAt": "Received at",
+        "consentGiven": "Given",
+        "close": "Close"
+      }
+    }
   }
 }

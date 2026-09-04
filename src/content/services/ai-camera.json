@@ -1,0 +1,24 @@
+{
+  "slug": "ai-camera",
+  "group": "ict_service",
+  "order": 8,
+  "i18n": {
+    "en": {
+      "name": "AI Camera & Smart City",
+      "whatIs": "AI-powered cameras and smart-city solutions for video analytics and situational awareness.",
+      "advantage": "Real-time analytics, automated alerts, scalable across sites and city zones.",
+      "targetCustomer": "Enterprises, campuses and public agencies needing intelligent monitoring.",
+      "targetSale": "Safety and security analytics, traffic and crowd insights, smart-city platforms.",
+      "deliveryTimeline": "Project-based.",
+      "pricePolicy": "INTERNAL — solution based."
+    },
+    "vi": {
+      "name": "Camera AI & Thành phố thông minh",
+      "whatIs": "Camera ứng dụng AI và giải pháp thành phố thông minh cho phân tích hình ảnh và giám sát tình huống.",
+      "advantage": "Phân tích thời gian thực, cảnh báo tự động, mở rộng trên nhiều điểm và khu vực đô thị.",
+      "targetCustomer": "Doanh nghiệp, khu tổ hợp và cơ quan công cần giám sát thông minh.",
+      "targetSale": "Phân tích an toàn - an ninh, dữ liệu giao thông và đám đông, nền tảng thành phố thông minh.",
+      "deliveryTimeline": "Theo dự án."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "dplc",
+  "group": "connectivity",
+  "order": 2,
+  "i18n": {
+    "en": {
+      "name": "DPLC — Domestic Private Leased Line",
+      "whatIs": "A dedicated point-to-point private circuit connecting two sites inside Myanmar.",
+      "advantage": "Fully private and secure, fixed guaranteed capacity, predictable latency between sites.",
+      "targetCustomer": "Multi-site enterprises and organizations linking offices, branches or data centres domestically.",
+      "targetSale": "Branch interconnect, disaster-recovery links and private site-to-site transport.",
+      "deliveryTimeline": "About 3 weeks from signed order.",
+      "pricePolicy": "INTERNAL — distance and capacity based."
+    },
+    "vi": {
+      "name": "DPLC — Kênh thuê riêng nội địa",
+      "whatIs": "Kênh riêng điểm-điểm kết nối hai điểm trong lãnh thổ Myanmar.",
+      "advantage": "Riêng tư và bảo mật hoàn toàn, dung lượng cam kết cố định, độ trễ ổn định giữa các điểm.",
+      "targetCustomer": "Doanh nghiệp nhiều chi nhánh cần kết nối văn phòng, chi nhánh hoặc trung tâm dữ liệu trong nước.",
+      "targetSale": "Kết nối chi nhánh, kênh dự phòng thảm họa và truyền dẫn riêng điểm-điểm.",
+      "deliveryTimeline": "Khoảng 3 tuần kể từ khi ký đơn hàng."
+    }
+  }
+}

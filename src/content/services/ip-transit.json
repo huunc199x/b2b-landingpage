@@ -1,0 +1,24 @@
+{
+  "slug": "ip-transit",
+  "group": "connectivity",
+  "order": 5,
+  "i18n": {
+    "en": {
+      "name": "IP Transit",
+      "whatIs": "High-capacity IP transit to the global internet for ISPs and carriers operating their own ASN.",
+      "advantage": "Large scalable capacity, redundant upstreams, full BGP routing support.",
+      "targetCustomer": "ISPs, content providers and carriers with their own autonomous system number.",
+      "targetSale": "Wholesale internet upstream, peering augmentation and capacity bursts.",
+      "deliveryTimeline": "About 3 weeks from signed order.",
+      "pricePolicy": "INTERNAL — committed data rate based."
+    },
+    "vi": {
+      "name": "IP Transit",
+      "whatIs": "Dịch vụ IP transit dung lượng lớn ra internet toàn cầu cho ISP và nhà mạng có ASN riêng.",
+      "advantage": "Dung lượng lớn mở rộng linh hoạt, upstream dự phòng, hỗ trợ định tuyến BGP đầy đủ.",
+      "targetCustomer": "ISP, nhà cung cấp nội dung và nhà mạng có số hệ tự trị riêng.",
+      "targetSale": "Upstream internet bán buôn, mở rộng peering và tăng dung lượng đột biến.",
+      "deliveryTimeline": "Khoảng 3 tuần kể từ khi ký đơn hàng."
+    }
+  }
+}

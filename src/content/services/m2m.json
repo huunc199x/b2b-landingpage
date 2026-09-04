@@ -1,0 +1,24 @@
+{
+  "slug": "m2m",
+  "group": "mobile_ict",
+  "order": 1,
+  "i18n": {
+    "en": {
+      "name": "M2M / IoT Connectivity",
+      "whatIs": "Centralized management of balance and data across many SIMs via a master SIM and self-service portal.",
+      "advantage": "Central control of all SIMs, real-time usage and balance visibility, flexible data pooling.",
+      "targetCustomer": "Enterprises operating fleets of connected devices, sensors, POS or trackers.",
+      "targetSale": "IoT fleets, logistics tracking, smart metering and connected POS.",
+      "deliveryTimeline": "About 2 working days.",
+      "pricePolicy": "INTERNAL — SIM volume and data pool based."
+    },
+    "vi": {
+      "name": "M2M / Kết nối IoT",
+      "whatIs": "Quản lý tập trung số dư và dữ liệu của nhiều SIM qua master SIM và cổng tự phục vụ.",
+      "advantage": "Kiểm soát tập trung mọi SIM, theo dõi lưu lượng và số dư theo thời gian thực, chia sẻ data linh hoạt.",
+      "targetCustomer": "Doanh nghiệp vận hành nhiều thiết bị kết nối, cảm biến, POS hoặc thiết bị giám sát hành trình.",
+      "targetSale": "Đội thiết bị IoT, giám sát logistics, đo đếm thông minh và POS kết nối.",
+      "deliveryTimeline": "Khoảng 2 ngày làm việc."
+    }
+  }
+}

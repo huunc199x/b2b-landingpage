@@ -1,7 +1,17 @@
+/* SCR-01 Landing — 8 section, chỉ token semantic/component (không hardcode hex). */
+
+/* [2] HERO */
 .hero {
+  position: relative;
   background: var(--surface-hero);
   color: var(--text-on-brand);
-  padding-block: var(--mt-space-24);
+  padding-block: var(--mt-space-24) var(--mt-space-16);
+  text-align: center;
+  overflow: hidden;
+}
+.heroInner {
+  position: relative;
+  z-index: 1;
 }
 .heroTitle {
   font-size: clamp(38px, 4.9vw, 68px);
@@ -9,16 +19,257 @@
   text-transform: uppercase;
   letter-spacing: -0.035em;
   line-height: 1.04;
-  margin: 0 0 var(--mt-space-6);
+  margin: 0 auto var(--mt-space-6);
+  max-width: 16ch;
 }
 .heroSubtitle {
-  font-size: 22px;
-  color: var(--text-subtle);
+  font-size: clamp(17px, 2vw, 22px);
+  color: var(--text-on-brand);
+  opacity: 0.85;
+  margin: 0 auto var(--mt-space-8);
+  max-width: 46ch;
+}
+.heroCtas {
+  display: flex;
+  gap: var(--mt-space-4);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Section chung */
+.section {
+  padding-block: var(--mt-space-24);
+}
+.sectionAlt {
+  background: var(--surface-alt);
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-link);
+  margin: 0 0 var(--mt-space-3);
+}
+.h2 {
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--mt-space-12);
+  max-width: 22ch;
+}
+
+/* [3] SOLUTIONS grid 3 card */
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--mt-space-6);
+}
+.solCard {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--mt-space-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-4);
+  transition: border-color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+}
+.solCard:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: var(--mt-shadow-card-hover);
+  transform: translateY(-2px);
+}
+.iconBox {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--icon-box-radius);
+  background: var(--icon-box-bg);
+  color: var(--color-brand);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+.solTitle {
+  font-size: 20px;
+  font-weight: 700;
   margin: 0;
 }
-.placeholder {
+.solDesc {
   color: var(--text-muted);
-  font-family: var(--mt-font-mono);
+  font-size: 15px;
+  margin: 0;
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mt-space-2);
+  margin-top: auto;
+}
+.chip {
+  background: var(--chip-bg);
+  border-radius: var(--mt-radius-pill);
+  padding: 4px var(--mt-space-3);
   font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+.chip:hover {
+  color: var(--text-link);
+}
+.cardCta {
+  color: var(--text-link);
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+/* [4] INDUSTRIES grid 6 */
+.grid6 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--mt-space-6);
+}
+.industryCard {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-4);
+  background: var(--surface-page);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--mt-space-6);
+  font-weight: 600;
+}
+
+/* [5] WHY MYTEL — 5 con số */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--mt-space-6);
+}
+.statItem {
+  text-align: center;
+}
+.statValue {
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 600;
+  color: var(--color-brand);
+  line-height: 1;
+}
+.statLabel {
+  margin-top: var(--mt-space-2);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* [6] CTA BAND gradient — nút TRẮNG chữ #C35120 (WCAG §10.2 cảnh báo gradient). */
+.ctaBand {
+  background: var(--color-brand-gradient);
   padding-block: var(--mt-space-16);
+  text-align: center;
+}
+.ctaBandInner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-6);
+  align-items: center;
+}
+.ctaBandTitle {
+  color: var(--text-primary);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  margin: 0;
+  max-width: 20ch;
+}
+.ctaBandBtn {
+  background: var(--surface-page);
+  color: var(--text-link);
+  font-size: 18px;
+  font-weight: 700;
+  padding: var(--mt-space-3) var(--mt-space-8);
+  border-radius: var(--btn-radius);
+  text-decoration: none;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* [7] REGISTER — 2 cột text + form */
+.register {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--mt-space-16);
+  align-items: start;
+}
+.registerText p {
+  color: var(--text-muted);
+  font-size: 17px;
+}
+.formCard {
+  background: var(--surface-page);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--mt-space-8);
+  box-shadow: var(--mt-shadow-card);
+}
+
+/* Khối động Highlight / Partner */
+.highlightGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--mt-space-6);
+}
+.highlightCard {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  overflow: hidden;
+}
+.highlightBody {
+  padding: var(--mt-space-6);
+}
+.highlightImg {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.partnerGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mt-space-8);
+  align-items: center;
+  justify-content: center;
+}
+.partnerItem {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.partnerLogo {
+  height: 40px;
+  width: auto;
+}
+
+/* Animation nhẹ (scroll-reveal thay bằng fade-in-up khi load; reduced-motion tắt ở globals). */
+.reveal {
+  animation: fadeUp 560ms ease-out both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1023px) {
+  .grid3 { grid-template-columns: repeat(2, 1fr); }
+  .highlightGrid { grid-template-columns: repeat(2, 1fr); }
+  .stats { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 767px) {
+  .grid3, .grid6, .highlightGrid { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .register { grid-template-columns: 1fr; gap: var(--mt-space-8); }
+  .section { padding-block: var(--mt-space-16); }
 }

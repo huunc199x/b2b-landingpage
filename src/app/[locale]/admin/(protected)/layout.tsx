@@ -1,10 +1,10 @@
 import { redirect } from 'next/navigation';
+import { getTranslations } from 'next-intl/server';
 import { auth } from '@/lib/auth';
+import { AdminNav } from '@/components/admin/AdminNav';
+import styles from '@/components/admin/admin.module.css';
 
-/**
- * Vỏ admin bảo vệ (SHELL-ADMIN khung Làn 0) — defense-in-depth cùng middleware.
- * Nav/đăng xuất đầy đủ là việc Làn 1.
- */
+/** SHELL-ADMIN (FR-17) — bảo vệ phiên (defense-in-depth cùng middleware) + topbar/nav/đăng xuất. */
 export default async function ProtectedAdminLayout({
   children,
   params,
@@ -17,22 +17,15 @@ export default async function ProtectedAdminLayout({
   if (!session) {
     redirect(`/${locale}/admin/login`);
   }
+  const t = await getTranslations('admin');
 
   return (
-    <div style={{ minHeight: '100vh' }}>
-      <header
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '12px 24px',
-          borderBottom: '1px solid var(--border-default)',
-        }}
-      >
-        <strong style={{ color: 'var(--color-brand)' }}>mytel B2B Admin</strong>
-        <span style={{ color: 'var(--text-muted)', fontSize: 13 }}>{session.user?.email}</span>
+    <div className={styles.shell}>
+      <header className={styles.topbar}>
+        <strong className={styles.brand}>{t('brand')}</strong>
+        <AdminNav email={session.user?.email} />
       </header>
-      <main style={{ padding: 24 }}>{children}</main>
+      <main className={styles.main}>{children}</main>
     </div>
   );
 }

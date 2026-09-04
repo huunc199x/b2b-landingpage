@@ -1,0 +1,24 @@
+{
+  "slug": "dia",
+  "group": "connectivity",
+  "order": 1,
+  "i18n": {
+    "en": {
+      "name": "DIA — Dedicated Internet Access",
+      "whatIs": "Dedicated, symmetric internet access with guaranteed bandwidth reserved for a single enterprise, backed by a 24/7 SLA.",
+      "advantage": "Guaranteed bandwidth and low latency, 24/7 SLA and proactive monitoring, no contention with other customers.",
+      "targetCustomer": "Enterprises, banks and organizations needing stable, always-on connectivity for critical operations.",
+      "targetSale": "Mission-critical connectivity, hosting, VPN backbone and cloud on-ramp use cases.",
+      "deliveryTimeline": "About 3 weeks from signed order.",
+      "pricePolicy": "INTERNAL — bandwidth-tiered, not shown publicly."
+    },
+    "vi": {
+      "name": "DIA — Truy cập Internet chuyên biệt",
+      "whatIs": "Đường truyền Internet chuyên biệt, đối xứng, băng thông riêng dành cho một doanh nghiệp, kèm SLA 24/7.",
+      "advantage": "Băng thông cam kết, độ trễ thấp, SLA 24/7 và giám sát chủ động, không chia sẻ với khách khác.",
+      "targetCustomer": "Doanh nghiệp, ngân hàng và tổ chức cần kết nối ổn định, luôn sẵn sàng cho hoạt động trọng yếu.",
+      "targetSale": "Kết nối trọng yếu, hosting, backbone VPN và kết nối tới đám mây.",
+      "deliveryTimeline": "Khoảng 3 tuần kể từ khi ký đơn hàng."
+    }
+  }
+}

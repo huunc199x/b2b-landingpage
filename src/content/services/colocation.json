@@ -1,0 +1,24 @@
+{
+  "slug": "colocation",
+  "group": "ict_service",
+  "order": 2,
+  "i18n": {
+    "en": {
+      "name": "Colocation / Data Center",
+      "whatIs": "Rack and cage space in a Mytel data centre with power, cooling and physical security.",
+      "advantage": "Carrier-neutral facility, redundant power and cooling, 24/7 security and access control.",
+      "targetCustomer": "Enterprises and providers needing reliable hosting space for their own equipment.",
+      "targetSale": "Server hosting, disaster-recovery sites and edge presence.",
+      "deliveryTimeline": "About 1 week.",
+      "pricePolicy": "INTERNAL — per rack/power."
+    },
+    "vi": {
+      "name": "Colocation / Trung tâm dữ liệu",
+      "whatIs": "Chỗ đặt tủ rack trong trung tâm dữ liệu Mytel kèm nguồn điện, làm mát và an ninh vật lý.",
+      "advantage": "Tòa nhà trung lập nhà mạng, nguồn và làm mát dự phòng, an ninh và kiểm soát ra vào 24/7.",
+      "targetCustomer": "Doanh nghiệp và nhà cung cấp cần chỗ đặt tin cậy cho thiết bị của mình.",
+      "targetSale": "Đặt máy chủ, điểm dự phòng thảm họa và hiện diện biên.",
+      "deliveryTimeline": "Khoảng 1 tuần."
+    }
+  }
+}

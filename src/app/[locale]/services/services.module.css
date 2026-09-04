@@ -1,0 +1,135 @@
+/* SCR-02/03 — danh sách + chi tiết dịch vụ. Chỉ token. */
+
+.head {
+  background: var(--surface-alt);
+  padding-block: var(--mt-space-16);
+}
+.title {
+  font-size: clamp(30px, 3.6vw, 46px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--mt-space-3);
+}
+.subtitle {
+  color: var(--text-muted);
+  font-size: 18px;
+  margin: 0;
+}
+.section {
+  padding-block: var(--mt-space-16);
+}
+.groupTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 var(--mt-space-6);
+}
+.groupChip {
+  display: inline-block;
+  background: var(--surface-tint);
+  color: var(--text-link);
+  border-radius: var(--mt-radius-pill);
+  padding: 2px var(--mt-space-3);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--mt-space-6);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-3);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--mt-space-6);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 180ms ease-out, box-shadow 180ms ease-out;
+}
+.card:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: var(--mt-shadow-card-hover);
+}
+.cardName {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+.cardDesc {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Chi tiết */
+.detail {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--mt-space-16);
+  align-items: start;
+  padding-block: var(--mt-space-16);
+}
+.breadcrumb {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: var(--mt-space-6);
+}
+.breadcrumb a {
+  color: var(--text-link);
+  text-decoration: none;
+}
+.detailTitle {
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: var(--mt-space-3) 0 var(--mt-space-8);
+}
+.block {
+  margin-bottom: var(--mt-space-8);
+}
+.blockLabel {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-link);
+  margin: 0 0 var(--mt-space-2);
+}
+.blockText {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+.ctaCard {
+  position: sticky;
+  top: 88px;
+  background: var(--surface-page);
+  border: 1px solid var(--card-border);
+  border-radius: var(--card-radius);
+  padding: var(--mt-space-8);
+  box-shadow: var(--mt-shadow-card);
+}
+.ctaCardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 var(--mt-space-6);
+}
+
+@media (max-width: 1023px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 767px) {
+  .grid { grid-template-columns: 1fr; }
+  .detail { grid-template-columns: 1fr; gap: var(--mt-space-8); }
+  .ctaCard { position: static; }
+}

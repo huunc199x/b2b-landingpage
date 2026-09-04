@@ -1,0 +1,24 @@
+{
+  "slug": "soc",
+  "group": "ict_service",
+  "order": 7,
+  "i18n": {
+    "en": {
+      "name": "SOC — Security Operations Center",
+      "whatIs": "A 24/7 managed security monitoring service detecting and responding to threats.",
+      "advantage": "Round-the-clock monitoring, expert analysts, faster incident response.",
+      "targetCustomer": "Enterprises lacking an in-house security team or needing 24/7 coverage.",
+      "targetSale": "Managed detection and response, threat monitoring and incident handling.",
+      "deliveryTimeline": "Project-based.",
+      "pricePolicy": "INTERNAL — managed subscription."
+    },
+    "vi": {
+      "name": "SOC — Trung tâm giám sát an ninh",
+      "whatIs": "Dịch vụ giám sát an ninh được quản lý 24/7, phát hiện và ứng phó với mối đe dọa.",
+      "advantage": "Giám sát liên tục, chuyên gia phân tích, phản ứng sự cố nhanh hơn.",
+      "targetCustomer": "Doanh nghiệp chưa có đội an ninh nội bộ hoặc cần bao phủ 24/7.",
+      "targetSale": "Phát hiện và ứng phó được quản lý, giám sát mối đe dọa và xử lý sự cố.",
+      "deliveryTimeline": "Theo dự án."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "slug": "vbot",
+  "group": "mobile_ict",
+  "order": 3,
+  "i18n": {
+    "en": {
+      "name": "VBot — Cloud Call Center",
+      "whatIs": "A cloud-based call center working across devices, on web and mobile apps (iOS/Android).",
+      "advantage": "No on-premise PBX, works on any device, scalable agents with call analytics.",
+      "targetCustomer": "Businesses running customer support, sales or telemarketing teams.",
+      "targetSale": "Contact-centre modernization, remote agents and omnichannel support.",
+      "deliveryTimeline": "About 1 week.",
+      "pricePolicy": "INTERNAL — per-agent subscription."
+    },
+    "vi": {
+      "name": "VBot — Tổng đài đám mây",
+      "whatIs": "Tổng đài trên nền đám mây hoạt động đa thiết bị, trên web và ứng dụng di động (iOS/Android).",
+      "advantage": "Không cần tổng đài tại chỗ, dùng trên mọi thiết bị, mở rộng nhân viên kèm phân tích cuộc gọi.",
+      "targetCustomer": "Doanh nghiệp vận hành đội chăm sóc khách hàng, bán hàng hoặc telemarketing.",
+      "targetSale": "Hiện đại hóa tổng đài, nhân viên làm việc từ xa và hỗ trợ đa kênh.",
+      "deliveryTimeline": "Khoảng 1 tuần."
+    }
+  }
+}

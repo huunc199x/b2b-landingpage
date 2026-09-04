@@ -1,0 +1,24 @@
+{
+  "slug": "ipvpn",
+  "group": "connectivity",
+  "order": 4,
+  "i18n": {
+    "en": {
+      "name": "IP VPN (MPLS)",
+      "whatIs": "A managed any-to-any VPN over the Mytel MPLS backbone connecting many sites with class-of-service.",
+      "advantage": "Any-to-any mesh, traffic prioritization (QoS/CoS), scalable and fully managed.",
+      "targetCustomer": "Distributed enterprises with many branches needing a single managed private network.",
+      "targetSale": "Nationwide branch networks, voice/video/data convergence and cloud connectivity.",
+      "deliveryTimeline": "About 3 weeks from signed order.",
+      "pricePolicy": "INTERNAL — per-site and capacity based."
+    },
+    "vi": {
+      "name": "IP VPN (MPLS)",
+      "whatIs": "Mạng VPN any-to-any được quản lý trên backbone MPLS của Mytel, kết nối nhiều điểm kèm phân lớp dịch vụ.",
+      "advantage": "Kết nối lưới any-to-any, ưu tiên lưu lượng (QoS/CoS), mở rộng linh hoạt và được quản lý trọn gói.",
+      "targetCustomer": "Doanh nghiệp phân tán nhiều chi nhánh cần một mạng riêng được quản lý thống nhất.",
+      "targetSale": "Mạng chi nhánh toàn quốc, hội tụ thoại/video/dữ liệu và kết nối đám mây.",
+      "deliveryTimeline": "Khoảng 3 tuần kể từ khi ký đơn hàng."
+    }
+  }
+}

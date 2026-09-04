@@ -1,0 +1,24 @@
+{
+  "slug": "dark-fiber",
+  "group": "connectivity",
+  "order": 6,
+  "i18n": {
+    "en": {
+      "name": "Dark Fiber",
+      "whatIs": "Unlit dedicated optical fiber leased to the customer, who operates their own transmission equipment.",
+      "advantage": "Full control of capacity and technology, maximum scalability, highest privacy.",
+      "targetCustomer": "Carriers, large enterprises and data-centre operators wanting to run their own optics.",
+      "targetSale": "Private high-capacity backbone, data-centre interconnect and future-proof capacity.",
+      "deliveryTimeline": "About 3 weeks from signed order.",
+      "pricePolicy": "INTERNAL — route and pair based."
+    },
+    "vi": {
+      "name": "Dark Fiber",
+      "whatIs": "Sợi quang riêng chưa kích hoạt cho khách thuê, khách tự vận hành thiết bị truyền dẫn.",
+      "advantage": "Toàn quyền kiểm soát dung lượng và công nghệ, khả năng mở rộng tối đa, bảo mật cao nhất.",
+      "targetCustomer": "Nhà mạng, doanh nghiệp lớn và đơn vị vận hành trung tâm dữ liệu muốn tự chạy thiết bị quang.",
+      "targetSale": "Backbone riêng dung lượng lớn, kết nối liên trung tâm dữ liệu và dung lượng dự phòng tương lai.",
+      "deliveryTimeline": "Khoảng 3 tuần kể từ khi ký đơn hàng."
+    }
+  }
+}

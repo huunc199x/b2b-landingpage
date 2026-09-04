@@ -1,0 +1,24 @@
+{
+  "slug": "penetration-testing",
+  "group": "ict_service",
+  "order": 6,
+  "i18n": {
+    "en": {
+      "name": "Penetration Testing",
+      "whatIs": "Authorized simulated attacks to find and report vulnerabilities in systems and applications.",
+      "advantage": "Expert-led testing, prioritized findings, actionable remediation guidance.",
+      "targetCustomer": "Organizations needing to assess and harden their security posture.",
+      "targetSale": "Security assessment, compliance audits and pre-launch testing.",
+      "deliveryTimeline": "Project-based.",
+      "pricePolicy": "INTERNAL — scope based."
+    },
+    "vi": {
+      "name": "Kiểm thử xâm nhập",
+      "whatIs": "Tấn công mô phỏng được cấp phép để phát hiện và báo cáo lỗ hổng trong hệ thống và ứng dụng.",
+      "advantage": "Kiểm thử bởi chuyên gia, xếp hạng ưu tiên lỗ hổng, hướng dẫn khắc phục khả thi.",
+      "targetCustomer": "Tổ chức cần đánh giá và củng cố mức độ an toàn.",
+      "targetSale": "Đánh giá an toàn, kiểm toán tuân thủ và kiểm thử trước khi ra mắt.",
+      "deliveryTimeline": "Theo dự án."
+    }
+  }
+}

@@ -1,10 +1,11 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
+import { LocaleSwitcher } from './LocaleSwitcher';
 import styles from './layout.module.css';
 
 /**
- * Header khung (Làn 0) — sticky, blur, nav + CTA. Chi tiết responsive/hamburger + toggle
- * ngôn ngữ đầy đủ là việc Làn 1 (SCR-01/SCR-05).
+ * Header sticky (SCR-01 [1]) — blur, nav + toggle ngôn ngữ (SCR-05) + CTA.
+ * Anchor trỏ tới section trên trang chủ; từ trang con dùng đường dẫn tuyệt đối về `/#...`.
  */
 export async function Header() {
   const t = await getTranslations('nav');
@@ -18,14 +19,17 @@ export async function Header() {
           <span className={styles.brandTag}>B2B</span>
         </Link>
         <nav className={styles.nav} aria-label="primary">
-          <a href="#solutions">{t('solutions')}</a>
-          <a href="#industries">{t('industries')}</a>
-          <a href="#why">{t('why')}</a>
-          <a href="#dang-ky">{t('register')}</a>
+          <Link href="/#solutions">{t('solutions')}</Link>
+          <Link href="/#industries">{t('industries')}</Link>
+          <Link href="/#why">{t('why')}</Link>
+          <Link href="/#dang-ky">{t('register')}</Link>
         </nav>
-        <a href="#dang-ky" className={styles.cta}>
-          {tc('talkToExpert')}
-        </a>
+        <div className={styles.headerActions}>
+          <LocaleSwitcher />
+          <Link href="/#dang-ky" className={styles.cta}>
+            {tc('talkToExpert')}
+          </Link>
+        </div>
       </div>
     </header>
   );

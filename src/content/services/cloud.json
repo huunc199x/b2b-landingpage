@@ -1,0 +1,24 @@
+{
+  "slug": "cloud",
+  "group": "ict_service",
+  "order": 1,
+  "i18n": {
+    "en": {
+      "name": "Cloud",
+      "whatIs": "On-demand virtualized computing resources (compute, storage, network) hosted by Mytel.",
+      "advantage": "Elastic scaling, pay for what you use, local hosting for data residency and low latency.",
+      "targetCustomer": "Enterprises modernizing infrastructure or needing burst capacity without capex.",
+      "targetSale": "Application hosting, dev/test environments and hybrid-cloud extension.",
+      "deliveryTimeline": "About 1 week.",
+      "pricePolicy": "INTERNAL — resource metered."
+    },
+    "vi": {
+      "name": "Cloud",
+      "whatIs": "Tài nguyên điện toán ảo hóa theo yêu cầu (máy chủ, lưu trữ, mạng) do Mytel vận hành.",
+      "advantage": "Mở rộng linh hoạt, trả theo mức dùng, lưu trữ trong nước cho tuân thủ dữ liệu và độ trễ thấp.",
+      "targetCustomer": "Doanh nghiệp hiện đại hóa hạ tầng hoặc cần dung lượng đột biến mà không đầu tư lớn.",
+      "targetSale": "Hosting ứng dụng, môi trường phát triển/kiểm thử và mở rộng đám mây lai.",
+      "deliveryTimeline": "Khoảng 1 tuần."
+    }
+  }
+}

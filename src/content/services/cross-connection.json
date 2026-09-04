@@ -1,0 +1,24 @@
+{
+  "slug": "cross-connection",
+  "group": "connectivity",
+  "order": 7,
+  "i18n": {
+    "en": {
+      "name": "Cross Connection",
+      "whatIs": "A physical cable link between customer equipment and other parties inside a Mytel data centre.",
+      "advantage": "Low-latency direct link, secure in-facility connectivity, fast to provision.",
+      "targetCustomer": "Colocation customers needing to interconnect with carriers, clouds or partners in the same facility.",
+      "targetSale": "In-DC peering, cloud on-ramp and partner interconnect.",
+      "deliveryTimeline": "About 2 working days.",
+      "pricePolicy": "INTERNAL — per cross-connect."
+    },
+    "vi": {
+      "name": "Cross Connection",
+      "whatIs": "Kết nối cáp vật lý giữa thiết bị của khách với các bên khác trong trung tâm dữ liệu Mytel.",
+      "advantage": "Kết nối trực tiếp độ trễ thấp, an toàn trong tòa nhà, triển khai nhanh.",
+      "targetCustomer": "Khách thuê chỗ đặt cần kết nối với nhà mạng, đám mây hoặc đối tác trong cùng tòa nhà.",
+      "targetSale": "Peering trong trung tâm dữ liệu, kết nối tới đám mây và đối tác.",
+      "deliveryTimeline": "Khoảng 2 ngày làm việc."
+    }
+  }
+}

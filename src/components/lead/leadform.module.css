@@ -1,0 +1,98 @@
+/* SCR-04 Form lead — chỉ token semantic/component. */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-4);
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-2);
+}
+.label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+.optional {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.input,
+.select,
+.textarea {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--input-radius);
+  padding: var(--mt-space-3) var(--mt-space-4);
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-primary);
+  min-height: 44px;
+  width: 100%;
+}
+.textarea {
+  resize: vertical;
+  min-height: 96px;
+}
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  box-shadow: 0 0 0 2px var(--focus-ring);
+}
+.inputError {
+  border-color: var(--input-border-error);
+}
+.errorText {
+  font-size: 13px;
+  color: var(--color-danger);
+}
+.consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--mt-space-2);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.consent input {
+  margin-top: 3px;
+  min-width: 18px;
+  min-height: 18px;
+}
+.formError {
+  color: var(--color-danger);
+  font-size: 14px;
+  margin: 0;
+}
+/* Honeypot: ẩn hoàn toàn khỏi người thật + trợ năng, vẫn có trong DOM cho bot. */
+.honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.thanks {
+  text-align: center;
+  padding: var(--mt-space-12) var(--mt-space-6);
+}
+.thanksIcon {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto var(--mt-space-4);
+  border-radius: var(--mt-radius-pill);
+  background: var(--color-success);
+  color: var(--surface-page);
+  font-size: 28px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.thanksTitle {
+  font-size: 22px;
+  margin: 0 0 var(--mt-space-2);
+  color: var(--text-primary);
+}

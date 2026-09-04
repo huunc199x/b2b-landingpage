@@ -1,0 +1,24 @@
+{
+  "slug": "security-endpoint",
+  "group": "ict_service",
+  "order": 5,
+  "i18n": {
+    "en": {
+      "name": "Security EndPoint",
+      "whatIs": "Endpoint protection securing laptops, desktops and servers against malware and threats.",
+      "advantage": "Centralized policy, real-time threat blocking, managed updates.",
+      "targetCustomer": "Enterprises needing to protect distributed devices and workforces.",
+      "targetSale": "Endpoint hardening, compliance and managed security.",
+      "deliveryTimeline": "About 2 weeks.",
+      "pricePolicy": "INTERNAL — per-endpoint subscription."
+    },
+    "vi": {
+      "name": "Bảo mật thiết bị đầu cuối",
+      "whatIs": "Bảo vệ thiết bị đầu cuối (laptop, máy tính, máy chủ) trước mã độc và các mối đe dọa.",
+      "advantage": "Chính sách tập trung, chặn mối đe dọa thời gian thực, cập nhật được quản lý.",
+      "targetCustomer": "Doanh nghiệp cần bảo vệ thiết bị và nhân sự phân tán.",
+      "targetSale": "Củng cố thiết bị đầu cuối, tuân thủ và bảo mật được quản lý.",
+      "deliveryTimeline": "Khoảng 2 tuần."
+    }
+  }
+}

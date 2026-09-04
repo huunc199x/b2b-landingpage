@@ -1,0 +1,24 @@
+{
+  "slug": "ekyc",
+  "group": "ict_service",
+  "order": 3,
+  "i18n": {
+    "en": {
+      "name": "eKYC",
+      "whatIs": "Remote electronic identity verification using AI and biometric matching.",
+      "advantage": "Fast onboarding, reduced fraud, automated document and face verification.",
+      "targetCustomer": "Banks, fintechs and telcos onboarding customers digitally.",
+      "targetSale": "Digital onboarding, KYC compliance and fraud reduction.",
+      "deliveryTimeline": "Project-based.",
+      "pricePolicy": "INTERNAL — per-verification / project."
+    },
+    "vi": {
+      "name": "eKYC",
+      "whatIs": "Định danh điện tử từ xa sử dụng AI và đối sánh sinh trắc học.",
+      "advantage": "Mở tài khoản nhanh, giảm gian lận, tự động xác thực giấy tờ và khuôn mặt.",
+      "targetCustomer": "Ngân hàng, fintech và nhà mạng mở tài khoản khách hàng theo phương thức số.",
+      "targetSale": "Mở tài khoản số, tuân thủ KYC và giảm gian lận.",
+      "deliveryTimeline": "Theo dự án."
+    }
+  }
+}

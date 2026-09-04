@@ -1,0 +1,24 @@
+{
+  "slug": "iplc",
+  "group": "connectivity",
+  "order": 3,
+  "i18n": {
+    "en": {
+      "name": "IPLC — International Private Leased Line",
+      "whatIs": "A dedicated private circuit connecting a site in Myanmar to an international location.",
+      "advantage": "End-to-end private international capacity, carrier-grade reliability, consistent cross-border performance.",
+      "targetCustomer": "Multinationals and carriers needing secure links between Myanmar and overseas sites.",
+      "targetSale": "International HQ connectivity, global data-centre reach and cross-border transport.",
+      "deliveryTimeline": "About 3 weeks from signed order.",
+      "pricePolicy": "INTERNAL — international capacity based."
+    },
+    "vi": {
+      "name": "IPLC — Kênh thuê riêng quốc tế",
+      "whatIs": "Kênh riêng kết nối một điểm tại Myanmar tới một địa điểm quốc tế.",
+      "advantage": "Dung lượng quốc tế riêng đầu-cuối, độ tin cậy cấp nhà mạng, hiệu năng xuyên biên giới ổn định.",
+      "targetCustomer": "Tập đoàn đa quốc gia và nhà mạng cần kết nối an toàn giữa Myanmar và điểm ở nước ngoài.",
+      "targetSale": "Kết nối trụ sở quốc tế, mở rộng tới trung tâm dữ liệu toàn cầu.",
+      "deliveryTimeline": "Khoảng 3 tuần kể từ khi ký đơn hàng."
+    }
+  }
+}
