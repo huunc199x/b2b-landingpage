@@ -3,7 +3,16 @@
 /* [2] HERO */
 .hero {
   position: relative;
-  background: var(--surface-hero);
+  /* Lớp phủ tối (giữ chữ trắng đạt WCAG) + gradient nền dự phòng + ẢNH hero nếu có
+     (bỏ /assets/hero-city.png vào public/assets/ là tự hiện, không cần sửa code). */
+  background-color: var(--surface-hero);
+  background-image:
+    linear-gradient(96deg, rgba(24, 10, 2, 0.92) 0%, rgba(24, 10, 2, 0.6) 34%, rgba(24, 10, 2, 0.28) 68%, rgba(24, 10, 2, 0.12) 100%),
+    radial-gradient(120% 120% at 78% 0%, rgba(242, 107, 33, 0.28) 0%, rgba(242, 107, 33, 0) 46%),
+    url("/assets/hero-city.jpg");
+  background-size: cover, cover, cover;
+  background-position: center, center, center 42%;
+  background-repeat: no-repeat;
   color: var(--text-on-brand);
   padding-block: var(--mt-space-24) var(--mt-space-16);
   text-align: center;

@@ -33,13 +33,14 @@
   --mt-ink-400: #8e8e93;
   --mt-ink-300: #aeaeb2;
 
-  /* Bề mặt (surface) */
+  /* Bề mặt (surface) — tông KEM ẤM (theo trang tham chiếu), giữ --mt-white cho chữ/nút trên nền cam */
   --mt-white: #ffffff;
-  --mt-gray-50: #fafafb;
-  --mt-gray-100: #f7f7f8;
-  --mt-gray-chip: #f5f5f7;
-  --mt-border-100: #ededef;
-  --mt-border-200: #e1e1e4;
+  --mt-cream-page: #fdf7f1;   /* nền trang: kem ấm ngả cam nhạt */
+  --mt-gray-50: #f7efe7;      /* section xen kẽ (kem đậm hơn chút) */
+  --mt-gray-100: #ffffff;     /* card: trắng để nổi trên nền kem */
+  --mt-gray-chip: #f3ece4;    /* chip/input: kem nhạt */
+  --mt-border-100: #ece2d8;   /* viền ấm */
+  --mt-border-200: #e2d5c8;
 
   /* Trạng thái (admin) — chọn tối thiểu, đạt contrast ≥4.5:1 trên trắng */
   --mt-green-600: #1e8e5a;
@@ -98,7 +99,7 @@
   --text-placeholder: var(--mt-ink-300);
   --text-on-brand: var(--mt-white);
   --text-link: var(--mt-orange-800);
-  --surface-page: var(--mt-white);
+  --surface-page: var(--mt-cream-page);
   --surface-alt: var(--mt-gray-50);
   --surface-card: var(--mt-gray-100);
   --surface-chip: var(--mt-gray-chip);
