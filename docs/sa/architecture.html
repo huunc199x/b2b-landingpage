@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<!--
+  ARCHITECTURE MAP / SƠ ĐỒ KIẾN TRÚC KHỐI — Landing B2B Mytel (+ Admin CMS-lite)
+  Sinh ở B2 (đi kèm HLD.md — HLD.md là nguồn sự thật). Kiểu: Modular monolith (Next.js fullstack) + PostgreSQL. Hosting hybrid (ADR-09, điều chỉnh V11 2026-09-04): Prod on-prem Docker / UAT Vercel, code cloud-agnostic.
+  SA chỉ sửa biến DATA.
+-->
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture Map — Landing B2B Mytel</title>
+<style>
+  :root{
+    --bg:#f4f6f8;--card:#fff;--ink:#1f2733;--muted:#69727f;--line:#e5e9ef;
+    --accent:#f26a21;--new:#1f9d55;--change:#c98a12;--keep:#5566;--na:#98a2b0;
+    --new-bg:#e9f7ef;--change-bg:#fbf1de;--na-bg:#eef1f5;--edge:#c3cad4;
+    --lb:#eef2f7;--tech:#eef1f6;--tech-ink:#42506a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
+  .wrap{max-width:1200px;margin:0 auto;padding:26px 26px 70px}
+  .kick{font:600 12px/1.4 ui-monospace,monospace;letter-spacing:.14em;color:#1a7f8c;text-transform:uppercase;margin-bottom:6px}
+  h1{margin:0 0 8px;font-size:29px;font-weight:800;letter-spacing:-.5px}
+  .lead{color:#40474f;max-width:800px;margin:0 0 6px}
+  .meta{color:var(--muted);font-size:13px}
+  .stats{display:flex;flex-wrap:wrap;gap:14px;margin:18px 0 8px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:13px 18px;min-width:140px;flex:1}
+  .tile .n{font-size:28px;font-weight:800;line-height:1}
+  .tile .l{font-size:12.5px;color:var(--muted);margin-top:6px}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--muted);margin:6px 0 4px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+  .dot.new{background:var(--new)}.dot.change{background:var(--change)}.dot.keep{background:#9aa4b2}.dot.na{background:var(--na)}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 12px}
+  .tools input{padding:8px 11px;border:1px solid var(--line);border-radius:9px;font-size:13px;background:#fff;min-width:220px;flex:1;max-width:360px}
+  #diagram{position:relative}
+  #edges{position:absolute;top:0;left:0;pointer-events:none;z-index:0}
+  .layer{position:relative;z-index:1;display:grid;grid-template-columns:130px 1fr;gap:14px;align-items:stretch;margin:0 0 30px}
+  .llabel{font-weight:700;font-size:13px;color:#3a4353;background:var(--lb);border:1px solid var(--line);border-radius:10px;padding:12px;display:flex;flex-direction:column;justify-content:center}
+  .llabel small{font-weight:500;color:var(--muted);font-size:11.5px;margin-top:3px}
+  .blocks{display:flex;flex-wrap:wrap;gap:12px;align-content:flex-start}
+  .block{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 13px;min-width:170px;max-width:250px;flex:1;box-shadow:0 1px 2px rgba(20,30,50,.04)}
+  .block.new{border-left:4px solid var(--new)} .block.change{border-left:4px solid var(--change)} .block.keep{border-left:4px solid #9aa4b2} .block.na{border-left:4px dashed var(--na);opacity:.72}
+  .bname{font-weight:700;font-size:14px;display:flex;align-items:center;gap:6px}
+  .bserves{font:11px/1.3 ui-monospace,monospace;color:var(--muted);margin-top:2px}
+  .bdesc{color:#4a515a;font-size:12px;margin-top:5px}
+  .techs{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}
+  .tech{font-size:10.5px;font-weight:600;background:var(--tech);color:var(--tech-ink);padding:2px 7px;border-radius:5px}
+  .stag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;margin-left:auto}
+  .stag.new{background:var(--new-bg);color:var(--new)} .stag.change{background:var(--change-bg);color:var(--change)} .stag.na{background:var(--na-bg);color:var(--na)}
+  .dim{opacity:.25;transition:opacity .15s}
+  .hot{outline:2px solid var(--accent);outline-offset:2px}
+  .flows{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;margin-top:6px}
+  .flows h3{margin:0 0 8px;font-size:15px}
+  .flow{padding:7px 0;border-top:1px dashed var(--line);font-size:13px}
+  .flow:first-of-type{border-top:0}
+  .flow b{color:#2a3340}
+  .flow .st{font:12px/1.5 ui-monospace,monospace;color:#3a4a63}
+  footer{max-width:1200px;margin:0 auto;padding:14px 26px 40px;color:var(--muted);font-size:12px}
+  @media print{.tools{display:none}.layer,.flows,.block{break-inside:avoid}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick" id="kick"></div>
+  <h1 id="title"></h1>
+  <p class="lead" id="lead"></p>
+  <div class="meta" id="meta"></div>
+  <div class="stats" id="stats"></div>
+  <div class="legend" id="legend"></div>
+  <div class="tools"><input type="search" id="q" placeholder="🔎 Tô sáng khối / công nghệ / module…"></div>
+  <div id="diagram"><svg id="edges"></svg><div id="layers"></div></div>
+  <div id="flows"></div>
+</div>
+<footer id="foot"></footer>
+
+<script>
+/* ===================== SA CHỈ SỬA PHẦN DATA NÀY ===================== */
+const DATA = {
+  project:"Landing B2B Mytel (+ Admin CMS-lite)",
+  archStyle:"Modular monolith (Next.js fullstack) + PostgreSQL · Hybrid: Prod on-prem Docker / UAT Vercel (cloud-agnostic)",
+  updated:"2026-09",
+  showStatus:false,   // dự án mới hoàn toàn (greenfield) → không dùng trạng thái nâng cấp
+  layers:[
+    { id:"L1", name:"Kênh / Client", note:"Trình duyệt", blocks:[
+      {id:"visitor", name:"Khách doanh nghiệp", techs:["Web responsive","EN/VI"], serves:"A-01 · UC-01→06", desc:"Xem landing + 18 dịch vụ, submit form lead."},
+      {id:"adminui", name:"Content Admin", techs:["Web","Đã xác thực"], serves:"A-02 · UC-07→13", desc:"Đăng nhập, quản khối động, xem lead."}
+    ]},
+    { id:"L2", name:"Cổng / Edge", note:"on-prem", blocks:[
+      {id:"nginx", name:"Nginx reverse proxy", techs:["Nginx 1.27","TLS"], desc:"Chấm dứt TLS (443), phục vụ asset, chỉ cửa duy nhất ra ngoài."}
+    ]},
+    { id:"L3", name:"Ứng dụng (Modular monolith)", note:"Next.js 15 · Node 24", blocks:[
+      {id:"pub", name:"Public site (G1)", techs:["Next.js SSR/ISR","React 19","next-intl"], serves:"FR-01/02/03", desc:"Landing + khối động; SEO/OG; i18n EN/VI; animation nhẹ."},
+      {id:"svc", name:"Service catalog (G2)", techs:["Repo content","i18n"], serves:"FR-04/05/06", desc:"18 trang chi tiết dùng chung template (Q7: nội dung trong repo)."},
+      {id:"lead", name:"Lead module (G3)", techs:["Route Handlers"], serves:"FR-07→11", desc:"Validate + chống spam + lưu lead + email báo Sale (fallback); Admin xem lead (Mới→Đã xem)."},
+      {id:"admc", name:"Admin content (G4)", techs:["Route Handlers","revalidate"], serves:"FR-12→15", desc:"CRUD 3 loại khối đa ngữ, bật/ẩn, sắp thứ tự, đăng thẳng."},
+      {id:"adma", name:"Admin auth (G5)", techs:["Auth.js v5","argon2id"], serves:"FR-16→18", desc:"Đăng nhập/phiên 30 phút; khóa 5 sai/15 phút; audit log (FR-18)."}
+    ]},
+    { id:"L4", name:"Dữ liệu", note:"lưu trữ", blocks:[
+      {id:"pg", name:"PostgreSQL 17", techs:["Prisma 6","JSONB"], serves:"content_block · lead · admin_account · audit_log", desc:"CSDL chính; nội dung đa ngữ + lead + admin. On-prem, không expose public."},
+      {id:"cache", name:"ISR / Data cache", techs:["Next cache","revalidateTag"], desc:"Cache trang public; cập nhật khối ≤10 phút không deploy (SC-09)."}
+    ]},
+    { id:"L5", name:"Tích hợp ngoài", note:"hệ thứ 3", blocks:[
+      {id:"smtp", name:"SMTP relay nội bộ Mytel", techs:["Nodemailer","SMTP"], serves:"FR-09", desc:"Gửi email báo lead cho Sale; timeout 5s, retry 2x, degrade=cờ failed."},
+      {id:"turnstile", name:"Cloudflare Turnstile", techs:["Verify API"], serves:"FR-08", desc:"Chống bot server-side; degrade=honeypot+rate-limit."}
+    ]},
+    { id:"L6", name:"Xuyên suốt", note:"cross-cutting", blocks:[
+      {id:"audit", name:"Audit log", techs:["append-only"], serves:"BR-19", desc:"Ghi mọi thao tác admin (ai/gì/khi)."},
+      {id:"log", name:"Log + correlationId", techs:["JSON log"], desc:"Redact PII (email/phone); traceId mỗi request."},
+      {id:"secret", name:"Secret / ENV", techs:["env/secret file"], desc:"DB pass, SMTP cred, Turnstile key, Auth secret (không commit)."},
+      {id:"deploy", name:"Hybrid hosting (ADR-09)", techs:["Prod: Docker on-prem","UAT: Vercel","output:standalone"], desc:"Prod on-prem (web+db+proxy, PII thật); UAT Vercel (dữ liệu giả); code cloud-agnostic 1 codebase. DevOps B6 làm 2 đích. Anh Bryan chốt 2026-09-04."}
+    ]}
+  ],
+  edges:[
+    {from:"visitor",to:"nginx"},{from:"adminui",to:"nginx"},
+    {from:"nginx",to:"pub"},{from:"nginx",to:"lead"},{from:"nginx",to:"admc"},{from:"nginx",to:"adma"},
+    {from:"pub",to:"svc"},{from:"pub",to:"cache"},{from:"pub",to:"pg"},
+    {from:"lead",to:"pg"},{from:"lead",to:"turnstile"},{from:"lead",to:"smtp"},
+    {from:"admc",to:"pg"},{from:"admc",to:"cache"},{from:"admc",to:"audit"},
+    {from:"adma",to:"pg"},{from:"adma",to:"audit"}
+  ],
+  flows:[
+    {name:"F-01 Submit lead (FR-07→10)", steps:"Khách → Nginx → Lead module → (Turnstile verify · lưu PostgreSQL status=Mới) → SMTP relay → email Sale; lỗi gửi → email_status=failed (lead không mất)"},
+    {name:"F-02 Admin cập nhật khối (FR-12→15, SC-09)", steps:"Admin → Nginx → Admin content → UPSERT content_block+i18n · audit_log → revalidateTag → cache public làm mới → khách thấy ngay (đăng thẳng)"},
+    {name:"Xem trang public (FR-01→05)", steps:"Khách → Nginx → Public site (SSR/ISR) → đọc content_block (cache/PostgreSQL) + Service catalog (repo) → render EN/VI"}
+  ]
+};
+/* =================== HẾT PHẦN SA CẦN SỬA =================== */
+
+const STAG={new:"Thêm mới",change:"Thay đổi",na:"Ngoài phạm vi"};
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const allBlocks=()=>DATA.layers.flatMap(l=>l.blocks);
+const nExt=(DATA.layers.find(l=>/ngoài/i.test(l.name))||{blocks:[]}).blocks.length;
+const nSvc=(DATA.layers.find(l=>/ứng dụng|dịch vụ/i.test(l.name))||{blocks:[]}).blocks.length;
+
+document.getElementById('kick').textContent=[DATA.project,DATA.archStyle,"KIẾN TRÚC TỔNG THỂ","CẬP NHẬT "+DATA.updated].filter(Boolean).join("  ·  ");
+document.getElementById('title').textContent="Sơ đồ kiến trúc khối theo tầng";
+document.getElementById('lead').innerHTML="Kiến trúc phân tầng: <b>Client → Cổng → Ứng dụng (modular monolith) → Dữ liệu → Tích hợp ngoài</b>, kèm hạ tầng xuyên suốt. Mỗi khối ghi công nghệ + module/FR phục vụ. Trang này <b>đi kèm</b> (không thay) <code>HLD.md</code> — .md là nguồn sự thật đặc tả.";
+document.getElementById('meta').textContent=`${DATA.layers.length} tầng · ${allBlocks().length} khối · ${nSvc} module ứng dụng · ${nExt} tích hợp ngoài · Kiểu kiến trúc: ${DATA.archStyle}`;
+document.getElementById('foot').textContent="Sinh bởi SA (Mytel SDLC Kit) ở B2, đi kèm HLD.md. Sơ đồ để 'dễ nhìn'; mọi quyết định & đặc tả kiến trúc nằm ở HLD.md (nguồn sự thật).";
+
+let sc={new:0,change:0,keep:0,na:0}; allBlocks().forEach(b=>sc[b.status||'keep']++);
+const tiles=[{n:DATA.layers.length,l:"Tầng"},{n:allBlocks().length,l:"Khối"},{n:nSvc,l:"Module ứng dụng"},{n:nExt,l:"Tích hợp ngoài"}];
+if(DATA.showStatus){tiles.push({n:sc.new,l:"Thêm mới"}); if(sc.change)tiles.push({n:sc.change,l:"Thay đổi"});}
+document.getElementById('stats').innerHTML=tiles.map(t=>`<div class="tile"><div class="n">${t.n}</div><div class="l">${t.l}</div></div>`).join('');
+
+document.getElementById('legend').innerHTML = DATA.showStatus
+ ? `<span><span class="dot new"></span>Thêm mới</span><span><span class="dot change"></span>Thay đổi</span><span><span class="dot keep"></span>Giữ nguyên</span><span><span class="dot na"></span>Ngoài phạm vi</span><span>· badge xám = công nghệ</span>`
+ : `<span>Badge xám = công nghệ của khối · mũi tên = luồng gọi</span>`;
+
+const layers=document.getElementById('layers');
+DATA.layers.forEach(l=>{
+  const row=el('div','layer');
+  row.appendChild(el('div','llabel',`${l.name}${l.note?`<small>${l.note}</small>`:''}`));
+  const bs=el('div','blocks');
+  l.blocks.forEach(b=>{
+    const st=DATA.showStatus?(b.status||'keep'):'';
+    const card=el('div','block'+(st?' '+st:''));
+    card.dataset.block=b.id;
+    card.dataset.text=(b.name+' '+(b.serves||'')+' '+(b.techs||[]).join(' ')+' '+(b.desc||'')).toLowerCase();
+    card.innerHTML=`<div class="bname">${b.name}${DATA.showStatus&&STAG[b.status]?`<span class="stag ${b.status}">${STAG[b.status]}</span>`:''}</div>
+      ${b.serves?`<div class="bserves">${b.serves}</div>`:''}
+      ${b.desc?`<div class="bdesc">${b.desc}</div>`:''}
+      <div class="techs">${(b.techs||[]).map(t=>`<span class="tech">${t}</span>`).join('')}</div>`;
+    bs.appendChild(card);
+  });
+  row.appendChild(bs); layers.appendChild(row);
+});
+
+if(DATA.flows&&DATA.flows.length){
+  document.getElementById('flows').innerHTML=`<div class="flows"><h3>🔀 Luồng chính (end-to-end)</h3>
+    ${DATA.flows.map(f=>`<div class="flow"><b>${f.name}:</b> <span class="st">${f.steps}</span></div>`).join('')}</div>`;
+}
+
+function drawEdges(){
+  const wrap=document.getElementById('diagram'), svg=document.getElementById('edges');
+  const wr=wrap.getBoundingClientRect();
+  svg.setAttribute('width',wrap.offsetWidth); svg.setAttribute('height',wrap.offsetHeight);
+  let s=`<defs><marker id="arw" markerWidth="10" markerHeight="10" refX="7.5" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="${'#9aa4b2'}"/></marker></defs>`;
+  (DATA.edges||[]).forEach(e=>{
+    const a=document.querySelector(`[data-block="${e.from}"]`), b=document.querySelector(`[data-block="${e.to}"]`);
+    if(!a||!b)return;
+    const ra=a.getBoundingClientRect(), rb=b.getBoundingClientRect();
+    const sameRow=Math.abs(ra.top-rb.top)<24;
+    let sx,sy,tx,ty;
+    if(sameRow){ const l2r=ra.left<rb.left; sx=(l2r?ra.right:ra.left)-wr.left; sy=ra.top+ra.height/2-wr.top; tx=(l2r?rb.left:rb.right)-wr.left; ty=rb.top+rb.height/2-wr.top;
+      const mx=(sx+tx)/2; s+=`<path d="M${sx},${sy} C${mx},${sy} ${mx},${ty} ${tx},${ty}" fill="none" stroke="#c3cad4" stroke-width="1.6" marker-end="url(#arw)"/>`; return; }
+    const down=rb.top>ra.top;
+    sx=ra.left+ra.width/2-wr.left; sy=(down?ra.bottom:ra.top)-wr.top;
+    tx=rb.left+rb.width/2-wr.left; ty=(down?rb.top:rb.bottom)-wr.top;
+    const my=(sy+ty)/2;
+    s+=`<path d="M${sx},${sy} C${sx},${my} ${tx},${my} ${tx},${ty}" fill="none" stroke="#c3cad4" stroke-width="1.6" marker-end="url(#arw)"/>`;
+  });
+  svg.innerHTML=s;
+}
+let rt; window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(drawEdges,120);});
+window.addEventListener('load',drawEdges); drawEdges();
+
+document.getElementById('q').addEventListener('input',e=>{
+  const q=e.target.value.trim().toLowerCase();
+  document.querySelectorAll('.block').forEach(b=>{
+    const hit=q&&b.dataset.text.includes(q);
+    b.classList.toggle('hot',!!hit);
+    b.classList.toggle('dim', !!q && !b.dataset.text.includes(q));
+  });
+});
+</script>
+</body>
+</html>

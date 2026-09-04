@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--
+  FUNCTION MAP — Landing page dịch vụ B2B Mytel (B2, sinh cùng SRS v0.1)
+  BA chỉ sửa biến DATA; trang tự render. Lưu: docs/ba/function-map.html
+  platform: 'web' (trang public) | 'cms' (Admin) | 'both'
+  status:   'done' | 'partial' | 'none' | 'na'
+-->
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Function Map — Landing B2B Mytel</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --card:#fff; --ink:#1f2733; --muted:#69727f; --line:#e5e9ef;
+    --accent:#f26a21; --done:#1f9d55; --partial:#c98a12; --none:#c0392b; --na:#98a2b0;
+    --done-bg:#e9f7ef; --partial-bg:#fbf1de; --none-bg:#fbeceb; --na-bg:#eef1f5;
+    --ver:#127a3e; --ver-bg:#e4f4ea; --app:#31538f; --app-bg:#e9f0fb; --cms:#8a6d1f; --cms-bg:#f6efdc; --both:#1f7a52; --both-bg:#e5f4ec;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);font-size:14px;line-height:1.5}
+  .wrap{max-width:1160px;margin:0 auto;padding:26px 26px 70px}
+  .kick{font:600 12px/1.4 ui-monospace,monospace;letter-spacing:.14em;color:var(--done);text-transform:uppercase;margin-bottom:6px}
+  h1{margin:0 0 8px;font-size:30px;font-weight:800;letter-spacing:-.5px}
+  .lead{color:#40474f;max-width:760px;margin:0 0 6px}
+  .lead .v{color:var(--ver);font-weight:600}
+  .meta{color:var(--muted);font-size:13px}
+  .stats{display:flex;flex-wrap:wrap;gap:14px;margin:20px 0 6px}
+  .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 18px;min-width:150px;flex:1}
+  .tile .n{font-size:30px;font-weight:800;line-height:1}
+  .tile .l{font-size:12.5px;color:var(--muted);margin-top:6px}
+  .tile.done .n{color:var(--done)} .tile.mile .n{color:#1a7f8c} .tile.partial .n{color:var(--partial)} .tile.none .n{color:var(--none)}
+  .tabs{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:12px;padding:5px;gap:4px;margin:18px 0 12px}
+  .tab{padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:600;font-size:13.5px;color:var(--muted);border:0;background:none}
+  .tab.on{background:var(--done);color:#fff}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;align-items:center;font-size:12.5px;color:var(--muted);margin-bottom:8px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:6px;vertical-align:middle}
+  .dot.done{background:var(--done)} .dot.partial{background:var(--partial)} .dot.none{background:var(--none)} .dot.na{background:var(--na)}
+  .vbadge{font:600 11px/1 ui-monospace,monospace;color:var(--ver);background:var(--ver-bg);padding:3px 6px;border-radius:5px}
+  .tools{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 14px}
+  .tools input,.tools select{padding:8px 11px;border:1px solid var(--line);border-radius:9px;font-size:13px;background:#fff}
+  .tools input[type=search]{flex:1;min-width:200px}
+  .changelog{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--done);border-radius:12px;padding:16px 18px;margin:6px 0 20px}
+  .changelog h3{margin:0 0 4px;font-size:16px}
+  .changelog .cl-sub{color:var(--muted);font-size:12.5px;margin-bottom:10px}
+  .cl-item{display:flex;gap:10px;padding:7px 0;border-top:1px dashed var(--line)}
+  .cl-item:first-of-type{border-top:0}
+  .cl-code{font:600 11px/1.7 ui-monospace,monospace;color:var(--ver);background:var(--ver-bg);padding:2px 8px;border-radius:6px;white-space:nowrap;height:fit-content}
+  .cl-item b{font-weight:700}
+  .cl-item .d{color:#4a515a}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:820px){.grid{grid-template-columns:1fr}}
+  .mod{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--done);border-radius:12px;padding:14px 16px}
+  .mcode{font:600 12px/1 ui-monospace,monospace;color:var(--muted)}
+  .mname{font-size:17px;font-weight:800;margin:3px 0 4px}
+  .mscr{font:12px/1.5 ui-monospace,monospace;color:var(--muted);margin-bottom:8px}
+  .feat{display:flex;align-items:flex-start;gap:9px;padding:9px 4px;border-top:1px solid #f1f3f6}
+  .feat:first-of-type{border-top:0}
+  .fname{flex:1;min-width:0}
+  .fname .t{font-weight:600}
+  .fname .fr{font:11px/1 ui-monospace,monospace;color:var(--muted)}
+  .fname .note{color:var(--muted);font-size:12px;margin-top:2px}
+  .badges{display:flex;flex-direction:column;gap:4px;align-items:flex-end;white-space:nowrap}
+  .plat{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
+  .plat.web{background:var(--app-bg);color:var(--app)} .plat.cms{background:var(--cms-bg);color:var(--cms)} .plat.both{background:var(--both-bg);color:var(--both)}
+  .hidden{display:none!important}
+  footer{max-width:1160px;margin:0 auto;padding:0 26px 40px;color:var(--muted);font-size:12px}
+  @media print{.tools,.tabs{display:none}.mod,.changelog{break-inside:avoid}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="kick" id="kick"></div>
+  <h1 id="title"></h1>
+  <p class="lead" id="lead"></p>
+  <div class="meta" id="meta"></div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="tabs" id="tabs"></div>
+  <div class="legend">
+    <span><span class="dot done"></span>Đã đặc tả</span>
+    <span><span class="dot partial"></span>Một phần / chưa rõ</span>
+    <span><span class="dot none"></span>Chưa đặc tả</span>
+    <span><span class="dot na"></span>Ngoài phạm vi</span>
+    <span><span class="vbadge">v0.1</span> = mới đặc tả ở phiên bản đó</span>
+  </div>
+  <div class="tools">
+    <input type="search" id="q" placeholder="🔎 Tìm tính năng / mã FR / SCR…">
+    <select id="fStatus">
+      <option value="">Mọi trạng thái</option>
+      <option value="done">Đã đặc tả</option>
+      <option value="partial">Một phần / chưa rõ</option>
+      <option value="none">Chưa đặc tả</option>
+      <option value="na">Ngoài phạm vi</option>
+    </select>
+  </div>
+
+  <div id="changelog"></div>
+  <div class="grid" id="grid"></div>
+</div>
+<footer id="foot"></footer>
+
+<script>
+/* ===================== BA CHỈ SỬA PHẦN DATA NÀY ===================== */
+const DATA = {
+  project:"Landing page dịch vụ B2B Mytel",
+  category:"B2B Marketing + Lead-gen",
+  coverageLabel:"SRS v0.1 (B2)",
+  updated:"2026-09",
+  milestone:"0.1",
+  platforms:[
+    {id:"web", name:"Web (public)", icon:"🌐"},
+    {id:"cms", name:"Admin CMS",   icon:"🖥"}
+  ],
+  changelog:{
+    title:"Đã đặc tả trong SRS v0.1 (nền B2)",
+    sub:"18 FR + 10 NFR gom theo 5 nhóm nghiệp vụ. Module để PHẲNG (1 module) — hệ nhỏ, 1 admin, đăng thẳng. Ẩn giá (Q3), ẩn doanh thu (Q8), đủ 18 dịch vụ (Q4), IA phương án C (Q5).",
+    items:[
+      {code:"FR-07", ver:"0.1", title:"Form lead — 6 trường nhập + consent + honeypot (8 dòng validate) + bảng quyết định 8 tổ hợp.", desc:"Chống spam honeypot + rate-limit rolling 60 phút; không nhận lead khi consent≠true."},
+      {code:"FR-16", ver:"0.1", title:"Đăng nhập Admin — khóa 5 lần sai/15 phút, session 30 phút.", desc:"Bảng quyết định 4 tổ hợp; báo lỗi chung không lộ trường sai."},
+      {code:"BR-DYN-01", ver:"0.1", title:"Khối thiếu bản dịch → ẩn ở ngôn ngữ thiếu.", desc:"FR-02/FR-03; không render nội dung rỗng khi đổi EN↔VI."}
+    ]
+  },
+  modules:[
+    { code:"G1", fr:"FR-01→03", name:"Public site (Landing)", scr:{web:"SCR-01/02/03"},
+      features:[
+        {name:"Xem Landing tổng (hero + Why/Coverage/Capabilities/Register)", fr:"FR-01", platform:"web", status:"done", version:"0.1", note:"Bám IA phương án C (Q5)."},
+        {name:"Render khối nội dung động theo trạng thái + ngôn ngữ", fr:"FR-02", platform:"web", status:"done", version:"0.1", note:"Bảng QĐ 4 tổ hợp; ẩn khối thiếu dịch."},
+        {name:"Đổi ngôn ngữ EN ↔ VI (khung MY ẩn)", fr:"FR-03", platform:"web", status:"done", version:"0.1", note:"Giữ dữ liệu form khi đổi ngôn ngữ."}
+      ]
+    },
+    { code:"G2", fr:"FR-04→06", name:"Service catalog (18 dịch vụ)", scr:{web:"SCR-04/05"},
+      features:[
+        {name:"Duyệt dịch vụ theo 3 nhóm (7·3·8 = 18)", fr:"FR-04", platform:"web", status:"done", version:"0.1"},
+        {name:"Trang chi tiết dịch vụ (8 trường nguồn, hiển thị 7)", fr:"FR-05", platform:"web", status:"done", version:"0.1", note:"Ẩn Price Policy (Q3) → hiển thị 7; fallback trường thiếu VI → EN."},
+        {name:"CTA tư vấn (prefill dịch vụ quan tâm)", fr:"FR-06", platform:"web", status:"done", version:"0.1"}
+      ]
+    },
+    { code:"G3", fr:"FR-07→11", name:"Lead", scr:{web:"SCR-06/07", cms:"SCR-24"},
+      features:[
+        {name:"Submit form lead (validate + consent PDPL)", fr:"FR-07", platform:"web", status:"done", version:"0.1", note:"6 trường nhập + consent + honeypot; bảng QĐ 8 tổ hợp."},
+        {name:"Lưu lead vào DB (trạng thái Mới)", fr:"FR-08", platform:"web", status:"done", version:"0.1"},
+        {name:"Email báo Sale (≤ 1 giờ, retry ≤ 3)", fr:"FR-09", platform:"web", status:"done", version:"0.1", note:"Địa chỉ Sale AS-09 [cần anh Bryan cung cấp]."},
+        {name:"Chống spam form (honeypot + rate-limit)", fr:"FR-10", platform:"web", status:"done", version:"0.1"},
+        {name:"Admin xem danh sách + chi tiết lead (đọc)", fr:"FR-11", platform:"cms", status:"done", version:"0.1", note:"Mở lead Mới → Đã xem; không sửa/xóa ở MVP (BR-18)."}
+      ]
+    },
+    { code:"G4", fr:"FR-12→15", name:"Admin content (CMS-lite)", scr:{cms:"SCR-21/22/23"},
+      features:[
+        {name:"Quản lý khối \"Sản phẩm/dịch vụ mới\" (Highlight)", fr:"FR-12", platform:"cms", status:"done", version:"0.1"},
+        {name:"Quản lý khối \"Đối tác\" (logo/tên/link)", fr:"FR-13", platform:"cms", status:"done", version:"0.1"},
+        {name:"Quản lý khối \"Con số nổi bật\" (ẩn doanh thu)", fr:"FR-14", platform:"cms", status:"done", version:"0.1", note:"BR-STAT-01: MVP ẩn doanh thu (Q8)."},
+        {name:"Bật/Ẩn & sắp thứ tự khối (đăng thẳng)", fr:"FR-15", platform:"cms", status:"done", version:"0.1", note:"Bảng QĐ 4 tổ hợp; không luồng duyệt (Q10)."}
+      ]
+    },
+    { code:"G5", fr:"FR-16→18", name:"Admin auth & audit", scr:{cms:"SCR-20/25"},
+      features:[
+        {name:"Đăng nhập Admin (khóa brute-force)", fr:"FR-16", platform:"cms", status:"done", version:"0.1", note:"5 sai/15 phút → khóa 15 phút."},
+        {name:"Đăng xuất / hết phiên (30 phút)", fr:"FR-17", platform:"cms", status:"done", version:"0.1"},
+        {name:"Audit log thao tác quản trị", fr:"FR-18", platform:"cms", status:"done", version:"0.1", note:"Không ghi mật khẩu / PII lead vào log."}
+      ]
+    }
+  ]
+};
+/* =================== HẾT PHẦN BA CẦN SỬA =================== */
+
+const ST={done:"Đã đặc tả",partial:"Một phần / chưa rõ",none:"Chưa đặc tả",na:"Ngoài phạm vi"};
+const PLAT={web:{c:"web",t:"Web"},cms:{c:"cms",t:"CMS"},both:{c:"both",t:"Cả hai"}};
+const el=(t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+const allFeats=()=>DATA.modules.flatMap(m=>m.features);
+
+let c={done:0,partial:0,none:0,na:0,mile:0};
+allFeats().forEach(f=>{c[f.status]=(c[f.status]||0)+1; if(DATA.milestone&&f.version===DATA.milestone)c.mile++;});
+const webN=allFeats().filter(f=>f.platform!=='cms').length, cmsN=allFeats().filter(f=>f.platform!=='web').length;
+
+document.getElementById('kick').textContent=[DATA.project,DATA.category,"ĐỘ PHỦ TÍNH NĂNG",DATA.coverageLabel].filter(Boolean).join("  ·  ");
+document.getElementById('title').textContent="Bản đồ cây tính năng theo nhóm nghiệp vụ & nền tảng";
+document.getElementById('lead').innerHTML=`Toàn bộ tính năng gom theo <b>nhóm nghiệp vụ</b> (module phẳng); mỗi tính năng gắn <b>nền tảng</b> (🌐 Web / 🖥 CMS) và <b>trạng thái độ phủ đặc tả</b>.`+(DATA.milestone?` Nhãn <span class="v">v${DATA.milestone}</span> = mới đặc tả ở phiên bản đó.`:``);
+document.getElementById('meta').textContent=`${DATA.modules.length} nhóm nghiệp vụ · ${webN} tính năng trên Web · ${cmsN} trên CMS · Cập nhật ${DATA.updated}`;
+document.getElementById('foot').textContent="Sinh bởi BA (Mytel SDLC Kit) ở B2, cập nhật xuyên suốt. Trạng thái phản ánh mức độ đặc tả trong SRS — đối chiếu 1-1 với danh mục FR (FR-01..18).";
+
+const tiles=[
+  {cls:"",n:DATA.modules.length,l:"Nhóm nghiệp vụ"},
+  {cls:"done",n:c.done,l:"Đã đặc tả"}
+];
+if(DATA.milestone) tiles.push({cls:"mile",n:c.mile,l:`Mới ở v${DATA.milestone}`});
+tiles.push({cls:"partial",n:c.partial,l:"Một phần / chưa rõ"});
+tiles.push({cls:"none",n:c.none,l:"Chưa đặc tả"});
+document.getElementById('stats').innerHTML=tiles.map(t=>`<div class="tile ${t.cls}"><div class="n">${t.n}</div><div class="l">${t.l}</div></div>`).join('');
+
+const tabs=[{id:"",name:"Tất cả",icon:""}].concat(DATA.platforms.map(p=>({id:p.id,name:p.name,icon:p.icon})));
+document.getElementById('tabs').innerHTML=tabs.map((t,i)=>`<button class="tab${i===0?' on':''}" data-plat="${t.id}">${t.icon?t.icon+' ':''}${t.name}</button>`).join('');
+
+function featRow(f){
+  const p=PLAT[f.platform]||PLAT.both;
+  const row=el('div','feat');
+  row.dataset.plat=f.platform; row.dataset.status=f.status;
+  row.dataset.text=(f.name+' '+(f.fr||'')+' '+(f.note||'')).toLowerCase();
+  row.innerHTML=`<span class="dot ${f.status}" title="${ST[f.status]}"></span>
+    <div class="fname"><span class="t">${f.name}</span> <span class="fr">${f.fr||''}</span>
+      ${f.note?`<div class="note">${f.note}</div>`:''}</div>
+    <div class="badges"><span class="plat ${p.c}">${p.t}</span>${f.version?`<span class="vbadge">v${f.version}</span>`:''}</div>`;
+  return row;
+}
+const grid=document.getElementById('grid');
+DATA.modules.forEach(m=>{
+  const card=el('div','mod'); card.dataset.mod=m.code;
+  const scr=[m.scr&&m.scr.web?`🌐 ${m.scr.web}`:'', m.scr&&m.scr.cms?`🖥 ${m.scr.cms}`:''].filter(Boolean).join(' · ');
+  card.innerHTML=`<div class="mcode">${m.code} · ${m.fr||''}</div><div class="mname">${m.name}</div>${scr?`<div class="mscr">${scr}</div>`:''}`;
+  m.features.forEach(f=>card.appendChild(featRow(f)));
+  grid.appendChild(card);
+});
+
+if(DATA.changelog){
+  const cl=DATA.changelog;
+  document.getElementById('changelog').innerHTML=
+   `<div class="changelog"><h3>✅ ${cl.title}</h3><div class="cl-sub">${cl.sub||''}</div>
+     ${cl.items.map(i=>`<div class="cl-item"><span class="cl-code">${i.code}${i.ver?' · v'+i.ver:''}</span>
+       <div><b>${i.title}</b> <span class="d">${i.desc||''}</span></div></div>`).join('')}</div>`;
+}
+
+let curPlat="";
+function applyFilter(){
+  const q=document.getElementById('q').value.trim().toLowerCase(), s=document.getElementById('fStatus').value;
+  document.querySelectorAll('.mod').forEach(card=>{
+    let shown=0;
+    card.querySelectorAll('.feat').forEach(f=>{
+      const okP=!curPlat|| f.dataset.plat===curPlat || f.dataset.plat==='both';
+      const okS=!s|| f.dataset.status===s;
+      const okQ=!q|| f.dataset.text.includes(q);
+      const ok=okP&&okS&&okQ; f.classList.toggle('hidden',!ok); if(ok)shown++;
+    });
+    card.classList.toggle('hidden',shown===0);
+  });
+}
+document.getElementById('tabs').addEventListener('click',e=>{
+  const b=e.target.closest('.tab'); if(!b)return;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on')); b.classList.add('on');
+  curPlat=b.dataset.plat; applyFilter();
+});
+['q','fStatus'].forEach(id=>document.getElementById(id).addEventListener('input',applyFilter));
+</script>
+</body>
+</html>
