@@ -67,11 +67,11 @@
 | `modules/admin-content/revalidate.test.ts` (3) | `setVisibility` gọi `revalidateTag`, chặn CB-010, CB-404 (mock DB/cache) |
 | `lib/errors.test.ts` (2) · `lib/email/noop.test.ts` (1) | Làn 0, giữ xanh |
 
-- **Trạng thái:** `npm run build` **XANH** (53 trang, landing SSG revalidate 600s), `npx tsc --noEmit` sạch, `npm test` **56/56 pass**, ESLint 0 error (còn warning `<img>` cho ảnh khối động do URL động — chấp nhận, không dùng next/image để giữ cloud-agnostic).
+- **Trạng thái:** `npm run build` **XANH** (53 trang, landing SSG revalidate 600s), `npx tsc --noEmit` sạch, `npm test` **56/56 pass** (→ **63/63** sau sửa kiểm chéo §7), ESLint 0 error (còn warning `<img>` cho ảnh khối động do URL động — chấp nhận, không dùng next/image để giữ cloud-agnostic).
 
 ## 4. Secure-coding tự rà (OWASP nhẹ)
 - **Injection:** Prisma tham số hoá; không raw SQL người dùng. Zod/validate thủ công mọi input.
-- **AuthN/Z:** argon2id; middleware + `requireAdmin()` chặn `/api/admin/*` (AUTH-401); lockout 5/15; báo lỗi login **chung** (không lộ email tồn tại).
+- **AuthN/Z:** argon2id; middleware + `requireAdmin()` chặn `/api/admin/*` (hết/không phiên → **AUTH-020**, xem §7 DISC-03); lockout 5/15; báo lỗi login **chung** (không lộ email tồn tại).
 - **PII/PDPL (NFR-04):** logger redact email/phone/name/ip; không đưa PII lên URL; consent lưu bất biến `lead_consent` (version + ip + UA); email lead chỉ tới hộp Sale cấu hình qua ENV.
 - **Anti-abuse:** honeypot + rate-limit + Turnstile; honeypot trả 200 giả (không lộ cơ chế).
 - **Secrets:** không hardcode; đọc qua `src/lib/env.ts`; `.env` không commit.
@@ -88,6 +88,28 @@
 3. **Bản dịch VI 18 dịch vụ + nhãn nhóm** ("Connectivity/ICT Solutions/Mobile" canvas vs "Mobile ICT/ICT Service" FSD): dev dùng nhãn canvas qua i18n key + VI tạm — **cần BA/Legal duyệt bản dịch, anh Bryan chốt nhãn**.
 4. **Asset chờ:** AS-04/08/13 (số Why Mytel) hiển thị "—"; AS-03 hero/ảnh, AS-09 SMTP relay + hộp Sale, AS-07 nội dung consent (`CONSENT_TEXT_VERSION`). Chưa cấp → dùng placeholder/ENV mặc định.
 5. **Session 30' + "Đổi mật khẩu admin"** đã HOÃN (GATE-2) — giữ nguyên.
+
+## 7. Sửa sau kiểm chéo (B4 — PO trả về, tiếp commit `4447a11`)
+
+> Xử theo 3 file kiểm chéo (`crosscheck-tester.md`/`-ba.md`/`-security.md`). Nguyên tắc: **SRS FR-07 là nguồn sự thật** (thắng api-spec khi mâu thuẫn). Không làm mới tính năng. `npm test` **63/63 pass** (56 cũ + 7 mới), `npx tsc --noEmit` sạch.
+
+| Mã | Mức | Đã sửa | File |
+|----|-----|--------|------|
+| **DISC-02** | Major | Turnstile verify **fail** (khách thật, không phải honeypot) **KHÔNG còn trả 200 giả nuốt lead im lặng** → ném lỗi **tường minh LEAD-030** ("Xác thực chống spam thất bại, vui lòng thử lại") để form hiển thị trạng thái lỗi cho người dùng RETRY (FSD SCR-04). **Honeypot dính vẫn 200 giả** (bot). Bảo vệ lead thật (BG-01/FR-09 2f). | `modules/lead/service.ts` |
+| **DISC-01** | Minor | Thứ tự **ưu tiên mã lỗi** theo bảng quyết định **SRS FR-07** (thắng api-spec §3.1): lỗi trường **LEAD-001** > thiếu consent **LEAD-010** > vượt rate-limit **LEAD-021**. Rate-limit chuyển sang **kiểm rồi để `decideLead` quyết** (không ném sớm). Dòng 4/6/8 bảng quyết định đổi kết quả đúng SRS. | `modules/lead/service.ts`, `modules/lead/validation.ts` |
+| **DISC-03** | Minor | Hết phiên / không phiên ở **API admin** trả **AUTH-020** ("Phiên đã hết hạn…") thay vì AUTH-401 chung — cả `middleware` (API admin) và `requireAdmin()`. | `middleware.ts`, `lib/auth/guard.ts` |
+| **DISC-04** | Minor | Danh sách khối động **public** trùng `sortOrder` thêm tie-break **`updatedAt desc`** cho thứ tự ổn định (đồng bộ admin `listBlocks`). | `modules/public-site/blocks.ts` |
+| **DISC-05** | Minor | Bỏ ràng buộc **min-2** tự thêm cho field **VI** (title/description/nhãn) khối nội dung — SRS FR-12/14 chỉ có **max** cho VI. Giữ nguyên max. | `modules/admin-content/validation.ts` |
+| **SEC-02** | Medium | Thêm **security headers** ở `next.config.ts`: CSP (Next.js + Turnstile, `frame-ancestors 'none'`), **X-Frame-Options: DENY**, **X-Content-Type-Options: nosniff**, **Referrer-Policy: strict-origin-when-cross-origin**. Giữ `unsafe-inline/unsafe-eval` để không phá inline bootstrap Next; HSTS để Nginx prod. | `next.config.ts` |
+
+**Test mới (7):** `modules/lead/service.test.ts` (5 — Turnstile fail→LEAD-030 không tạo lead, honeypot vẫn 200 giả, DISC-01 lỗi-trường+rate-limit→LEAD-001, happy path tạo lead); `modules/lead/validation.test.ts` (bảng quyết định 8 tổ hợp cập nhật đúng SRS); `modules/admin-content/validation.test.ts` (+2 — VI 1 ký tự hợp lệ, VI vượt max vẫn chặn).
+
+**KHÔNG xử ở B4 (đã biết, chuyển tiếp):**
+- **SEC-01** (Nginx `X-Forwarded-For` ghi đè để rate-limit/consent-IP không bị giả) → **DevOps làm ở B6** (cấu hình/kiểm chứng trên môi trường thật).
+- **Nâng `nodemailer` ≥9.1.1** (runtime dep, advisory High không khai thác được trong usage hiện tại) → **B5/pre-prod** kèm test gửi mail; cùng đợt vá non-major prisma/deepmerge-ts + vitest (dev). **Bắt buộc trước prod.**
+- SEC-03..07 (Turnstile fail-open giám sát, Origin/Referer admin, `consentTextHash`, scheme `logoUrl/imageUrl`, body-size) → ghi nhận, verify ở **B5 pentest + Security UAT (B6)**.
+
+> Dev **KHÔNG tự phê duyệt GATE-4**. Trình PO gộp với kết luận Tester/BA/Security. Phần runtime (submit lưu DB, login thật, revalidate, số đo NFR) vẫn chờ **UAT/B6**.
 
 ---
 

@@ -24,10 +24,12 @@ export default auth((req) => {
   // --- API: không localize; chặn admin API ---
   if (pathname.startsWith('/api')) {
     if (pathname.startsWith('/api/admin') && !isLoggedIn) {
+      // DISC-03: hết phiên / không phiên ở API admin → AUTH-020 (theo SRS/FSD SHELL-ADMIN 2a,
+      // api-spec §3.4) thay vì AUTH-401 chung, để UI đưa về đăng nhập với thông điệp "phiên hết hạn".
       return NextResponse.json(
         {
           success: false,
-          error: { code: 'AUTH-401', message: 'Vui lòng đăng nhập' },
+          error: { code: 'AUTH-020', message: 'Phiên đã hết hạn, vui lòng đăng nhập lại' },
           meta: { correlationId: '' },
         },
         { status: 401 },

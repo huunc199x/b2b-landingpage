@@ -66,8 +66,9 @@ export function validateBlockInput(input: BlockInput): { valid: boolean; details
     case 'highlight': {
       checkLen(str(en.title), 2, 120, 'i18n.en.title', 'Tiêu đề EN bắt buộc (2–120 ký tự)', details, true);
       checkLen(str(en.description), 2, 300, 'i18n.en.description', 'Mô tả EN bắt buộc (2–300 ký tự)', details, true);
-      checkLen(str(vi.title), 2, 120, 'i18n.vi.title', 'Tiêu đề VI tối đa 120 ký tự', details, false);
-      checkLen(str(vi.description), 2, 300, 'i18n.vi.description', 'Mô tả VI tối đa 300 ký tự', details, false);
+      // DISC-05: field VI chỉ có ràng buộc MAX theo SRS FR-12 (bỏ min-2 tự thêm ngoài đặc tả).
+      checkLen(str(vi.title), 0, 120, 'i18n.vi.title', 'Tiêu đề VI tối đa 120 ký tự', details, false);
+      checkLen(str(vi.description), 0, 300, 'i18n.vi.description', 'Mô tả VI tối đa 300 ký tự', details, false);
       break;
     }
     case 'partner': {
@@ -79,7 +80,8 @@ export function validateBlockInput(input: BlockInput): { valid: boolean; details
     }
     case 'stat': {
       checkLen(str(en.title), 2, 80, 'i18n.en.title', 'Nhãn EN bắt buộc (2–80 ký tự)', details, true);
-      checkLen(str(vi.title), 2, 80, 'i18n.vi.title', 'Nhãn VI tối đa 80 ký tự', details, false);
+      // DISC-05: nhãn VI chỉ có ràng buộc MAX theo SRS FR-14 (bỏ min-2 tự thêm ngoài đặc tả).
+      checkLen(str(vi.title), 0, 80, 'i18n.vi.title', 'Nhãn VI tối đa 80 ký tự', details, false);
       const value = str(payload.value);
       if (value === '' || !STAT_VALUE_RE.test(value)) {
         details.push({

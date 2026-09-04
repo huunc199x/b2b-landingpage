@@ -109,8 +109,10 @@ export function isHoneypotTriggered(raw: RawLeadInput): boolean {
 export type LeadDecisionCode = 'OK' | 'LEAD-001' | 'LEAD-010' | 'LEAD-021';
 
 /**
- * Bảng quyết định SRS FR-07 (thứ tự ưu tiên theo pipeline api-spec §3.1:
- * antiSpam (honeypot+rate-limit) → validate trường → consent).
+ * Bảng quyết định SRS FR-07 (nguồn sự thật — thắng thứ tự cổng api-spec §3.1, DISC-01).
+ * Thứ tự ưu tiên mã lỗi theo bảng quyết định FR-07: lỗi trường (LEAD-001) >
+ * thiếu consent (LEAD-010) > chống spam/rate-limit (LEAD-021). Ví dụ: input dính đồng thời
+ * lỗi trường + vượt rate-limit → ưu tiên LEAD-001 (dòng 6 & 8 bảng quyết định).
  * `antiSpamOk=false` nghĩa là vượt rate-limit (honeypot xử lý riêng, trả 200 giả — không qua đây).
  */
 export function decideLead(input: {
@@ -118,8 +120,8 @@ export function decideLead(input: {
   consent: boolean;
   antiSpamOk: boolean;
 }): LeadDecisionCode {
-  if (!input.antiSpamOk) return 'LEAD-021';
   if (!input.fieldsValid) return 'LEAD-001';
   if (!input.consent) return 'LEAD-010';
+  if (!input.antiSpamOk) return 'LEAD-021';
   return 'OK';
 }

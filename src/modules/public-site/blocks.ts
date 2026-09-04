@@ -54,7 +54,9 @@ async function queryVisibleBlocks(
         ...(type ? { blockType: type } : {}),
       },
       include: { i18n: { where: { locale } } },
-      orderBy: [{ blockType: 'asc' }, { sortOrder: 'asc' }],
+      // DISC-04: trùng sortOrder → tie-break updatedAt desc cho thứ tự ổn định (SRS FR-02/FR-15),
+      // đồng bộ với admin-content listBlocks.
+      orderBy: [{ blockType: 'asc' }, { sortOrder: 'asc' }, { updatedAt: 'desc' }],
     });
 
     const views: PublicBlockView[] = [];

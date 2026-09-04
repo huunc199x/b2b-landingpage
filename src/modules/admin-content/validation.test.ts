@@ -49,6 +49,30 @@ describe('validateBlockInput (FR-12/13/14 — CB-001)', () => {
     expect(r.details.some((d) => d.field === 'payload.value')).toBe(true);
   });
 
+  it('VI 1 ký tự KHÔNG bị chặn — field VI chỉ ràng buộc max (DISC-05)', () => {
+    // highlight: VI title/description 1 ký tự vẫn hợp lệ (SRS FR-12 chỉ có max cho VI).
+    const h = validateBlockInput({
+      blockType: 'highlight',
+      i18n: { en: { title: 'New DIA', description: 'Dedicated Internet' }, vi: { title: 'A', description: 'B' } },
+    });
+    expect(h.valid).toBe(true);
+    // stat: nhãn VI 1 ký tự vẫn hợp lệ (SRS FR-14 chỉ có max cho VI).
+    const s = validateBlockInput({
+      blockType: 'stat',
+      i18n: { en: { title: 'Customers' }, vi: { title: 'X' } },
+      payload: { value: '99%' },
+    });
+    expect(s.valid).toBe(true);
+  });
+
+  it('VI vượt max vẫn bị chặn (DISC-05 chỉ bỏ min, giữ max)', () => {
+    const r = validateBlockInput({
+      blockType: 'highlight',
+      i18n: { en: { title: 'New DIA', description: 'Dedicated Internet' }, vi: { title: 'a'.repeat(121) } },
+    });
+    expect(r.details.some((d) => d.field === 'i18n.vi.title')).toBe(true);
+  });
+
   it('sortOrder âm → lỗi', () => {
     const r = validateBlockInput({
       blockType: 'stat',

@@ -83,16 +83,17 @@ describe('honeypot (FR-10)', () => {
   });
 });
 
-describe('decideLead — bảng quyết định FR-07 (8 tổ hợp)', () => {
+describe('decideLead — bảng quyết định FR-07 (8 tổ hợp, thứ tự ưu tiên SRS — DISC-01)', () => {
+  // SRS FR-07 là nguồn sự thật: lỗi trường (LEAD-001) > consent (LEAD-010) > chống spam (LEAD-021).
   const cases: [boolean, boolean, boolean, string][] = [
     [true, true, true, 'OK'],
     [true, true, false, 'LEAD-021'],
     [true, false, true, 'LEAD-010'],
-    [true, false, false, 'LEAD-021'], // antiSpam ưu tiên theo pipeline api-spec §3.1
+    [true, false, false, 'LEAD-010'], // dòng 4: consent ưu tiên hơn chống spam (SRS)
     [false, true, true, 'LEAD-001'],
-    [false, true, false, 'LEAD-021'],
+    [false, true, false, 'LEAD-001'], // dòng 6: lỗi trường ưu tiên hơn rate-limit (SRS)
     [false, false, true, 'LEAD-001'],
-    [false, false, false, 'LEAD-021'],
+    [false, false, false, 'LEAD-001'], // dòng 8: lỗi trường ưu tiên (gộp mọi lỗi hiển thị)
   ];
   it.each(cases)(
     'fields=%s consent=%s antiSpam=%s → %s',
