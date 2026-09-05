@@ -4,7 +4,7 @@
   "private": true,
   "description": "Landing page dịch vụ B2B Mytel (+ Admin CMS-lite) — Next.js 15 App Router, cloud-agnostic",
   "engines": {
-    "node": ">=24 <25"
+    "node": ">=22 <25"
   },
   "scripts": {
     "dev": "next dev",
