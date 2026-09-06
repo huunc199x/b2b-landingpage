@@ -34,7 +34,10 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   // Cloud-agnostic (ràng buộc V11): chạy được cả Docker on-prem lẫn Vercel.
-  output: 'standalone',
+  // 'standalone' CHỈ cho Docker/on-prem (server.js). TRÊN VERCEL phải để Vercel
+  // tự lo output — nếu bật 'standalone' trên Vercel sẽ vỡ routing trang (SSG/page → 404,
+  // trong khi /api vẫn chạy). Vercel tự set process.env.VERCEL.
+  output: process.env.VERCEL ? undefined : 'standalone',
   reactStrictMode: true,
   poweredByHeader: false,
   // KHÔNG dùng primitive khóa cứng Vercel (edge-only / @vercel/*).
