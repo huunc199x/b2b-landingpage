@@ -6,21 +6,29 @@
 FROM node:24-bookworm-slim AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./
+# prisma schema cần cho postinstall (prisma generate) khi npm ci.
+COPY prisma ./prisma
 RUN npm ci
 
 # ---------- builder ----------
 FROM node:24-bookworm-slim AS builder
 WORKDIR /app
+# OpenSSL cho Prisma (engine + generate) trên image slim.
+RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/*
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # DATABASE_URL giả lúc build (không kết nối DB khi build). Prisma chỉ generate client.
 ENV DATABASE_URL="postgresql://build:build@localhost:5432/build?schema=public"
 ENV NEXT_TELEMETRY_DISABLED=1
+# Bật output:'standalone' CHỈ cho image Docker (next.config.ts đọc cờ opt-in này).
+ENV DOCKER_STANDALONE=1
 RUN npm run build
 
 # ---------- runner ----------
 FROM node:24-bookworm-slim AS runner
 WORKDIR /app
+# OpenSSL cho Prisma runtime (TLS tới PostgreSQL/Neon, sslmode=require).
+RUN apt-get update && apt-get install -y --no-install-recommends openssl && rm -rf /var/lib/apt/lists/*
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
