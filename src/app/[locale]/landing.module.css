@@ -271,14 +271,33 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-@media (max-width: 1023px) {
+/* iPad / tablet (≤1024px, gồm iPad landscape 1024 & portrait 768): grid 2 cột */
+@media (max-width: 1024px) {
   .grid3 { grid-template-columns: repeat(2, 1fr); }
+  .grid6 { grid-template-columns: repeat(2, 1fr); }
   .highlightGrid { grid-template-columns: repeat(2, 1fr); }
   .stats { grid-template-columns: repeat(3, 1fr); }
+  .register { gap: var(--mt-space-12); }
 }
+
+/* Mobile (≤767px): 1 cột (ngành/số giữ 2 cột cho gọn), CTA full-width, spacing co lại */
 @media (max-width: 767px) {
-  .grid3, .grid6, .highlightGrid { grid-template-columns: 1fr; }
+  .hero { padding-block: var(--mt-space-16) var(--mt-space-12); }
+  .heroCtas { flex-direction: column; align-items: stretch; }
+  .heroCtas .ctaBandBtn { width: 100%; justify-content: center; }
+  .grid3,
+  .highlightGrid { grid-template-columns: 1fr; }
+  .grid6 { grid-template-columns: repeat(2, 1fr); }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .register { grid-template-columns: 1fr; gap: var(--mt-space-8); }
   .section { padding-block: var(--mt-space-16); }
+  .ctaBand { padding-block: var(--mt-space-12); }
+  .ctaBandInner .ctaBandBtn { width: 100%; justify-content: center; }
+  .formCard { padding: var(--mt-space-6); }
+}
+
+/* Rất nhỏ (≤380px): số Why về 1 cột để không tràn ngang */
+@media (max-width: 380px) {
+  .stats { grid-template-columns: 1fr; }
+  .grid6 { grid-template-columns: 1fr; }
 }

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Button } from '@/components/ui';
+import { Button, Icon } from '@/components/ui';
 import styles from './leadform.module.css';
 
 export interface ServiceOption {
@@ -83,7 +83,7 @@ export function LeadForm({ services, defaultService, source, turnstileSiteKey }:
   if (status === 'success') {
     return (
       <div className={styles.thanks} role="status">
-        <div className={styles.thanksIcon} aria-hidden>✓</div>
+        <div className={styles.thanksIcon} aria-hidden><Icon name="check" size={28} /></div>
         <h3 className={styles.thanksTitle}>{t('thanksTitle')}</h3>
         <p>{t('thanks')}</p>
       </div>

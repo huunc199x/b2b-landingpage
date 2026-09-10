@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { MobileMenu } from './MobileMenu';
 import styles from './layout.module.css';
 
 /**
@@ -30,6 +31,7 @@ export async function Header() {
             {tc('talkToExpert')}
           </Link>
         </div>
+        <MobileMenu />
       </div>
     </header>
   );

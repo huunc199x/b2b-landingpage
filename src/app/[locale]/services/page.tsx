@@ -3,9 +3,17 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { Icon, type IconName } from '@/components/ui';
 import { listByGroup } from '@/modules/service-catalog/loader';
 import { routing, type AppLocale } from '@/i18n/routing';
+import type { ServiceGroup } from '@/content/services/types';
 import styles from './services.module.css';
+
+const GROUP_ICON: Record<ServiceGroup, IconName> = {
+  connectivity: 'connectivity',
+  ict_service: 'ict_service',
+  mobile_ict: 'mobile_ict',
+};
 
 export async function generateMetadata({
   params,
@@ -44,7 +52,8 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         {groups.map((g) => (
           <section key={g.group} className={styles.section}>
             <div className="mt-container">
-              <div style={{ marginBottom: 'var(--mt-space-6)' }}>
+              <div className={styles.groupHead}>
+                <span className={styles.groupIcon} aria-hidden><Icon name={GROUP_ICON[g.group]} size={22} /></span>
                 <span className={styles.groupChip}>{tGroups(g.group)}</span>
               </div>
               <div className={styles.grid}>
@@ -52,7 +61,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
                   <Link key={s.slug} href={`/services/${s.slug}`} className={styles.card}>
                     <h3 className={styles.cardName}>{s.name}</h3>
                     <p className={styles.cardDesc}>{s.whatIs}</p>
-                    <span className={styles.blockLabel}>{tDetail('ctaConsult')} →</span>
+                    <span className={styles.cardCta}>
+                      {tDetail('ctaConsult')}
+                      <Icon name="arrow_right" size={16} aria-hidden />
+                    </span>
                   </Link>
                 ))}
               </div>

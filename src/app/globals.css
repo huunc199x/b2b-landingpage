@@ -183,12 +183,23 @@ img {
   outline-offset: 2px;
 }
 
+/* Giới hạn bề rộng nội dung ~1280px, căn giữa, padding ngang responsive.
+   Trên màn ≥1440/1920 nội dung KHÔNG dàn kín 2 mép (bị chặn bởi max-width + margin auto). */
 .mt-container {
+  width: 100%;
   max-width: var(--mt-container-max);
   margin-inline: auto;
   padding-inline: var(--mt-space-12);
 }
 
+/* Tablet / iPad: padding ngang 32px */
+@media (max-width: 1024px) {
+  .mt-container {
+    padding-inline: var(--mt-space-8);
+  }
+}
+
+/* Mobile: padding ngang 20px */
 @media (max-width: 767px) {
   .mt-container {
     padding-inline: 20px;

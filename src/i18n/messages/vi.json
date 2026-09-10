@@ -7,7 +7,9 @@
     "cancel": "Hủy",
     "save": "Lưu",
     "talkToExpert": "Nói chuyện với chuyên gia",
-    "backHome": "Về trang chủ"
+    "backHome": "Về trang chủ",
+    "menu": "Mở menu",
+    "close": "Đóng menu"
   },
   "nav": {
     "solutions": "Giải pháp",
@@ -146,8 +148,17 @@
       "empty": "Chưa có khối nội dung nào",
       "emptyHint": "Tạo một khối để hiển thị trên trang chủ.",
       "confirmDelete": "Xóa khối này?",
-      "types": { "highlight": "Sản phẩm/dịch vụ mới", "partner": "Đối tác", "stat": "Con số nổi bật" },
-      "statuses": { "draft": "Nháp", "visible": "Hiển thị", "hidden": "Ẩn", "deleted": "Đã xóa" }
+      "types": {
+        "highlight": "Sản phẩm/dịch vụ mới",
+        "partner": "Đối tác",
+        "stat": "Con số nổi bật"
+      },
+      "statuses": {
+        "draft": "Nháp",
+        "visible": "Hiển thị",
+        "hidden": "Ẩn",
+        "deleted": "Đã xóa"
+      }
     },
     "editor": {
       "createTitle": "Tạo khối",
@@ -185,7 +196,10 @@
       "emptyHint": "Lead từ form sẽ hiện ở đây.",
       "emptyFilter": "Không có lead khớp bộ lọc",
       "clearFilter": "Xóa lọc",
-      "statuses": { "new": "Mới", "viewed": "Đã xem" },
+      "statuses": {
+        "new": "Mới",
+        "viewed": "Đã xem"
+      },
       "detail": {
         "title": "Chi tiết lead",
         "contactName": "Họ tên",

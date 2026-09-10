@@ -3,17 +3,20 @@ import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { LeadForm } from '@/components/lead/LeadForm';
+import { Icon } from '@/components/ui';
 import { listByGroup, listAll } from '@/modules/service-catalog/loader';
 import { getVisibleBlocks } from '@/modules/public-site/blocks';
 import { env } from '@/lib/env';
 import type { AppLocale } from '@/i18n/routing';
 import type { ServiceGroup } from '@/content/services/types';
+import type { IconName } from '@/components/ui';
 import styles from './landing.module.css';
 
-const GROUP_ICON: Record<ServiceGroup, string> = {
-  connectivity: '🌐',
-  ict_service: '☁️',
-  mobile_ict: '📶',
+// Icon vector theo nhóm dịch vụ (thay emoji cũ) — trùng tên IconName.
+const GROUP_ICON: Record<ServiceGroup, IconName> = {
+  connectivity: 'connectivity',
+  ict_service: 'ict_service',
+  mobile_ict: 'mobile_ict',
 };
 const INDUSTRY_KEYS = ['carrier', 'banking', 'enterprise', 'manufacturing', 'hospitality', 'retail'] as const;
 
@@ -69,7 +72,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             <div className={styles.grid3}>
               {groups.map((g) => (
                 <article key={g.group} className={`${styles.solCard} ${styles.reveal}`}>
-                  <div className={styles.iconBox} aria-hidden>{GROUP_ICON[g.group]}</div>
+                  <div className={styles.iconBox} aria-hidden><Icon name={GROUP_ICON[g.group]} size={26} /></div>
                   <h3 className={styles.solTitle}>{tGroups(g.group)}</h3>
                   <p className={styles.solDesc}>{tGroups(`${g.group}Tagline`)}</p>
                   <div className={styles.chips}>
@@ -116,7 +119,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             <div className={styles.grid6}>
               {INDUSTRY_KEYS.map((k) => (
                 <div key={k} className={styles.industryCard}>
-                  <span className={styles.iconBox} aria-hidden>◉</span>
+                  <span className={styles.iconBox} aria-hidden><Icon name={k} size={24} /></span>
                   {tInd(`items.${k}`)}
                 </div>
               ))}

@@ -7,7 +7,9 @@
     "cancel": "Cancel",
     "save": "Save",
     "talkToExpert": "Talk to an Expert",
-    "backHome": "Back to home"
+    "backHome": "Back to home",
+    "menu": "Open menu",
+    "close": "Close menu"
   },
   "nav": {
     "solutions": "Solutions",
@@ -146,8 +148,17 @@
       "empty": "No content blocks yet",
       "emptyHint": "Create a block to show it on the landing page.",
       "confirmDelete": "Delete this block?",
-      "types": { "highlight": "Highlight", "partner": "Partner", "stat": "Stat" },
-      "statuses": { "draft": "Draft", "visible": "Visible", "hidden": "Hidden", "deleted": "Deleted" }
+      "types": {
+        "highlight": "Highlight",
+        "partner": "Partner",
+        "stat": "Stat"
+      },
+      "statuses": {
+        "draft": "Draft",
+        "visible": "Visible",
+        "hidden": "Hidden",
+        "deleted": "Deleted"
+      }
     },
     "editor": {
       "createTitle": "Create block",
@@ -185,7 +196,10 @@
       "emptyHint": "Leads from the form will appear here.",
       "emptyFilter": "No leads match the filter",
       "clearFilter": "Clear filter",
-      "statuses": { "new": "New", "viewed": "Viewed" },
+      "statuses": {
+        "new": "New",
+        "viewed": "Viewed"
+      },
       "detail": {
         "title": "Lead detail",
         "contactName": "Full name",

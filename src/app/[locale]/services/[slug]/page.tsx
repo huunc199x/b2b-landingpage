@@ -5,10 +5,18 @@ import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { LeadForm } from '@/components/lead/LeadForm';
+import { Icon, type IconName } from '@/components/ui';
 import { getBySlug, listAll } from '@/modules/service-catalog/loader';
 import { SERVICE_SLUGS } from '@/content/services';
 import { routing, type AppLocale } from '@/i18n/routing';
+import type { ServiceGroup } from '@/content/services/types';
 import styles from '../services.module.css';
+
+const GROUP_ICON: Record<ServiceGroup, IconName> = {
+  connectivity: 'connectivity',
+  ict_service: 'ict_service',
+  mobile_ict: 'mobile_ict',
+};
 
 export async function generateMetadata({
   params,
@@ -58,10 +66,18 @@ export default async function ServiceDetailPage({
               <Link href="/services">{tDetail('breadcrumbServices')}</Link> ·{' '}
               <span className={styles.groupChip}>{tGroups(svc.group)}</span>
             </p>
-            <h1 className={styles.detailTitle}>{svc.name}</h1>
+            <div className={styles.detailHead}>
+              <span className={styles.iconBox} aria-hidden><Icon name={GROUP_ICON[svc.group]} size={26} /></span>
+              <h1 className={styles.detailTitle}>{svc.name}</h1>
+            </div>
             {blocks.map((b) => (
               <div key={b.key} className={styles.block}>
-                <p className={styles.blockLabel}>{tDetail(b.labelKey)}</p>
+                <p className={styles.blockLabel}>
+                  {b.key === 'advantage' ? (
+                    <Icon name="check" size={16} aria-hidden className={styles.blockLabelIcon} />
+                  ) : null}
+                  {tDetail(b.labelKey)}
+                </p>
                 <p className={styles.blockText}>{String(svc[b.key])}</p>
               </div>
             ))}
