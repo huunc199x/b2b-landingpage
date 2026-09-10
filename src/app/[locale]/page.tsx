@@ -4,6 +4,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { LeadForm } from '@/components/lead/LeadForm';
 import { Icon } from '@/components/ui';
+import { CountUp } from '@/components/ui/CountUp';
 import { listByGroup, listAll } from '@/modules/service-catalog/loader';
 import { getVisibleBlocks } from '@/modules/public-site/blocks';
 import { env } from '@/lib/env';
@@ -207,7 +208,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
 function Stat({ value, label }: { value: string; label: string }) {
   return (
     <div className={styles.statItem}>
-      <div className={styles.statValue}>{value}</div>
+      <CountUp value={value} className={styles.statValue} />
       <div className={styles.statLabel}>{label}</div>
     </div>
   );

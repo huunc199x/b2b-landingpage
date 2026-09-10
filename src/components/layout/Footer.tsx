@@ -1,6 +1,7 @@
 import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { LocaleSwitcher } from './LocaleSwitcher';
+import { BrandLogo } from './BrandLogo';
 import styles from './layout.module.css';
 
 /** Footer (SCR-01 [8]) — nền tối, 4 cột liên kết + hàng meta + đổi ngôn ngữ. */
@@ -15,7 +16,10 @@ export async function Footer() {
       <div className="mt-container">
         <div className={styles.footerCols}>
           <div>
-            <span className={styles.footerBrand}>{tc('brand')}</span>
+            <span className={styles.footerBrandRow}>
+              <BrandLogo />
+              <span className={styles.footerBrand}>{tc('brand')}</span>
+            </span>
             <p className={styles.footerTagline}>{t('tagline')}</p>
           </div>
           <nav className={styles.footerCol} aria-label="footer-solutions">

@@ -2,6 +2,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { LocaleSwitcher } from './LocaleSwitcher';
 import { MobileMenu } from './MobileMenu';
+import { BrandLogo } from './BrandLogo';
 import styles from './layout.module.css';
 
 /**
@@ -15,7 +16,8 @@ export async function Header() {
   return (
     <header className={styles.header}>
       <div className={`mt-container ${styles.headerInner}`}>
-        <Link href="/" className={styles.brand}>
+        <Link href="/" className={styles.brand} aria-label="Mytel B2B">
+          <BrandLogo />
           <span className={styles.brandMark}>mytel</span>
           <span className={styles.brandTag}>B2B</span>
         </Link>

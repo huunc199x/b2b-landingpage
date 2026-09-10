@@ -16,10 +16,46 @@
 }
 .brand {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: var(--mt-space-2);
   text-decoration: none;
   font-weight: 700;
+}
+/* Ô bo góc nền cam chứa logo trắng (design SCR-01). */
+.brandLogoBox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: var(--mt-radius-icon);
+  background: var(--color-brand);
+  overflow: hidden;
+}
+/* Chữ "M" trắng làm nền fallback khi ảnh chưa có/404. */
+.brandLogoFallback {
+  color: var(--text-on-brand);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+}
+/* Logo thật phủ lên chữ M khi tải thành công. */
+.brandLogoImg {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+/* Footer: logo + tên thương hiệu trên cùng hàng. */
+.footerBrandRow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
 }
 .brandMark {
   color: var(--color-brand);
