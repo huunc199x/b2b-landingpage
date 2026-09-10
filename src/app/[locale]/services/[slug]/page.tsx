@@ -10,13 +10,6 @@ import { SERVICE_SLUGS } from '@/content/services';
 import { routing, type AppLocale } from '@/i18n/routing';
 import styles from '../services.module.css';
 
-/** SEO (NFR-07): sinh sẵn /{lang}/services/{slug} cho 18 slug × 2 locale. */
-export function generateStaticParams() {
-  return routing.locales.flatMap((locale) =>
-    SERVICE_SLUGS.map((slug) => ({ locale, slug })),
-  );
-}
-
 export async function generateMetadata({
   params,
 }: {

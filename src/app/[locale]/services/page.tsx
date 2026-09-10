@@ -7,10 +7,6 @@ import { listByGroup } from '@/modules/service-catalog/loader';
 import { routing, type AppLocale } from '@/i18n/routing';
 import styles from './services.module.css';
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
-
 export async function generateMetadata({
   params,
 }: {

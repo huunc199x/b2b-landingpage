@@ -10,9 +10,10 @@ export const metadata: Metadata = {
   description: 'Hệ sinh thái dịch vụ B2B Mytel: Connectivity · ICT · Mobile.',
 };
 
-export function generateStaticParams() {
-  return routing.locales.map((locale) => ({ locale }));
-}
+// Vercel không route được trang SSG (●) với setup [locale]+middleware này (404 DEPLOYMENT_NOT_FOUND),
+// trong khi function (ƒ) như /api chạy tốt. Ép dynamic → trang thành ƒ để Vercel serve đúng.
+// (On-prem Docker vốn đã chạy cả 2; đây là bù cho quirk của Vercel.)
+export const dynamic = 'force-dynamic';
 
 export default async function LocaleLayout({
   children,
