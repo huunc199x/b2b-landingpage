@@ -29,13 +29,6 @@ const KPIS = [
   { value: '24/7', icon: 'support_agent', labelKey: 'supportLabel', noteKey: 'supportNote' },
 ] as const;
 
-const HERO_CHIPS = [
-  { icon: 'cell_tower', label: 'Network', cls: styles.chip0 },
-  { icon: 'cloud', label: 'Cloud', cls: styles.chip1 },
-  { icon: 'sensors', label: 'IoT', cls: styles.chip2 },
-  { icon: 'shield', label: 'Security', cls: styles.chip3 },
-] as const;
-
 const WHY = [
   { icon: 'cell_tower', t: 't1', d: 'd1' },
   { icon: 'groups', t: 't2', d: 'd2' },
@@ -102,16 +95,12 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
                 </Link>
               </div>
             </div>
+            {/* Ảnh minh hoạ hệ sinh thái (v3 hero phải). Tự-lành: thiếu file → hiện disc mark. */}
             <div className={styles.heroVisual} aria-hidden>
               <span className={styles.heroMark}>
                 <MytelMark size="46%" />
               </span>
-              {HERO_CHIPS.map((c) => (
-                <span key={c.label} className={`${styles.heroChip} ${c.cls}`}>
-                  <MIcon name={c.icon} />
-                  {c.label}
-                </span>
-              ))}
+              <span className={styles.heroImg} />
             </div>
           </div>
         </section>

@@ -101,7 +101,17 @@
   display: grid;
   place-items: center;
   min-width: 0;
-  aspect-ratio: 1.2;
+  aspect-ratio: 1.4;
+}
+/* Ảnh hệ sinh thái phủ lên (nếu có file); thiếu file → trong suốt, lộ disc mark bên dưới. */
+.heroImg {
+  position: absolute;
+  inset: 0;
+  background-image: url('/assets/hero-ecosystem.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 24px 50px rgba(242, 107, 33, 0.18));
 }
 .heroMark {
   width: min(60%, 300px);
