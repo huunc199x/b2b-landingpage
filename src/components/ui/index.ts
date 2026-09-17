@@ -7,3 +7,5 @@ export { Badge } from './Badge';
 export type { BadgeProps } from './Badge';
 export { Icon } from './Icon';
 export type { IconName, IconProps } from './Icon';
+export { MIcon } from './MIcon';
+export { MytelMark } from './MytelMark';

@@ -65,8 +65,9 @@ export function MobileMenu() {
             <nav className={styles.drawerNav} aria-label="mobile">
               <Link href="/#solutions" onClick={() => setOpen(false)}>{t('solutions')}</Link>
               <Link href="/#industries" onClick={() => setOpen(false)}>{t('industries')}</Link>
+              <Link href="/#ecosystem" onClick={() => setOpen(false)}>{t('ecosystem')}</Link>
               <Link href="/#why" onClick={() => setOpen(false)}>{t('why')}</Link>
-              <Link href="/#dang-ky" onClick={() => setOpen(false)}>{t('register')}</Link>
+              <Link href="/#dang-ky" onClick={() => setOpen(false)}>{t('contact')}</Link>
             </nav>
             <div className={styles.drawerFooter}>
               <LocaleSwitcher />

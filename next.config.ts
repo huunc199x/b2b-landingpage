@@ -11,6 +11,8 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
  * - HSTS đặt ở Nginx prod (kết thúc TLS), không đặt ở tầng app.
  */
 const TURNSTILE = 'https://challenges.cloudflare.com';
+const GFONTS_CSS = 'https://fonts.googleapis.com';
+const GFONTS_FILE = 'https://fonts.gstatic.com';
 const csp = [
   `default-src 'self'`,
   `base-uri 'self'`,
@@ -18,9 +20,11 @@ const csp = [
   `object-src 'none'`,
   `frame-ancestors 'none'`,
   `script-src 'self' 'unsafe-inline' 'unsafe-eval' ${TURNSTILE}`,
-  `style-src 'self' 'unsafe-inline'`,
+  // Google Fonts (Material Symbols icon font) nạp stylesheet từ fonts.googleapis.com.
+  `style-src 'self' 'unsafe-inline' ${GFONTS_CSS}`,
   `img-src 'self' data: https:`,
-  `font-src 'self' data:`,
+  // File .woff2 icon font từ fonts.gstatic.com.
+  `font-src 'self' data: ${GFONTS_FILE}`,
   `connect-src 'self' ${TURNSTILE}`,
   `frame-src ${TURNSTILE}`,
 ].join('; ');

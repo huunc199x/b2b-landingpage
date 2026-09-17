@@ -4,9 +4,9 @@
   position: sticky;
   top: 0;
   z-index: var(--mt-z-sticky);
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: var(--mt-blur-header);
-  box-shadow: var(--mt-shadow-header);
+  border-bottom: 1px solid var(--header-border);
 }
 .headerInner {
   display: flex;
@@ -21,61 +21,46 @@
   text-decoration: none;
   font-weight: 700;
 }
-/* Ô bo góc nền cam chứa logo trắng (design SCR-01). */
+/* Ô bo góc nền cam chứa mark Mytel trắng (design v3). */
 .brandLogoBox {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   flex: none;
-  border-radius: var(--mt-radius-icon);
+  border-radius: 10px;
   background: var(--color-brand);
-  overflow: hidden;
-}
-/* Chữ "M" trắng làm nền fallback khi ảnh chưa có/404. */
-.brandLogoFallback {
   color: var(--text-on-brand);
-  font-size: 22px;
-  font-weight: 800;
+}
+.brandWordmark {
+  display: flex;
+  flex-direction: column;
   line-height: 1;
-  text-transform: uppercase;
-}
-/* Logo thật phủ lên chữ M khi tải thành công. */
-.brandLogoImg {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-}
-/* Footer: logo + tên thương hiệu trên cùng hàng. */
-.footerBrandRow {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--mt-space-2);
 }
 .brandMark {
   color: var(--color-brand);
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
   text-transform: lowercase;
 }
 .brandTag {
-  color: var(--text-secondary);
-  font-size: 13px;
-  letter-spacing: 0.1em;
+  color: var(--color-brand);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
 }
 .nav {
   display: flex;
-  gap: var(--mt-space-6);
+  gap: var(--mt-space-5, 20px);
   margin-left: auto;
 }
 .nav a {
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 15px;
+  white-space: nowrap;
 }
 .headerActions {
   display: flex;
@@ -115,16 +100,18 @@
   color: var(--text-primary);
 }
 .cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
   background: var(--btn-primary-bg);
   color: var(--btn-primary-fg);
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
-  padding: var(--mt-space-2) var(--mt-space-6);
+  padding: 11px var(--mt-space-6);
   border-radius: var(--btn-radius);
   text-decoration: none;
   min-height: 44px;
-  display: inline-flex;
-  align-items: center;
+  box-shadow: 0 8px 20px rgba(242, 107, 33, 0.3);
 }
 
 /* ---------- Mobile menu (hamburger + drawer) ---------- */
@@ -196,7 +183,7 @@
   justify-content: center;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .nav {
     display: none;
   }
@@ -209,58 +196,73 @@
 }
 
 .footer {
-  background: var(--surface-footer);
-  color: var(--text-subtle);
+  background: #fff;
+  border-top: 1px solid var(--border-default);
+  color: var(--text-muted);
 }
-.footerCols {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: var(--mt-space-8);
-  padding-block: var(--mt-space-16) var(--mt-space-8);
+  flex-wrap: wrap;
+  padding-block: var(--mt-space-8);
 }
-.footerBrand {
-  color: var(--surface-page);
-  font-weight: 700;
-  font-size: 17px;
-}
-.footerTagline {
-  font-size: 14px;
-  margin: var(--mt-space-3) 0 0;
-  max-width: 32ch;
-}
-.footerCol {
+.footerBrandCol {
   display: flex;
   flex-direction: column;
-  gap: var(--mt-space-2);
+  gap: var(--mt-space-3);
 }
-.footerCol a {
-  color: var(--text-subtle);
-  text-decoration: none;
-  font-size: 14px;
-}
-.footerCol a:hover {
-  color: var(--surface-page);
-}
-.footerColTitle {
-  color: var(--surface-page);
-  font-weight: 700;
-  font-size: 13px;
+.footerTagline {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: var(--mt-space-1);
+  color: var(--text-subtle);
+  max-width: 40ch;
+}
+.footerNav {
+  display: flex;
+  gap: var(--mt-space-6);
+  flex-wrap: wrap;
+}
+.footerNav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+}
+.footerNav a:hover {
+  color: var(--text-link);
 }
 .footerMeta {
   display: flex;
+  align-items: center;
+  gap: var(--mt-space-6);
   flex-wrap: wrap;
-  gap: var(--mt-space-4);
-  justify-content: space-between;
-  font-size: 13px;
-  border-top: 1px solid var(--mt-footer-border);
-  padding-block: var(--mt-space-6);
+  font-size: 12px;
+  color: var(--text-subtle);
+}
+.footerSocial {
+  display: flex;
+  gap: var(--mt-space-2);
+}
+.footerSocial span {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 @media (max-width: 767px) {
-  .footerCols {
-    grid-template-columns: 1fr 1fr;
+  .footerInner {
+    justify-content: flex-start;
+    gap: var(--mt-space-6);
   }
 }

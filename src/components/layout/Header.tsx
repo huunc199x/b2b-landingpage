@@ -6,8 +6,8 @@ import { BrandLogo } from './BrandLogo';
 import styles from './layout.module.css';
 
 /**
- * Header sticky (SCR-01 [1]) — blur, nav + toggle ngôn ngữ (SCR-05) + CTA.
- * Anchor trỏ tới section trên trang chủ; từ trang con dùng đường dẫn tuyệt đối về `/#...`.
+ * Header sticky (SCR-01 v3) — logo + wordmark, nav 5 mục, toggle ngôn ngữ + CTA.
+ * Anchor trỏ section trên trang chủ; từ trang con dùng đường dẫn tuyệt đối `/#...`.
  */
 export async function Header() {
   const t = await getTranslations('nav');
@@ -16,21 +16,24 @@ export async function Header() {
   return (
     <header className={styles.header}>
       <div className={`mt-container ${styles.headerInner}`}>
-        <Link href="/" className={styles.brand} aria-label="Mytel B2B">
+        <Link href="/" className={styles.brand} aria-label="Mytel Business">
           <BrandLogo />
-          <span className={styles.brandMark}>mytel</span>
-          <span className={styles.brandTag}>B2B</span>
+          <span className={styles.brandWordmark}>
+            <span className={styles.brandMark}>mytel</span>
+            <span className={styles.brandTag}>BUSINESS</span>
+          </span>
         </Link>
         <nav className={styles.nav} aria-label="primary">
           <Link href="/#solutions">{t('solutions')}</Link>
           <Link href="/#industries">{t('industries')}</Link>
+          <Link href="/#ecosystem">{t('ecosystem')}</Link>
           <Link href="/#why">{t('why')}</Link>
-          <Link href="/#dang-ky">{t('register')}</Link>
+          <Link href="/#dang-ky">{t('contact')}</Link>
         </nav>
         <div className={styles.headerActions}>
           <LocaleSwitcher />
           <Link href="/#dang-ky" className={styles.cta}>
-            {tc('talkToExpert')}
+            {tc('talkToExpert')} <span aria-hidden>→</span>
           </Link>
         </div>
         <MobileMenu />

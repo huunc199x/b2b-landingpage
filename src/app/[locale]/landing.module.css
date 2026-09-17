@@ -1,167 +1,412 @@
-/* SCR-01 Landing — 8 section, chỉ token semantic/component (không hardcode hex). */
+/* SCR-01 Landing v3 — nền sáng, hero split, KPI nổi, card kem-cam. Chỉ token. */
 
-/* [2] HERO */
+/* ---------- [2] HERO (split: text + visual) ---------- */
 .hero {
   position: relative;
-  /* Lớp phủ tối (giữ chữ trắng đạt WCAG) + gradient nền dự phòng + ẢNH hero nếu có
-     (bỏ /assets/hero-city.png vào public/assets/ là tự hiện, không cần sửa code). */
-  background-color: var(--surface-hero);
-  background-image:
-    linear-gradient(96deg, rgba(24, 10, 2, 0.92) 0%, rgba(24, 10, 2, 0.6) 34%, rgba(24, 10, 2, 0.28) 68%, rgba(24, 10, 2, 0.12) 100%),
-    radial-gradient(120% 120% at 78% 0%, rgba(242, 107, 33, 0.28) 0%, rgba(242, 107, 33, 0) 46%),
-    url("/assets/hero-city.jpg");
-  background-size: cover, cover, cover;
-  background-position: center, center, center 42%;
-  background-repeat: no-repeat;
-  color: var(--text-on-brand);
-  padding-block: var(--mt-space-24) var(--mt-space-16);
-  text-align: center;
+  background: var(--gradient-hero);
   overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0.75) 100%);
+  pointer-events: none;
 }
 .heroInner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
+  gap: var(--mt-space-8);
+  align-items: center;
+  padding-block: var(--mt-space-16) 150px;
+}
+.heroEyebrow {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin: 0 0 var(--mt-space-4);
 }
 .heroTitle {
-  font-size: clamp(38px, 4.9vw, 68px);
-  font-weight: 700;
-  text-transform: uppercase;
+  font-size: clamp(38px, 4.8vw, 66px);
+  font-weight: 800;
+  line-height: 1.02;
   letter-spacing: -0.035em;
-  line-height: 1.04;
-  margin: 0 auto var(--mt-space-6);
-  max-width: 16ch;
+  text-transform: uppercase;
+  margin: 0 0 var(--mt-space-6);
+}
+.heroTitle span {
+  display: block;
+  width: fit-content;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 .heroSubtitle {
-  font-size: clamp(17px, 2vw, 22px);
-  color: var(--text-on-brand);
-  opacity: 0.85;
-  margin: 0 auto var(--mt-space-8);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin: 0 0 var(--mt-space-8);
   max-width: 46ch;
 }
 .heroCtas {
   display: flex;
-  gap: var(--mt-space-4);
-  justify-content: center;
   flex-wrap: wrap;
+  gap: var(--mt-space-3);
+}
+.btnPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  padding: 16px 30px;
+  border-radius: var(--mt-radius-pill);
+  background: var(--color-brand);
+  color: var(--text-on-brand);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 48px;
+  box-shadow: 0 10px 24px rgba(242, 107, 33, 0.3);
+}
+.btnPrimary:hover {
+  background: var(--color-brand-hover);
+  color: var(--text-on-brand);
+}
+.btnGhost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  padding: 16px 30px;
+  border-radius: var(--mt-radius-pill);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1.5px solid var(--color-brand);
+  color: var(--color-brand);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 48px;
+}
+.btnGhost:hover {
+  background: var(--mt-tint-100);
+  color: var(--color-brand-hover);
 }
 
-/* Section chung */
+/* Hero visual — mark Mytel + chip nổi */
+.heroVisual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-width: 0;
+  aspect-ratio: 1.2;
+}
+.heroMark {
+  width: min(60%, 300px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ff9a4d, #f26b21 70%);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-size: clamp(48px, 9vw, 96px);
+  box-shadow: 0 30px 60px rgba(242, 107, 33, 0.3);
+  animation: mt-float 6s ease-in-out infinite;
+}
+.heroChip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  padding: 10px 16px;
+  border-radius: var(--mt-radius-pill);
+  background: #fff;
+  border: 1px solid var(--border-warm);
+  box-shadow: 0 12px 30px rgba(242, 107, 33, 0.14);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  animation: mt-float 5s ease-in-out infinite;
+}
+.heroChip .material-symbols-outlined {
+  font-size: 18px;
+  color: var(--color-brand);
+}
+.chip0 { top: 6%; left: 4%; }
+.chip1 { top: 20%; right: 2%; animation-delay: 0.8s; }
+.chip2 { bottom: 20%; left: 0%; animation-delay: 1.6s; }
+.chip3 { bottom: 6%; right: 8%; animation-delay: 2.4s; }
+
+/* ---------- [3] KPI band (nổi, đè lên đáy hero) ---------- */
+.kpiWrap {
+  position: relative;
+  z-index: 3;
+  margin-top: -96px;
+}
+.kpiCard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--mt-space-6) 0;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 24px 60px rgba(29, 29, 31, 0.1);
+  padding: var(--mt-space-8) var(--mt-space-6);
+}
+.kpiItem {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-4);
+  padding: 0 var(--mt-space-6);
+  border-left: 1px solid var(--border-default);
+}
+.kpiItem:first-child {
+  border-left: none;
+}
+.kpiIconWrap {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  flex: none;
+  display: grid;
+  place-items: center;
+}
+.kpiRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  border-top-color: var(--color-brand);
+  border-right-color: rgba(242, 107, 33, 0.3);
+  animation: mt-spin 4s linear infinite;
+}
+.kpiIconWrap .material-symbols-outlined {
+  font-size: 32px;
+  color: var(--color-brand);
+}
+.kpiValue {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.kpiLabel {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.kpiNote {
+  font-size: 12px;
+  color: var(--text-subtle);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+/* ---------- Section chung ---------- */
 .section {
   padding-block: var(--mt-space-24);
 }
 .sectionAlt {
   background: var(--surface-alt);
+  border-top: 1px solid var(--border-default);
+  border-bottom: 1px solid var(--border-default);
+}
+.secHead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--mt-space-6);
+  flex-wrap: wrap;
+  margin-bottom: var(--mt-space-8);
 }
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.12em;
   font-size: 13px;
   font-weight: 700;
-  color: var(--text-link);
+  color: var(--color-brand);
   margin: 0 0 var(--mt-space-3);
 }
 .h2 {
-  font-size: clamp(28px, 3.4vw, 44px);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 24ch;
+}
+.secLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--mt-space-12);
-  max-width: 22ch;
+  color: var(--text-link);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.lead {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin: 0;
+  max-width: 44ch;
 }
 
-/* [3] SOLUTIONS grid 3 card */
-.grid3 {
+/* ---------- [4] SOLUTIONS (3 nhóm thật, card v3) ---------- */
+.solGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--mt-space-6);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--mt-space-4);
 }
 .solCard {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--card-radius);
-  padding: var(--mt-space-8);
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--mt-space-4);
-  transition: border-color 180ms ease-out, box-shadow 180ms ease-out, transform 180ms ease-out;
+  gap: var(--mt-space-3);
+  border-radius: var(--mt-radius-card);
+  background: var(--surface-tint-card);
+  padding: var(--mt-space-8) var(--mt-space-6) var(--mt-space-6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .solCard:hover {
-  border-color: var(--card-border-hover);
-  box-shadow: var(--mt-shadow-card-hover);
-  transform: translateY(-2px);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 44px rgba(242, 107, 33, 0.16);
 }
-.iconBox {
+.solIcon {
   width: 52px;
   height: 52px;
-  border-radius: var(--icon-box-radius);
-  background: var(--icon-box-bg);
-  color: var(--color-brand);
+  border-radius: var(--mt-radius-icon);
+  background: #fff;
   display: grid;
   place-items: center;
-  font-size: 26px;
+  color: var(--color-brand);
+  box-shadow: 0 6px 16px rgba(242, 107, 33, 0.12);
+}
+.solIcon .material-symbols-outlined {
+  font-size: 28px;
 }
 .solTitle {
   font-size: 20px;
   font-weight: 700;
+  letter-spacing: -0.02em;
   margin: 0;
 }
 .solDesc {
-  color: var(--text-muted);
-  font-size: 15px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-body);
   margin: 0;
 }
 .chips {
   display: flex;
   flex-wrap: wrap;
   gap: var(--mt-space-2);
-  margin-top: auto;
+  margin-top: var(--mt-space-2);
 }
 .chip {
-  background: var(--chip-bg);
+  background: #fff;
+  border: 1px solid var(--border-warm);
   border-radius: var(--mt-radius-pill);
-  padding: 4px var(--mt-space-3);
-  font-size: 13px;
+  padding: 5px var(--mt-space-3);
+  font-size: 12.5px;
   color: var(--text-secondary);
   text-decoration: none;
 }
 .chip:hover {
   color: var(--text-link);
+  border-color: var(--border-brand);
 }
 .cardCta {
   color: var(--text-link);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 14px;
   text-decoration: none;
+  margin-top: auto;
 }
 
-/* [4] INDUSTRIES grid 6 */
-.grid6 {
+/* ---------- [5] ECOSYSTEM ---------- */
+.ecoInner {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--mt-space-6);
-}
-.industryCard {
-  display: flex;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 520px), 1fr));
+  gap: var(--mt-space-16);
   align-items: center;
-  gap: var(--mt-space-4);
-  background: var(--surface-page);
-  border: 1px solid var(--card-border);
-  border-radius: var(--card-radius);
-  padding: var(--mt-space-6);
-  font-weight: 600;
+}
+.ecoText h2 {
+  font-size: clamp(30px, 3.6vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin: 0 0 var(--mt-space-4);
+}
+.ecoText p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin: 0 0 var(--mt-space-6);
+  max-width: 42ch;
 }
 
-/* [5] WHY MYTEL — 5 con số */
+/* ---------- [6] WHY (4 card giá trị) ---------- */
+.whyInner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--mt-space-8);
+  align-items: center;
+}
+.whyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--mt-space-4);
+}
+.whyCard {
+  background: #fff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--mt-radius-card);
+  padding: var(--mt-space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.whyCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-brand);
+  box-shadow: 0 16px 36px rgba(242, 107, 33, 0.13);
+}
+.whyIcon {
+  color: var(--color-brand);
+}
+.whyIcon .material-symbols-outlined {
+  font-size: 36px;
+}
+.whyTitle {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+.whyDesc {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+/* ---------- Con số động (Stat block DB) ---------- */
 .stats {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: var(--mt-space-6);
+  margin-top: var(--mt-space-12);
 }
 .statItem {
   text-align: center;
 }
 .statValue {
-  font-size: clamp(30px, 3.4vw, 44px);
-  font-weight: 600;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
   color: var(--color-brand);
   line-height: 1;
 }
@@ -171,71 +416,74 @@
   color: var(--text-muted);
 }
 
-/* [6] CTA BAND gradient — nút TRẮNG chữ #C35120 (WCAG §10.2 cảnh báo gradient). */
-.ctaBand {
-  background: var(--color-brand-gradient);
-  padding-block: var(--mt-space-16);
-  text-align: center;
-}
-.ctaBandInner {
-  display: flex;
-  flex-direction: column;
-  gap: var(--mt-space-6);
-  align-items: center;
-}
-.ctaBandTitle {
-  color: var(--text-primary);
-  font-size: clamp(24px, 3vw, 36px);
-  font-weight: 700;
-  margin: 0;
-  max-width: 20ch;
-}
-.ctaBandBtn {
-  background: var(--surface-page);
-  color: var(--text-link);
-  font-size: 18px;
-  font-weight: 700;
-  padding: var(--mt-space-3) var(--mt-space-8);
-  border-radius: var(--btn-radius);
-  text-decoration: none;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* [7] REGISTER — 2 cột text + form */
-.register {
+/* ---------- [7] TRUSTED / khối động Partner ---------- */
+.trustedInner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--mt-space-16);
-  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--mt-space-8);
+  align-items: center;
 }
-.registerText p {
-  color: var(--text-muted);
+.logoGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--mt-space-3);
+}
+.logoCard {
+  height: 76px;
+  border-radius: 14px;
+  border: 1px solid var(--border-warm);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-3);
+  box-shadow: 0 4px 14px rgba(120, 60, 20, 0.05);
+  padding: 0 var(--mt-space-3);
+}
+.logoImg {
+  max-height: 44px;
+  max-width: 80%;
+  object-fit: contain;
+}
+.logoName {
   font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
 }
-.formCard {
-  background: var(--surface-page);
-  border: 1px solid var(--card-border);
-  border-radius: var(--card-radius);
-  padding: var(--mt-space-8);
-  box-shadow: var(--mt-shadow-card);
+.quoteCard {
+  background: var(--surface-tint-card);
+  border-radius: var(--mt-radius-card);
+  padding: var(--mt-space-6) var(--mt-space-8);
+}
+.quoteMark {
+  font-size: 44px;
+  line-height: 0.6;
+  color: var(--color-brand);
+  font-family: Georgia, serif;
+  margin-bottom: var(--mt-space-3);
+}
+.quoteText {
+  font-size: 15px;
+  line-height: 1.55;
+  margin: 0 0 var(--mt-space-3);
+}
+.quoteBy {
+  font-size: 12px;
+  color: var(--text-subtle);
 }
 
-/* Khối động Highlight / Partner */
+/* ---------- Khối động Highlight (Sản phẩm/dịch vụ mới) ---------- */
 .highlightGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--mt-space-6);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--mt-space-4);
 }
 .highlightCard {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--card-radius);
+  background: #fff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--mt-radius-card);
   overflow: hidden;
-}
-.highlightBody {
-  padding: var(--mt-space-6);
 }
 .highlightImg {
   width: 100%;
@@ -243,26 +491,90 @@
   object-fit: cover;
   display: block;
 }
-.partnerGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--mt-space-8);
-  align-items: center;
-  justify-content: center;
-}
-.partnerItem {
-  display: flex;
-  align-items: center;
-  gap: var(--mt-space-3);
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-.partnerLogo {
-  height: 40px;
-  width: auto;
+.highlightBody {
+  padding: var(--mt-space-6);
 }
 
-/* Animation nhẹ (scroll-reveal thay bằng fade-in-up khi load; reduced-motion tắt ở globals). */
+/* ---------- [8] CTA BAND (gradient + ảnh phố) ---------- */
+.ctaBand {
+  position: relative;
+  background: var(--gradient-cta);
+  overflow: hidden;
+}
+.ctaBandBg {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 46%;
+  background-image: url('/assets/hero-city.jpg');
+  background-size: cover;
+  background-position: right 60%;
+  -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 55%);
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, #000 55%);
+  opacity: 0.85;
+  pointer-events: none;
+}
+.ctaBandInner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--mt-space-8);
+  flex-wrap: wrap;
+  padding-block: var(--mt-space-16);
+}
+.ctaBandTitle {
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0 0 var(--mt-space-3);
+  max-width: 22ch;
+}
+.ctaBandSub {
+  font-size: 16px;
+  color: #fff;
+  margin: 0;
+  opacity: 0.95;
+}
+.ctaBandBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  padding: 16px 30px;
+  border-radius: var(--mt-radius-pill);
+  background: #fff;
+  color: var(--text-link);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  min-height: 48px;
+  box-shadow: 0 12px 30px rgba(120, 40, 0, 0.2);
+}
+
+/* ---------- [9] REGISTER (form lead) ---------- */
+.register {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--mt-space-16);
+  align-items: start;
+}
+.registerText p {
+  color: var(--text-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+.formCard {
+  background: #fff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--mt-radius-card);
+  padding: var(--mt-space-8);
+  box-shadow: 0 8px 30px rgba(29, 29, 31, 0.06);
+}
+
 .reveal {
   animation: fadeUp 560ms ease-out both;
 }
@@ -271,33 +583,66 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* iPad / tablet (≤1024px, gồm iPad landscape 1024 & portrait 768): grid 2 cột */
+/* ---------- Responsive ---------- */
 @media (max-width: 1024px) {
-  .grid3 { grid-template-columns: repeat(2, 1fr); }
-  .grid6 { grid-template-columns: repeat(2, 1fr); }
-  .highlightGrid { grid-template-columns: repeat(2, 1fr); }
-  .stats { grid-template-columns: repeat(3, 1fr); }
-  .register { gap: var(--mt-space-12); }
+  .heroInner {
+    grid-template-columns: 1fr;
+    padding-block: var(--mt-space-12) 120px;
+    gap: var(--mt-space-12);
+  }
+  .heroVisual {
+    aspect-ratio: 1.6;
+    order: -1;
+  }
+  .register {
+    gap: var(--mt-space-12);
+  }
 }
 
-/* Mobile (≤767px): 1 cột (ngành/số giữ 2 cột cho gọn), CTA full-width, spacing co lại */
 @media (max-width: 767px) {
-  .hero { padding-block: var(--mt-space-16) var(--mt-space-12); }
-  .heroCtas { flex-direction: column; align-items: stretch; }
-  .heroCtas .ctaBandBtn { width: 100%; justify-content: center; }
-  .grid3,
-  .highlightGrid { grid-template-columns: 1fr; }
-  .grid6 { grid-template-columns: repeat(2, 1fr); }
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .register { grid-template-columns: 1fr; gap: var(--mt-space-8); }
-  .section { padding-block: var(--mt-space-16); }
-  .ctaBand { padding-block: var(--mt-space-12); }
-  .ctaBandInner .ctaBandBtn { width: 100%; justify-content: center; }
-  .formCard { padding: var(--mt-space-6); }
-}
-
-/* Rất nhỏ (≤380px): số Why về 1 cột để không tràn ngang */
-@media (max-width: 380px) {
-  .stats { grid-template-columns: 1fr; }
-  .grid6 { grid-template-columns: 1fr; }
+  .section {
+    padding-block: var(--mt-space-16);
+  }
+  .heroInner {
+    padding-block: var(--mt-space-8) 96px;
+  }
+  .heroTitle {
+    font-size: clamp(34px, 9vw, 46px);
+  }
+  .heroCtas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .heroCtas .btnPrimary,
+  .heroCtas .btnGhost {
+    width: 100%;
+    justify-content: center;
+  }
+  .kpiWrap {
+    margin-top: -64px;
+  }
+  .kpiItem {
+    border-left: none;
+  }
+  .ctaBandBg {
+    width: 100%;
+    opacity: 0.35;
+  }
+  .ctaBandInner {
+    padding-block: var(--mt-space-12);
+  }
+  .ctaBandBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .register {
+    grid-template-columns: 1fr;
+    gap: var(--mt-space-8);
+  }
+  .formCard {
+    padding: var(--mt-space-6);
+  }
+  .logoName {
+    font-size: 15px;
+  }
 }

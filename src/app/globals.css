@@ -20,6 +20,11 @@
   --mt-tint-200: #ffd9c2;
   --mt-tint-border: #f9c3a0;
 
+  /* v3 — gradient nền sáng + dải CTA + chữ gradient */
+  --mt-hero-grad: linear-gradient(105deg, #ffffff 0%, #fff4ea 30%, #ffe6d2 60%, #ffd4b5 100%);
+  --mt-cta-grad: linear-gradient(100deg, #f26b21 0%, #ff8c3a 45%, #ffb070 75%, #ffd2a8 100%);
+  --mt-text-grad: linear-gradient(90deg, #c9541f 0%, #f26b21 45%, #ff9a4d 100%);
+
   /* Nền tối cục bộ */
   --mt-hero-900: #26140a;
   --mt-hero-overlay: #180a02;
@@ -35,12 +40,18 @@
 
   /* Bề mặt (surface) — tông KEM ẤM (theo trang tham chiếu), giữ --mt-white cho chữ/nút trên nền cam */
   --mt-white: #ffffff;
-  --mt-cream-page: #fdf7f1;   /* nền trang: kem ấm ngả cam nhạt */
-  --mt-gray-50: #f7efe7;      /* section xen kẽ (kem đậm hơn chút) */
-  --mt-gray-100: #ffffff;     /* card: trắng để nổi trên nền kem */
-  --mt-gray-chip: #f3ece4;    /* chip/input: kem nhạt */
-  --mt-border-100: #ece2d8;   /* viền ấm */
-  --mt-border-200: #e2d5c8;
+  --mt-cream-page: #ffffff;   /* v3: nền trang trắng sạch */
+  --mt-gray-50: #fafafb;      /* v3: section xen kẽ xám rất nhạt */
+  --mt-gray-100: #ffffff;     /* card trắng */
+  --mt-gray-chip: #f5f5f7;    /* chip/input xám nhạt */
+  --mt-border-100: #ededef;   /* viền trung tính nhạt */
+  --mt-border-200: #e5e5ea;
+  /* v3 — tông kem-cam ấm cho card giải pháp/ngành */
+  --mt-tint-card: #fff3e9;
+  --mt-tint-soft: #fffaf5;
+  --mt-border-warm: #f0e2d6;
+  --mt-header-border: #f3e4d8;
+  --mt-ink-600: #515154;      /* body phụ v3 */
 
   /* Trạng thái (admin) — chọn tối thiểu, đạt contrast ≥4.5:1 trên trắng */
   --mt-green-600: #1e8e5a;
@@ -106,6 +117,14 @@
   --surface-hero: var(--mt-hero-900);
   --surface-footer: var(--mt-footer-900);
   --surface-tint: var(--mt-tint-100);
+  --surface-tint-card: var(--mt-tint-card);
+  --surface-tint-soft: var(--mt-tint-soft);
+  --text-body: var(--mt-ink-600);
+  --border-warm: var(--mt-border-warm);
+  --header-border: var(--mt-header-border);
+  --gradient-hero: var(--mt-hero-grad);
+  --gradient-cta: var(--mt-cta-grad);
+  --gradient-text: var(--mt-text-grad);
   --border-default: var(--mt-border-100);
   --border-strong: var(--mt-border-200);
   --border-brand: var(--mt-tint-border);
@@ -204,6 +223,31 @@ img {
   .mt-container {
     padding-inline: 20px;
   }
+}
+
+/* Keyframes v3 (hero + ecosystem) — reduced-motion tắt hết ở khối cuối file. */
+@keyframes mt-spin { to { transform: rotate(360deg); } }
+@keyframes mt-orbit { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+@keyframes mt-pulse { 0% { transform: scale(0.8); opacity: 0.55; } 100% { transform: scale(1.6); opacity: 0; } }
+@keyframes mt-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(242, 107, 33, 0.35); } 50% { box-shadow: 0 0 0 18px rgba(242, 107, 33, 0); } }
+@keyframes mt-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+/* Material Symbols Outlined — base cho icon-font v3 (nạp qua <link> ở layout). */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'opsz' 24, 'wght' 400, 'FILL' 0, 'GRAD' 0;
+  user-select: none;
 }
 
 /* Tôn trọng prefers-reduced-motion — tắt toàn bộ chuyển động (WCAG §10). */
