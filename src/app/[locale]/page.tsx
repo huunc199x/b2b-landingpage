@@ -7,6 +7,7 @@ import { MIcon } from '@/components/ui';
 import { CountUp } from '@/components/ui/CountUp';
 import { IndustryExplorer } from '@/components/home/IndustryExplorer';
 import { EcosystemOrbit } from '@/components/home/EcosystemOrbit';
+import { ScrollReveal } from '@/components/home/ScrollReveal';
 import { listByGroup, listAll } from '@/modules/service-catalog/loader';
 import { getVisibleBlocks } from '@/modules/public-site/blocks';
 import { env } from '@/lib/env';
@@ -105,7 +106,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
         {/* [3] KPI band */}
         <div className={styles.kpiWrap}>
           <div className="mt-container">
-            <div className={styles.kpiCard}>
+            <div className={styles.kpiCard} data-reveal>
               {KPIS.map((k) => (
                 <div key={k.labelKey} className={styles.kpiItem}>
                   <span className={styles.kpiIconWrap}>
@@ -125,7 +126,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
 
         {/* [4] SOLUTIONS — 3 nhóm dịch vụ thật */}
         <section id="solutions" className={styles.section}>
-          <div className="mt-container">
+          <div className="mt-container" data-reveal>
             <div className={styles.secHead}>
               <div>
                 <p className={styles.eyebrow}>{t('solutionsEyebrow')}</p>
@@ -137,7 +138,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             </div>
             <div className={styles.solGrid}>
               {groups.map((g) => (
-                <article key={g.group} className={`${styles.solCard} ${styles.reveal}`}>
+                <article key={g.group} className={styles.solCard}>
                   <span className={styles.solIcon} aria-hidden>
                     <MIcon name={GROUP_MICON[g.group]} />
                   </span>
@@ -162,7 +163,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
         {/* Khối động Highlight (Sản phẩm/dịch vụ mới) — ẩn cụm khi rỗng */}
         {highlights.length > 0 ? (
           <section className={`${styles.section} ${styles.sectionAlt}`}>
-            <div className="mt-container">
+            <div className="mt-container" data-reveal>
               <div className={styles.highlightGrid}>
                 {highlights.map((h) => (
                   <article key={h.id} className={styles.highlightCard}>
@@ -188,7 +189,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
 
         {/* [5] INDUSTRIES — tương tác */}
         <section id="industries" className={`${styles.section} ${styles.sectionAlt}`}>
-          <div className="mt-container">
+          <div className="mt-container" data-reveal>
             <div className={styles.secHead}>
               <div>
                 <p className={styles.eyebrow}>{t('industriesEyebrow')}</p>
@@ -202,7 +203,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
 
         {/* [6] ECOSYSTEM — orbit */}
         <section id="ecosystem" className={styles.section}>
-          <div className={`mt-container ${styles.ecoInner}`}>
+          <div className={`mt-container ${styles.ecoInner}`} data-reveal>
             <div className={styles.ecoText}>
               <p className={styles.eyebrow}>{t('ecosystemEyebrow')}</p>
               <h2>
@@ -221,7 +222,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
 
         {/* [7] WHY MYTEL — 4 card giá trị + số động (nếu có) */}
         <section id="why" className={`${styles.section} ${styles.sectionAlt}`}>
-          <div className={`mt-container ${styles.whyInner}`}>
+          <div className={`mt-container ${styles.whyInner}`} data-reveal>
             <div>
               <p className={styles.eyebrow}>{t('whyEyebrow')}</p>
               <h2 className={styles.h2}>
@@ -243,7 +244,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             </div>
           </div>
           {stats.length > 0 ? (
-            <div className="mt-container">
+            <div className="mt-container" data-reveal>
               <div className={styles.stats}>
                 {stats.map((s) => (
                   <div key={s.id} className={styles.statItem}>
@@ -261,7 +262,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
 
         {/* [8] TRUSTED */}
         <section id="about" className={styles.section}>
-          <div className={`mt-container ${styles.trustedInner}`}>
+          <div className={`mt-container ${styles.trustedInner}`} data-reveal>
             <div>
               <p className={styles.eyebrow}>{t('trustedEyebrow')}</p>
               <h2 className={styles.h2}>{t('trustedHeading')}</h2>
@@ -298,7 +299,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
         {/* [9] CTA band */}
         <section className={styles.ctaBand}>
           <span className={styles.ctaBandBg} aria-hidden />
-          <div className={`mt-container ${styles.ctaBandInner}`}>
+          <div className={`mt-container ${styles.ctaBandInner}`} data-reveal>
             <div>
               <h2 className={styles.ctaBandTitle}>{t('ctaTitle')}</h2>
               <p className={styles.ctaBandSub}>{t('ctaSub')}</p>
@@ -311,7 +312,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
 
         {/* [10] REGISTER — form lead (giữ nguyên nghiệp vụ lead-gen) */}
         <section id="dang-ky" className={styles.section}>
-          <div className={`mt-container ${styles.register}`}>
+          <div className={`mt-container ${styles.register}`} data-reveal>
             <div className={styles.registerText}>
               <p className={styles.eyebrow}>{t('contactEyebrow')}</p>
               <h2 className={styles.h2}>{t('contactHeading')}</h2>
@@ -328,6 +329,7 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
         </section>
       </main>
       <Footer />
+      <ScrollReveal />
     </>
   );
 }

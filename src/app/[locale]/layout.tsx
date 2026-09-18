@@ -33,7 +33,7 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -42,6 +42,8 @@ export default async function LocaleLayout({
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block"
         />
+        {/* Đặt cờ trước khi vẽ: chỉ ẩn [data-reveal] khi có JS (chống nháy, no-JS vẫn hiện đủ). */}
+        <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js-reveal')" }} />
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
