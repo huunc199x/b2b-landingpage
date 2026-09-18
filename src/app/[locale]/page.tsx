@@ -3,7 +3,7 @@ import { Link } from '@/i18n/navigation';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { LeadForm } from '@/components/lead/LeadForm';
-import { MIcon, MytelMark } from '@/components/ui';
+import { MIcon } from '@/components/ui';
 import { CountUp } from '@/components/ui/CountUp';
 import { IndustryExplorer } from '@/components/home/IndustryExplorer';
 import { EcosystemOrbit } from '@/components/home/EcosystemOrbit';
@@ -95,11 +95,8 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
                 </Link>
               </div>
             </div>
-            {/* Ảnh minh hoạ hệ sinh thái (v3 hero phải). Tự-lành: thiếu file → hiện disc mark. */}
+            {/* Ảnh minh hoạ hệ sinh thái (v3 hero phải). */}
             <div className={styles.heroVisual} aria-hidden>
-              <span className={styles.heroMark}>
-                <MytelMark size="46%" />
-              </span>
               <span className={styles.heroImg} />
             </div>
           </div>
