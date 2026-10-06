@@ -20,7 +20,7 @@
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.2fr);
   gap: var(--mt-space-8);
   align-items: center;
-  padding-block: var(--mt-space-16) 150px;
+  padding-block: var(--mt-space-16) var(--mt-space-16);
 }
 .heroEyebrow {
   font-size: 14px;
@@ -101,17 +101,18 @@
   display: grid;
   place-items: center;
   min-width: 0;
-  aspect-ratio: 1.4;
+  aspect-ratio: 1.72;
 }
-/* Ảnh hệ sinh thái phủ lên (nếu có file); thiếu file → trong suốt, lộ disc mark bên dưới. */
+/* Ảnh hero có nền thật → bo góc + đổ bóng cho khung gọn gàng, phủ kín khung. */
 .heroImg {
   position: absolute;
   inset: 0;
   background-image: url('/assets/hero-ecosystem.png');
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: drop-shadow(0 24px 50px rgba(242, 107, 33, 0.18));
+  border-radius: var(--mt-radius-card);
+  box-shadow: 0 24px 60px rgba(29, 29, 31, 0.18);
 }
 .heroMark {
   width: min(60%, 300px);
@@ -211,6 +212,19 @@
   color: var(--text-subtle);
   margin-top: 4px;
   line-height: 1.4;
+}
+
+/* ---------- Dải dịch vụ chính (thay KPI) ---------- */
+.servicesStripWrap {
+  position: relative;
+  z-index: 3;
+  margin-top: calc(-1 * var(--mt-space-8));
+}
+.servicesStrip {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 40px rgba(29, 29, 31, 0.12));
 }
 
 /* ---------- Section chung ---------- */
@@ -597,12 +611,13 @@
 @media (max-width: 1024px) {
   .heroInner {
     grid-template-columns: 1fr;
-    padding-block: var(--mt-space-12) 120px;
-    gap: var(--mt-space-12);
+    padding-block: var(--mt-space-12) var(--mt-space-12);
+    gap: var(--mt-space-8);
   }
   .heroVisual {
-    aspect-ratio: 1.6;
+    aspect-ratio: 1.72;
     order: -1;
+    width: 100%;
   }
   .register {
     gap: var(--mt-space-12);
@@ -614,7 +629,7 @@
     padding-block: var(--mt-space-16);
   }
   .heroInner {
-    padding-block: var(--mt-space-8) 96px;
+    padding-block: var(--mt-space-8) var(--mt-space-8);
   }
   .heroTitle {
     font-size: clamp(34px, 9vw, 46px);

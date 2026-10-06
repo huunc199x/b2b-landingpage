@@ -22,14 +22,6 @@ const GROUP_MICON: Record<ServiceGroup, string> = {
   mobile_ict: 'smartphone',
 };
 
-// KPI band — số liệu thương hiệu lấy thẳng từ bản thiết kế v3 của anh Bryan.
-const KPIS = [
-  { value: '16M+', icon: 'groups', labelKey: 'customersLabel', noteKey: 'customersNote' },
-  { value: '12,000+', icon: 'cell_tower', labelKey: 'sitesLabel', noteKey: 'sitesNote' },
-  { value: '100%', icon: 'location_on', labelKey: 'provincesLabel', noteKey: 'provincesNote' },
-  { value: '24/7', icon: 'support_agent', labelKey: 'supportLabel', noteKey: 'supportNote' },
-] as const;
-
 const WHY = [
   { icon: 'cell_tower', t: 't1', d: 'd1' },
   { icon: 'groups', t: 't2', d: 'd2' },
@@ -103,24 +95,15 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
           </div>
         </section>
 
-        {/* [3] KPI band */}
-        <div className={styles.kpiWrap}>
-          <div className="mt-container">
-            <div className={styles.kpiCard} data-reveal>
-              {KPIS.map((k) => (
-                <div key={k.labelKey} className={styles.kpiItem}>
-                  <span className={styles.kpiIconWrap}>
-                    <span className={styles.kpiRing} aria-hidden />
-                    <MIcon name={k.icon} />
-                  </span>
-                  <div>
-                    <div className={styles.kpiValue}>{k.value}</div>
-                    <div className={styles.kpiLabel}>{t(`kpi.${k.labelKey}`)}</div>
-                    <div className={styles.kpiNote}>{t(`kpi.${k.noteKey}`)}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+        {/* [3] Dải dịch vụ chính (thay dải số 16M+…) */}
+        <div className={styles.servicesStripWrap}>
+          <div className="mt-container" data-reveal>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className={styles.servicesStrip}
+              src="/assets/main-services.png"
+              alt={locale === 'vi' ? 'Các nhóm dịch vụ chính của Mytel B2B' : 'Mytel B2B main services'}
+            />
           </div>
         </div>
 
