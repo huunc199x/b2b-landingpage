@@ -23,7 +23,6 @@ export async function Header() {
           <Link href="/#solutions">{t('solutions')}</Link>
           <Link href="/#industries">{t('industries')}</Link>
           <Link href="/#ecosystem">{t('ecosystem')}</Link>
-          <Link href="/#why">{t('why')}</Link>
           <Link href="/#dang-ky">{t('contact')}</Link>
         </nav>
         <div className={styles.headerActions}>

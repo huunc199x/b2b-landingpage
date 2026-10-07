@@ -23,7 +23,6 @@ export async function Footer() {
           <Link href="/#solutions">{tNav('solutions')}</Link>
           <Link href="/#industries">{tNav('industries')}</Link>
           <Link href="/#ecosystem">{tNav('ecosystem')}</Link>
-          <Link href="/#why">{tNav('why')}</Link>
           <Link href="/#dang-ky">{tNav('contact')}</Link>
         </nav>
 

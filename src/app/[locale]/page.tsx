@@ -4,7 +4,6 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { LeadForm } from '@/components/lead/LeadForm';
 import { MIcon } from '@/components/ui';
-import { CountUp } from '@/components/ui/CountUp';
 import { IndustryExplorer } from '@/components/home/IndustryExplorer';
 import { EcosystemOrbit } from '@/components/home/EcosystemOrbit';
 import { ScrollReveal } from '@/components/home/ScrollReveal';
@@ -21,13 +20,6 @@ const GROUP_MICON: Record<ServiceGroup, string> = {
   ict_service: 'cloud',
   mobile_ict: 'smartphone',
 };
-
-const WHY = [
-  { icon: 'cell_tower', t: 't1', d: 'd1' },
-  { icon: 'groups', t: 't2', d: 'd2' },
-  { icon: 'settings_suggest', t: 't3', d: 'd3' },
-  { icon: 'handshake', t: 't4', d: 'd4' },
-] as const;
 
 // Logo fallback = nhãn ngành trung tính (KHÔNG nêu tên thương hiệu thật → tránh mạo nhận endorsement).
 const FALLBACK_LOGOS = [
@@ -54,10 +46,9 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
   const groups = listByGroup(locale);
   const serviceOptions = listAll(locale).map((s) => ({ slug: s.slug, name: s.name }));
 
-  const [highlights, partners, stats] = await Promise.all([
+  const [highlights, partners] = await Promise.all([
     getVisibleBlocks(locale, 'highlight'),
     getVisibleBlocks(locale, 'partner'),
-    getVisibleBlocks(locale, 'stat'),
   ]);
 
   return (
@@ -198,46 +189,6 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             </div>
             <EcosystemOrbit />
           </div>
-        </section>
-
-        {/* [7] WHY MYTEL — 4 card giá trị + số động (nếu có) */}
-        <section id="why" className={`${styles.section} ${styles.sectionAlt}`}>
-          <div className={`mt-container ${styles.whyInner}`} data-reveal>
-            <div>
-              <p className={styles.eyebrow}>{t('whyEyebrow')}</p>
-              <h2 className={styles.h2}>
-                {t('whyHeading1')}
-                <br />
-                {t('whyHeading2')}
-              </h2>
-            </div>
-            <div className={styles.whyGrid}>
-              {WHY.map((w) => (
-                <div key={w.t} className={styles.whyCard}>
-                  <span className={styles.whyIcon} aria-hidden>
-                    <MIcon name={w.icon} />
-                  </span>
-                  <h3 className={styles.whyTitle}>{t(`why.${w.t}`)}</h3>
-                  <p className={styles.whyDesc}>{t(`why.${w.d}`)}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          {stats.length > 0 ? (
-            <div className="mt-container" data-reveal>
-              <div className={styles.stats}>
-                {stats.map((s) => (
-                  <div key={s.id} className={styles.statItem}>
-                    <CountUp
-                      value={typeof s.payload.value === 'string' ? s.payload.value : '—'}
-                      className={styles.statValue}
-                    />
-                    <div className={styles.statLabel}>{s.description ? `${s.title} · ${s.description}` : s.title}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : null}
         </section>
 
         {/* [8] TRUSTED */}
