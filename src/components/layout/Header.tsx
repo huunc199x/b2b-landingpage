@@ -16,12 +16,8 @@ export async function Header() {
   return (
     <header className={styles.header}>
       <div className={`mt-container ${styles.headerInner}`}>
-        <Link href="/" className={styles.brand} aria-label="Mytel Business">
-          <BrandLogo />
-          <span className={styles.brandWordmark}>
-            <span className={styles.brandMark}>mytel</span>
-            <span className={styles.brandTag}>BUSINESS</span>
-          </span>
+        <Link href="/" className={styles.brand} aria-label="Mytel">
+          <BrandLogo alt="" />
         </Link>
         <nav className={styles.nav} aria-label="primary">
           <Link href="/#solutions">{t('solutions')}</Link>

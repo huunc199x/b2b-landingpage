@@ -64,10 +64,11 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
     <>
       <Header />
       <main>
-        {/* [2] HERO */}
+        {/* [2] HERO — ảnh full-bleed nửa phải (desktop), xếp dọc trên iPad/mobile */}
         <section className={styles.hero}>
+          <div className={styles.heroImageFull} aria-hidden />
           <div className={`mt-container ${styles.heroInner}`}>
-            <div>
+            <div className={styles.heroText}>
               <p className={styles.heroEyebrow}>
                 {t('heroEyebrow1')}
                 <br />
@@ -87,10 +88,6 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
                   {t('heroCtaTalk')}
                 </Link>
               </div>
-            </div>
-            {/* Ảnh minh hoạ hệ sinh thái (v3 hero phải). */}
-            <div className={styles.heroVisual} aria-hidden>
-              <span className={styles.heroImg} />
             </div>
           </div>
         </section>

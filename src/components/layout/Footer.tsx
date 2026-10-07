@@ -14,11 +14,7 @@ export async function Footer() {
       <div className={`mt-container ${styles.footerInner}`}>
         <div className={styles.footerBrandCol}>
           <span className={styles.brand}>
-            <BrandLogo size={30} />
-            <span className={styles.brandWordmark}>
-              <span className={styles.brandMark}>mytel</span>
-              <span className={styles.brandTag}>BUSINESS</span>
-            </span>
+            <BrandLogo size={40} />
           </span>
           <span className={styles.footerTagline}>{t('tagline')}</span>
         </div>
