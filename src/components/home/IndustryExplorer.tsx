@@ -5,8 +5,9 @@ import { MIcon } from '@/components/ui';
 import styles from './industry.module.css';
 
 /**
- * IndustryExplorer — chọn ngành → đổi panel (SCR-01 Industries v3, tương tác client).
- * Song ngữ: tên/tiêu đề/mô tả theo locale; nhãn giải pháp giữ thuật ngữ kỹ thuật (EN).
+ * IndustryExplorer — chọn ngành → đổi panel (SCR-01 Industries, tương tác client).
+ * 5 ngành thật + danh mục dịch vụ theo yêu cầu anh Bryan; icon vector Material Symbols.
+ * Song ngữ: tên/tiêu đề/mô tả theo locale; nhãn dịch vụ giữ tên sản phẩm (thuật ngữ).
  */
 type Sol = { name: string; icon: string };
 type Ind = {
@@ -23,91 +24,86 @@ type Ind = {
 
 const INDUSTRIES: Ind[] = [
   {
-    key: 'banking', name: 'Banking', nameVi: 'Ngân hàng', icon: 'account_balance',
-    headline: 'Secure. Reliable. Always On.', headlineVi: 'Bảo mật. Tin cậy. Luôn sẵn sàng.',
-    desc: 'Empowering financial institutions with secure connectivity, cloud and digital solutions.',
-    descVi: 'Trao sức mạnh cho tổ chức tài chính bằng kết nối bảo mật, đám mây và giải pháp số.',
+    key: 'bank', name: 'Banking', nameVi: 'Ngân hàng', icon: 'account_balance',
+    headline: 'Secure, compliant banking infrastructure.',
+    headlineVi: 'Hạ tầng ngân hàng bảo mật, tuân thủ.',
+    desc: 'Connectivity, eKYC, cloud and security built for financial institutions.',
+    descVi: 'Kết nối, eKYC, đám mây và bảo mật cho tổ chức tài chính.',
     solutions: [
-      { name: 'Secure Connectivity', icon: 'vpn_lock' }, { name: 'Cybersecurity', icon: 'shield' },
-      { name: 'Cloud & Data Center', icon: 'cloud' }, { name: 'Digital Channels', icon: 'smartphone' },
-      { name: 'Compliance Support', icon: 'verified' },
+      { name: 'Connectivity Service', icon: 'cell_tower' },
+      { name: 'eKYC', icon: 'fingerprint' },
+      { name: 'Cloud - Data Center', icon: 'cloud' },
+      { name: 'Cyber Security', icon: 'shield' },
+      { name: 'Wifi Marketing', icon: 'wifi' },
+      { name: 'Smart AI CCTV', icon: 'videocam' },
+      { name: 'VBOT', icon: 'smart_toy' },
+      { name: 'SMS Bulk', icon: 'sms' },
     ],
   },
   {
     key: 'government', name: 'Government', nameVi: 'Chính phủ', icon: 'account_balance_wallet',
-    headline: 'Digital services for every citizen.', headlineVi: 'Dịch vụ số cho mọi người dân.',
-    desc: 'Secure national infrastructure, e-government platforms and connectivity across all provinces.',
-    descVi: 'Hạ tầng quốc gia bảo mật, nền tảng chính phủ điện tử và kết nối tới mọi tỉnh thành.',
+    headline: 'Digital government for every citizen.',
+    headlineVi: 'Chính phủ số cho mọi người dân.',
+    desc: 'E-office, smart city and citizen services on sovereign infrastructure.',
+    descVi: 'E-Office, đô thị thông minh và dịch vụ công trên hạ tầng chủ quyền.',
     solutions: [
-      { name: 'Nationwide Connectivity', icon: 'cell_tower' }, { name: 'Sovereign Cloud', icon: 'cloud' },
-      { name: 'Cybersecurity & SOC', icon: 'shield' }, { name: 'Smart City', icon: 'location_city' },
-      { name: 'Managed Services', icon: 'settings' },
+      { name: 'E-Office', icon: 'description' },
+      { name: 'IOC System', icon: 'dashboard' },
+      { name: 'Smart City', icon: 'location_city' },
+      { name: 'Cloud - Data Center', icon: 'cloud' },
+      { name: 'Connectivity Service', icon: 'cell_tower' },
+      { name: 'Cyber Security', icon: 'shield' },
+      { name: 'Citizen Data', icon: 'badge' },
+      { name: 'SMS Bulk', icon: 'sms' },
     ],
   },
   {
     key: 'enterprise', name: 'Enterprise', nameVi: 'Doanh nghiệp', icon: 'apartment',
-    headline: 'Infrastructure that scales with you.', headlineVi: 'Hạ tầng mở rộng cùng bạn.',
-    desc: 'Connectivity, cloud and managed services for multi-site organisations.',
-    descVi: 'Kết nối, đám mây và dịch vụ quản trị cho tổ chức nhiều chi nhánh.',
+    headline: 'Infrastructure that scales with you.',
+    headlineVi: 'Hạ tầng mở rộng cùng doanh nghiệp.',
+    desc: 'Connectivity, cloud, security and digital tools for multi-site business.',
+    descVi: 'Kết nối, đám mây, bảo mật và công cụ số cho doanh nghiệp đa chi nhánh.',
     solutions: [
-      { name: 'Enterprise Connectivity', icon: 'lan' }, { name: 'Cloud & Hosting', icon: 'cloud' },
-      { name: 'Cybersecurity', icon: 'shield' }, { name: 'Enterprise Applications', icon: 'apps' },
-      { name: 'Communication Solutions', icon: 'forum' },
+      { name: 'Connectivity Service', icon: 'cell_tower' },
+      { name: 'Cloud - Data Center', icon: 'cloud' },
+      { name: 'Cyber Security', icon: 'shield' },
+      { name: 'Wifi Marketing', icon: 'wifi' },
+      { name: 'SMS Bulk', icon: 'sms' },
+      { name: 'VBOT', icon: 'smart_toy' },
+      { name: 'E-Office', icon: 'description' },
+      { name: 'DMS System', icon: 'folder_open' },
     ],
   },
   {
-    key: 'sme', name: 'SME', nameVi: 'SME', icon: 'storefront',
-    headline: 'Big capabilities. Right-sized.', headlineVi: 'Năng lực lớn, quy mô vừa vặn.',
-    desc: 'Affordable packages that get small businesses online, secure and productive fast.',
-    descVi: 'Gói giá hợp lý giúp doanh nghiệp nhỏ lên mạng, bảo mật và hiệu quả nhanh chóng.',
+    key: 'healthcare', name: 'Healthcare', nameVi: 'Y tế', icon: 'health_and_safety',
+    headline: 'Connected, data-driven healthcare.',
+    headlineVi: 'Y tế kết nối, dựa trên dữ liệu.',
+    desc: 'HIS, LIS, RIS/PACS and medical records on secure connectivity and cloud.',
+    descVi: 'HIS, LIS, RIS/PACS và hồ sơ bệnh án trên kết nối bảo mật và đám mây.',
     solutions: [
-      { name: 'FTTH & Internet', icon: 'wifi' }, { name: 'Mobile Plans', icon: 'sim_card' },
-      { name: 'Cloud Apps', icon: 'cloud' }, { name: 'Endpoint Security', icon: 'security' },
-      { name: 'Bulk SMS', icon: 'sms' },
-    ],
-  },
-  {
-    key: 'logistics', name: 'Logistics', nameVi: 'Logistics', icon: 'local_shipping',
-    headline: 'Every asset, tracked in real time.', headlineVi: 'Mọi tài sản, giám sát thời gian thực.',
-    desc: 'IoT, fleet tracking and connectivity to keep goods moving across Myanmar.',
-    descVi: 'IoT, giám sát đội xe và kết nối để hàng hóa luôn lưu thông khắp Myanmar.',
-    solutions: [
-      { name: 'Fleet Tracking', icon: 'route' }, { name: 'IoT Sensors', icon: 'sensors' },
-      { name: 'M2M Connectivity', icon: 'hub' }, { name: 'Data Analytics', icon: 'analytics' },
-      { name: 'Mobile Workforce', icon: 'smartphone' },
-    ],
-  },
-  {
-    key: 'retail', name: 'Retail', nameVi: 'Bán lẻ', icon: 'shopping_bag',
-    headline: 'Connected stores. Smarter selling.', headlineVi: 'Cửa hàng kết nối. Bán hàng thông minh.',
-    desc: 'Reliable in-store connectivity, digital payments and customer analytics.',
-    descVi: 'Kết nối trong cửa hàng ổn định, thanh toán số và phân tích khách hàng.',
-    solutions: [
-      { name: 'Store Connectivity', icon: 'wifi' }, { name: 'Digital Payments', icon: 'payments' },
-      { name: 'AI Camera', icon: 'videocam' }, { name: 'Customer Analytics', icon: 'analytics' },
-      { name: 'Bulk SMS', icon: 'sms' },
-    ],
-  },
-  {
-    key: 'manufacturing', name: 'Manufacturing', nameVi: 'Sản xuất', icon: 'factory',
-    headline: 'Smart factories, zero downtime.', headlineVi: 'Nhà máy thông minh, không gián đoạn.',
-    desc: 'Industrial IoT, private connectivity and monitoring for production sites.',
-    descVi: 'IoT công nghiệp, kết nối riêng và giám sát cho khu sản xuất.',
-    solutions: [
-      { name: 'Private Connectivity', icon: 'lan' }, { name: 'Smart Monitoring', icon: 'monitoring' },
-      { name: 'Industrial IoT', icon: 'precision_manufacturing' }, { name: 'Cybersecurity', icon: 'shield' },
-      { name: 'Automation', icon: 'smart_toy' },
+      { name: 'Hospital Management System (HIS)', icon: 'local_hospital' },
+      { name: 'Laboratory Information System', icon: 'biotech' },
+      { name: 'Radiology Information System', icon: 'radiology' },
+      { name: 'PACS - Image Storage & Transfer', icon: 'photo_library' },
+      { name: 'ERM - Electronic Medical Record', icon: 'medical_information' },
+      { name: 'Query Management System', icon: 'quiz' },
+      { name: 'Connectivity Service', icon: 'cell_tower' },
+      { name: 'Cloud - Data Center', icon: 'cloud' },
     ],
   },
   {
     key: 'education', name: 'Education', nameVi: 'Giáo dục', icon: 'school',
-    headline: 'Learning without limits.', headlineVi: 'Học tập không giới hạn.',
-    desc: 'Campus connectivity, cloud platforms and secure access for students and staff.',
-    descVi: 'Kết nối khuôn viên, nền tảng đám mây và truy cập bảo mật cho học sinh và giáo viên.',
+    headline: 'Learning without limits.',
+    headlineVi: 'Học tập không giới hạn.',
+    desc: 'E-learning, e-books and school management on reliable connectivity.',
+    descVi: 'E-learning, e-book và quản lý trường học trên kết nối ổn định.',
     solutions: [
-      { name: 'Campus Wi-Fi', icon: 'wifi' }, { name: 'Cloud Platforms', icon: 'cloud' },
-      { name: 'E-Learning', icon: 'cast_for_education' }, { name: 'Secure Access', icon: 'lock' },
-      { name: 'Communication', icon: 'forum' },
+      { name: 'E-learning, AI learning', icon: 'cast_for_education' },
+      { name: 'Ebooks', icon: 'menu_book' },
+      { name: 'Education Management System', icon: 'school' },
+      { name: 'Connectivity Service', icon: 'cell_tower' },
+      { name: 'Cloud - Data Center', icon: 'cloud' },
+      { name: 'SMS Bulk', icon: 'sms' },
     ],
   },
 ];
