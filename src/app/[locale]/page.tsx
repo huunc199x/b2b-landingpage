@@ -55,9 +55,8 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
     <>
       <Header />
       <main>
-        {/* [2] HERO — ảnh full-bleed nửa phải (desktop), xếp dọc trên iPad/mobile */}
+        {/* [2] HERO — căn giữa: text ở trên, ảnh showcase ở giữa phía dưới */}
         <section className={styles.hero}>
-          <div className={styles.heroImageFull} aria-hidden />
           <div className={`mt-container ${styles.heroInner}`}>
             <div className={styles.heroText}>
               <p className={styles.heroEyebrow}>
@@ -79,6 +78,10 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
                   {t('heroCtaTalk')}
                 </Link>
               </div>
+            </div>
+            {/* Ảnh showcase (sau này gắn hiệu ứng lật trang / carousel nhiều ảnh) */}
+            <div className={styles.heroShowcase} aria-hidden>
+              <span className={styles.heroImg} />
             </div>
           </div>
         </section>

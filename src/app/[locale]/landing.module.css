@@ -10,46 +10,11 @@
   position: relative;
   z-index: 2;
   padding-block: var(--mt-space-16);
+  text-align: center;
 }
 .heroText {
-  max-width: min(560px, 46%);
-}
-/* Ảnh hero: mặc định (iPad/mobile) full-width xếp trên; desktop full-bleed nửa phải. */
-.heroImageFull {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background-image: url('/assets/hero-ecosystem.png');
-  background-size: cover;
-  background-position: 60% center;
-  background-repeat: no-repeat;
-}
-@media (min-width: 1025px) {
-  .hero {
-    display: flex;
-    align-items: stretch;
-  }
-  .heroImageFull {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 50%;
-    height: auto;
-    aspect-ratio: auto;
-    /* Hero cao theo nội dung → khung gần tỉ lệ ảnh (16:9) → gần như không cắt mất ảnh. */
-    background-position: center;
-  }
-  /* Làm mềm mép trái ảnh, hoà vào nền hero (không có đường cắt cứng). */
-  .heroImageFull::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg, #fff4ea 0%, rgba(255, 244, 234, 0) 24%);
-    pointer-events: none;
-  }
-  .heroInner {
-    width: 100%;
-  }
+  max-width: 820px;
+  margin-inline: auto;
 }
 .heroEyebrow {
   font-size: 14px;
@@ -70,6 +35,7 @@
 .heroTitle span {
   display: block;
   width: fit-content;
+  margin-inline: auto;
   background: var(--gradient-text);
   -webkit-background-clip: text;
   background-clip: text;
@@ -79,13 +45,14 @@
   font-size: 18px;
   line-height: 1.55;
   color: var(--text-secondary);
-  margin: 0 0 var(--mt-space-8);
+  margin: 0 auto var(--mt-space-8);
   max-width: 46ch;
 }
 .heroCtas {
   display: flex;
   flex-wrap: wrap;
   gap: var(--mt-space-3);
+  justify-content: center;
 }
 .btnPrimary {
   display: inline-flex;
@@ -124,18 +91,16 @@
   color: var(--color-brand-hover);
 }
 
-/* Hero visual — mark Mytel + chip nổi */
-.heroVisual {
-  position: relative;
-  display: grid;
-  place-items: center;
-  min-width: 0;
-  aspect-ratio: 1.72;
+/* Ảnh showcase căn giữa, dưới tiêu đề (sẵn sàng cho carousel / hiệu ứng lật trang). */
+.heroShowcase {
+  margin-top: var(--mt-space-12);
 }
-/* Ảnh hero có nền thật → bo góc + đổ bóng cho khung gọn gàng, phủ kín khung. */
 .heroImg {
-  position: absolute;
-  inset: 0;
+  display: block;
+  width: 100%;
+  max-width: 1040px;
+  margin-inline: auto;
+  aspect-ratio: 16 / 9;
   background-image: url('/assets/hero-ecosystem.png');
   background-size: cover;
   background-position: center;
@@ -143,41 +108,6 @@
   border-radius: var(--mt-radius-card);
   box-shadow: 0 24px 60px rgba(29, 29, 31, 0.18);
 }
-.heroMark {
-  width: min(60%, 300px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #ff9a4d, #f26b21 70%);
-  display: grid;
-  place-items: center;
-  color: #fff;
-  font-size: clamp(48px, 9vw, 96px);
-  box-shadow: 0 30px 60px rgba(242, 107, 33, 0.3);
-  animation: mt-float 6s ease-in-out infinite;
-}
-.heroChip {
-  position: absolute;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--mt-space-2);
-  padding: 10px 16px;
-  border-radius: var(--mt-radius-pill);
-  background: #fff;
-  border: 1px solid var(--border-warm);
-  box-shadow: 0 12px 30px rgba(242, 107, 33, 0.14);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text-primary);
-  animation: mt-float 5s ease-in-out infinite;
-}
-.heroChip .material-symbols-outlined {
-  font-size: 18px;
-  color: var(--color-brand);
-}
-.chip0 { top: 6%; left: 4%; }
-.chip1 { top: 20%; right: 2%; animation-delay: 0.8s; }
-.chip2 { bottom: 20%; left: 0%; animation-delay: 1.6s; }
-.chip3 { bottom: 6%; right: 8%; animation-delay: 2.4s; }
 
 /* ---------- [3] KPI band (nổi, đè lên đáy hero) ---------- */
 .kpiWrap {
