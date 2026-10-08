@@ -10,7 +10,7 @@ export function AdminNav({ email }: { email?: string | null }) {
   const t = useTranslations('admin.nav');
   const pathname = usePathname();
   const params = useParams();
-  const locale = (params?.locale as string) ?? 'vi';
+  const locale = (params?.locale as string) ?? 'en';
   const base = `/${locale}/admin`;
 
   const isActive = (seg: string) => pathname?.startsWith(`${base}/${seg}`);

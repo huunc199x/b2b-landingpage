@@ -19,7 +19,7 @@ type Load = 'loading' | 'ok' | 'error';
 export default function AdminContentPage() {
   const t = useTranslations('admin.content');
   const params = useParams();
-  const locale = (params?.locale as string) ?? 'vi';
+  const locale = (params?.locale as string) ?? 'en';
   const base = `/${locale}/admin`;
 
   const [items, setItems] = useState<BlockItem[]>([]);

@@ -6,8 +6,8 @@ import { routing } from '@/i18n/routing';
 import '../globals.css';
 
 export const metadata: Metadata = {
-  title: 'Mytel B2B — Giải pháp doanh nghiệp',
-  description: 'Hệ sinh thái dịch vụ B2B Mytel: Connectivity · ICT · Mobile.',
+  title: 'Mytel B2B — Enterprise Solutions',
+  description: 'Mytel B2B ecosystem: Connectivity · Cloud & Data Center · Cyber Security · IoT · Digital Services.',
 };
 
 // Vercel không route được trang SSG (●) với setup [locale]+middleware này (404 DEPLOYMENT_NOT_FOUND),

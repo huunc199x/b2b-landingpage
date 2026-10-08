@@ -21,7 +21,6 @@ export async function Header() {
         </Link>
         <nav className={styles.nav} aria-label="primary">
           <Link href="/#solutions">{t('solutions')}</Link>
-          <Link href="/#industries">{t('industries')}</Link>
           <Link href="/#ecosystem">{t('ecosystem')}</Link>
           <Link href="/#dang-ky">{t('contact')}</Link>
         </nav>

@@ -13,7 +13,7 @@
   text-align: center;
 }
 .heroText {
-  max-width: 820px;
+  max-width: 1120px;
   margin-inline: auto;
 }
 .heroEyebrow {
@@ -107,6 +107,17 @@
   background-repeat: no-repeat;
   border-radius: var(--mt-radius-card);
   box-shadow: 0 24px 60px rgba(29, 29, 31, 0.18);
+}
+
+/* Desktop (≥768px): tiêu đề gộp 1 dòng (các từ chảy ngang); mobile giữ 3 dòng xếp dọc. */
+@media (min-width: 768px) {
+  .heroTitle {
+    font-size: clamp(32px, 3.2vw, 46px);
+  }
+  .heroTitle span {
+    display: inline;
+    width: auto;
+  }
 }
 
 /* ---------- [3] KPI band (nổi, đè lên đáy hero) ---------- */
@@ -240,7 +251,7 @@
 /* ---------- [4] SOLUTIONS (3 nhóm thật, card v3) ---------- */
 .solGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--mt-space-4);
 }
 .solCard {
@@ -307,6 +318,39 @@
   font-size: 14px;
   text-decoration: none;
   margin-top: auto;
+}
+/* Danh mục dịch vụ trong card ngành (section Solutions theo ngành). */
+.solServices {
+  list-style: none;
+  margin: var(--mt-space-2) 0 0;
+  padding: var(--mt-space-4) 0 0;
+  border-top: 1px solid var(--border-warm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--mt-space-3);
+}
+.solServiceItem {
+  display: flex;
+  align-items: center;
+  gap: var(--mt-space-3);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: left;
+}
+.solServiceIcon {
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border-radius: 9px;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  color: var(--color-brand);
+  box-shadow: 0 4px 12px rgba(242, 107, 33, 0.1);
+}
+.solServiceIcon .material-symbols-outlined {
+  font-size: 18px;
 }
 
 /* ---------- [5] ECOSYSTEM ---------- */
@@ -637,5 +681,81 @@
   }
   .logoName {
     font-size: 15px;
+  }
+}
+
+/* ---------- Trang chi tiết nhóm giải pháp (/solutions/[slug]) ---------- */
+.pillarHero {
+  position: relative;
+  background: var(--gradient-hero);
+  overflow: hidden;
+}
+.pillarHeroInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--mt-space-12);
+  align-items: center;
+  padding-block: var(--mt-space-16);
+}
+.pillarBack {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--mt-space-2);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-link);
+  text-decoration: none;
+  margin-bottom: var(--mt-space-4);
+}
+.pillarTitle {
+  font-size: clamp(32px, 4.2vw, 54px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  margin: var(--mt-space-2) 0 var(--mt-space-4);
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.pillarIntro {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--text-body);
+  margin: 0 0 var(--mt-space-6);
+  max-width: 48ch;
+}
+.pillarHeroImg {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--mt-radius-card);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(29, 29, 31, 0.18);
+  background: linear-gradient(160deg, #ff9a4d 0%, #f26b21 72%);
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+.pillarHeroImg .material-symbols-outlined {
+  font-size: 64px;
+}
+.pillarHeroImgLayer {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 860px) {
+  .pillarHeroInner {
+    grid-template-columns: 1fr;
+    gap: var(--mt-space-8);
+    padding-block: var(--mt-space-12);
+  }
+  .pillarHeroImg {
+    order: -1;
   }
 }

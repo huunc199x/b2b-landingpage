@@ -32,7 +32,7 @@ export function BlockEditor({ blockId }: { blockId?: string }) {
   const t = useTranslations('admin.editor');
   const params = useParams();
   const router = useRouter();
-  const locale = (params?.locale as string) ?? 'vi';
+  const locale = (params?.locale as string) ?? 'en';
   const base = `/${locale}/admin`;
 
   const [s, setS] = useState<EditorState>(EMPTY);

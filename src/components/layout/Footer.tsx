@@ -21,7 +21,6 @@ export async function Footer() {
 
         <nav className={styles.footerNav} aria-label="footer">
           <Link href="/#solutions">{tNav('solutions')}</Link>
-          <Link href="/#industries">{tNav('industries')}</Link>
           <Link href="/#ecosystem">{tNav('ecosystem')}</Link>
           <Link href="/#dang-ky">{tNav('contact')}</Link>
         </nav>

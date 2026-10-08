@@ -3,7 +3,7 @@
 
 export type ServiceGroup = 'connectivity' | 'ict_service' | 'mobile_ict';
 
-export const SERVICE_LOCALES = ['en', 'vi'] as const;
+export const SERVICE_LOCALES = ['en', 'my'] as const;
 export type ServiceLocale = (typeof SERVICE_LOCALES)[number];
 
 /** 7 trường hiển thị public + pricePolicy nội bộ (chỉ EN, không render). */
@@ -24,7 +24,9 @@ export interface ServiceDoc {
   order: number;
   i18n: {
     en: ServiceI18nFields;
+    /** Giữ dữ liệu cũ (không dùng khi locale = my → fallback EN). */
     vi?: Partial<ServiceI18nFields>;
+    my?: Partial<ServiceI18nFields>;
   };
 }
 

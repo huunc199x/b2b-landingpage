@@ -10,11 +10,11 @@ import type {
 
 function toView(doc: ServiceDoc, locale: ServiceLocale): ServiceView {
   const en = doc.i18n.en;
-  const vi = doc.i18n.vi ?? {};
+  const my = doc.i18n.my ?? {};
   const pick = (field: keyof ServiceView) => {
     if (field === 'slug' || field === 'group' || field === 'order') return '';
-    if (locale === 'vi') {
-      const v = vi[field as keyof typeof vi];
+    if (locale === 'my') {
+      const v = my[field as keyof typeof my];
       if (typeof v === 'string' && v.trim() !== '') return v;
     }
     return en[field as keyof typeof en] as string;

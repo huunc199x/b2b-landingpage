@@ -14,7 +14,7 @@ import { Button, Input, Card } from '@/components/ui';
 export default function AdminLoginPage() {
   const t = useTranslations('admin.login');
   const params = useParams();
-  const locale = (params?.locale as string) ?? 'vi';
+  const locale = (params?.locale as string) ?? 'en';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

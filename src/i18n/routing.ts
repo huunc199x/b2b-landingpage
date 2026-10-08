@@ -1,12 +1,12 @@
 import { defineRouting } from 'next-intl/routing';
 
 /**
- * Routing i18n (next-intl) — /en /vi. Khung 'my' khai nhưng CHƯA bật (NFR-05, BR-11)
- * → không liệt kê trong UI switcher (Làn 1). VI là mặc định (canvas anh Bryan).
+ * Routing i18n (next-intl) — /en /my. Hai ngôn ngữ: English + Myanmar (Burmese).
+ * EN là mặc định; chữ Myanmar dùng CHUNG font với tiếng Anh (fallback font hệ điều hành).
  */
 export const routing = defineRouting({
-  locales: ['en', 'vi'],
-  defaultLocale: 'vi',
+  locales: ['en', 'my'],
+  defaultLocale: 'en',
   localePrefix: 'always',
 });
 

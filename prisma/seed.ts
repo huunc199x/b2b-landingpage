@@ -60,7 +60,7 @@ interface DemoBlock {
   blockType: BlockType;
   sortOrder: number;
   payload: Record<string, unknown>;
-  i18n: Record<Locale, { title: string; description?: string }>;
+  i18n: Partial<Record<Locale, { title: string; description?: string }>>;
 }
 
 // Logo đối tác placeholder (data URI — hợp CSP img-src 'self' data:), tránh phụ thuộc asset ngoài.
@@ -187,6 +187,7 @@ async function seedDemoBlocks(adminId: string): Promise<void> {
 
     for (const locale of Object.keys(b.i18n) as Locale[]) {
       const tr = b.i18n[locale];
+      if (!tr) continue;
       await prisma.contentBlockI18n.upsert({
         where: { blockId_locale: { blockId, locale } },
         update: {}, // idempotent

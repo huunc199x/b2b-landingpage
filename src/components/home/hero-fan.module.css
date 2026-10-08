@@ -1,0 +1,98 @@
+/* HeroFan → carousel 1 ảnh lớn + 5 dấu chấm. Tự chuyển cảnh (crossfade). Bấm ảnh → trang chi tiết. */
+.carousel {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+}
+.stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.slide {
+  position: absolute;
+  inset: 0;
+  display: block;
+  border: 3px solid #fff;
+  border-radius: var(--mt-radius-card);
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 24px 60px rgba(29, 29, 31, 0.18);
+  transition: opacity 0.6s ease;
+}
+.slideActive {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+.slide:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+/* Nền dự phòng khi chưa có ảnh. */
+.slideFallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #ff9a4d 0%, #f26b21 72%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--mt-space-2);
+  color: #fff;
+  text-align: center;
+  padding: var(--mt-space-4);
+}
+.slideFallback .material-symbols-outlined {
+  font-size: 56px;
+}
+.slideFallbackText {
+  font-size: 17px;
+  font-weight: 700;
+}
+.slideImg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 5 dấu chấm */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: var(--mt-space-6);
+}
+.dot {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: var(--border-strong);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+.dot:hover {
+  background: var(--border-brand);
+}
+.dotActive {
+  width: 30px;
+  background: var(--color-brand);
+}
+.dot:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+@media (max-width: 767px) {
+  .slideFallback .material-symbols-outlined {
+    font-size: 42px;
+  }
+  .slideFallbackText {
+    font-size: 15px;
+  }
+}

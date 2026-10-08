@@ -4,22 +4,15 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { LeadForm } from '@/components/lead/LeadForm';
 import { MIcon } from '@/components/ui';
-import { IndustryExplorer } from '@/components/home/IndustryExplorer';
 import { EcosystemOrbit } from '@/components/home/EcosystemOrbit';
+import { HeroFan } from '@/components/home/HeroFan';
 import { ScrollReveal } from '@/components/home/ScrollReveal';
-import { listByGroup, listAll } from '@/modules/service-catalog/loader';
+import { listAll } from '@/modules/service-catalog/loader';
 import { getVisibleBlocks } from '@/modules/public-site/blocks';
 import { env } from '@/lib/env';
+import { INDUSTRIES } from '@/content/industries';
 import type { AppLocale } from '@/i18n/routing';
-import type { ServiceGroup } from '@/content/services/types';
 import styles from './landing.module.css';
-
-// Icon Material Symbols theo nhóm dịch vụ thật (18 dịch vụ / 3 nhóm).
-const GROUP_MICON: Record<ServiceGroup, string> = {
-  connectivity: 'cell_tower',
-  ict_service: 'cloud',
-  mobile_ict: 'smartphone',
-};
 
 // Logo fallback = nhãn ngành trung tính (KHÔNG nêu tên thương hiệu thật → tránh mạo nhận endorsement).
 const FALLBACK_LOGOS = [
@@ -38,12 +31,8 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
   setRequestLocale(rawLocale);
   const locale = rawLocale as AppLocale;
 
-  const [t, tGroups] = await Promise.all([
-    getTranslations('home'),
-    getTranslations('groups'),
-  ]);
+  const t = await getTranslations('home');
 
-  const groups = listByGroup(locale);
   const serviceOptions = listAll(locale).map((s) => ({ slug: s.slug, name: s.name }));
 
   const [highlights, partners] = await Promise.all([
@@ -65,8 +54,8 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
                 {t('heroEyebrow2')}
               </p>
               <h1 className={styles.heroTitle}>
-                <span>{t('heroTitle1')}</span>
-                <span>{t('heroTitle2')}</span>
+                <span>{t('heroTitle1')}</span>{' '}
+                <span>{t('heroTitle2')}</span>{' '}
                 <span>{t('heroTitle3')}</span>
               </h1>
               <p className={styles.heroSubtitle}>{t('heroSubtitle')}</p>
@@ -79,9 +68,9 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
                 </Link>
               </div>
             </div>
-            {/* Ảnh showcase (sau này gắn hiệu ứng lật trang / carousel nhiều ảnh) */}
-            <div className={styles.heroShowcase} aria-hidden>
-              <span className={styles.heroImg} />
+            {/* Quạt xòe ảnh dịch vụ — bấm vào thẻ để lật ảnh đó lên trước */}
+            <div className={styles.heroShowcase}>
+              <HeroFan locale={locale === 'my' ? 'my' : 'en'} />
             </div>
           </div>
         </section>
@@ -93,17 +82,17 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             <img
               className={styles.servicesStrip}
               src="/assets/main-services.png"
-              alt={locale === 'vi' ? 'Các nhóm dịch vụ chính của Mytel B2B' : 'Mytel B2B main services'}
+              alt="Mytel B2B main services"
             />
           </div>
         </div>
 
-        {/* [4] SOLUTIONS — 3 nhóm dịch vụ thật */}
+        {/* [4] SOLUTIONS theo NGÀNH — 5 hạng mục + mô tả chi tiết + danh mục dịch vụ */}
         <section id="solutions" className={styles.section}>
           <div className="mt-container" data-reveal>
             <div className={styles.secHead}>
               <div>
-                <p className={styles.eyebrow}>{t('solutionsEyebrow')}</p>
+                <p className={styles.eyebrow}>{t('industriesEyebrow')}</p>
                 <h2 className={styles.h2}>{t('solutionsHeading')}</h2>
               </div>
               <Link href="/services" className={styles.secLink}>
@@ -111,23 +100,23 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
               </Link>
             </div>
             <div className={styles.solGrid}>
-              {groups.map((g) => (
-                <article key={g.group} className={styles.solCard}>
+              {INDUSTRIES.map((ind) => (
+                <article key={ind.key} className={styles.solCard}>
                   <span className={styles.solIcon} aria-hidden>
-                    <MIcon name={GROUP_MICON[g.group]} />
+                    <MIcon name={ind.icon} />
                   </span>
-                  <h3 className={styles.solTitle}>{tGroups(g.group)}</h3>
-                  <p className={styles.solDesc}>{tGroups(`${g.group}Tagline`)}</p>
-                  <div className={styles.chips}>
-                    {g.services.map((s) => (
-                      <Link key={s.slug} href={`/services/${s.slug}`} className={styles.chip}>
+                  <h3 className={styles.solTitle}>{locale === 'my' ? ind.nameMy : ind.name}</h3>
+                  <p className={styles.solDesc}>{locale === 'my' ? ind.descMy : ind.desc}</p>
+                  <ul className={styles.solServices}>
+                    {ind.solutions.map((s) => (
+                      <li key={s.name} className={styles.solServiceItem}>
+                        <span className={styles.solServiceIcon} aria-hidden>
+                          <MIcon name={s.icon} />
+                        </span>
                         {s.name}
-                      </Link>
+                      </li>
                     ))}
-                  </div>
-                  <Link href="/services" className={styles.cardCta}>
-                    {t('viewAll')} <span aria-hidden>→</span>
-                  </Link>
+                  </ul>
                 </article>
               ))}
             </div>
@@ -160,20 +149,6 @@ export default async function LandingPage({ params }: { params: Promise<{ locale
             </div>
           </section>
         ) : null}
-
-        {/* [5] INDUSTRIES — tương tác */}
-        <section id="industries" className={`${styles.section} ${styles.sectionAlt}`}>
-          <div className="mt-container" data-reveal>
-            <div className={styles.secHead}>
-              <div>
-                <p className={styles.eyebrow}>{t('industriesEyebrow')}</p>
-                <h2 className={styles.h2}>{t('industriesHeading')}</h2>
-              </div>
-              <p className={styles.lead}>{t('industriesLead')}</p>
-            </div>
-            <IndustryExplorer locale={locale === 'vi' ? 'vi' : 'en'} ctaLabel={t('industriesCta')} />
-          </div>
-        </section>
 
         {/* [6] ECOSYSTEM — orbit */}
         <section id="ecosystem" className={styles.section}>

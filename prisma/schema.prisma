@@ -29,7 +29,7 @@ enum BlockStatus {
 enum Locale {
   en
   vi
-  // 'my' — khung, thêm sau (NFR-05)
+  my
 }
 
 enum LeadStatus {

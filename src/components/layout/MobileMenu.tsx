@@ -64,7 +64,6 @@ export function MobileMenu() {
           <div id="mobile-drawer" className={styles.drawer} role="dialog" aria-modal="true" aria-label={tc('menu')}>
             <nav className={styles.drawerNav} aria-label="mobile">
               <Link href="/#solutions" onClick={() => setOpen(false)}>{t('solutions')}</Link>
-              <Link href="/#industries" onClick={() => setOpen(false)}>{t('industries')}</Link>
               <Link href="/#ecosystem" onClick={() => setOpen(false)}>{t('ecosystem')}</Link>
               <Link href="/#dang-ky" onClick={() => setOpen(false)}>{t('contact')}</Link>
             </nav>
